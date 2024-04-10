@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 14:41:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/10 17:28:09 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/04/10 15:15:54 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/04/10 16:28:47 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	main(int argc, char **argv)
+void	ft_free(void *ptr)
 {
-	int		fd;
-	char	**mapinfo;
+	if (ptr)
+		free(ptr);
+	write(1, "Error\n", 6);
+	exit (1);
+}
 
-	if (argc != 2)
-		ft_error("Wrong number of arguments. Try again!");
-	get_mapinfo(argv[1], &mapinfo);
-//	if (!(valid_map(fd, &map)))
-//		ft_error("Invalid map. Try again!");
-	//run_cub3d(map);
-	close(fd);
-
+int	ft_error(char *str)
+{
+	printf("%s\n", str);
+	exit (1);
 }
