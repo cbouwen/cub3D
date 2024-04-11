@@ -4,8 +4,11 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 
 SRC_DIR = ./src/
-SRC = main.c utils.c map_checker.c
-SRC_FILES = $(addprefix $(SRC_DIR), $(SRC))
+SRC_MAIN = main.c utils.c
+SRC_FILES = $(addprefix $(SRC_DIR), $(SRC_MAIN))
+PARSER_SRC = $(addprefix $(SRC_DIR)parser/, map_checker.c element_checker.c utils.c)
+
+SRC = $(SRC_FILES) $(PARSER_SRC)
 
 GNL_DIR = ./lib/Getnextline/
 GNL_LIB = $(GNL_DIR)getnextline.a
@@ -17,8 +20,8 @@ LIBFT_INC = -I $(LIBFT_DIR)
 
 all : $(NAME)
 
-$(NAME) : $(LIBFT_LIB) $(SRC_FILES) $(GNL_LIB)
-	$(CC) $(CFLAGS) $(SRC_FILES) $(LIBFT_LIB) $(GNL_LIB) -o $(NAME)
+$(NAME) : $(LIBFT_LIB) $(SRC) $(GNL_LIB)
+	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) $(GNL_LIB) -o $(NAME)
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_DIR)
