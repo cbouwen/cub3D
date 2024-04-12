@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:42:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/11 16:22:17 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/12 11:14:45 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,21 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+typedef struct	s_color
+{
+	int	red;
+	int	green;
+	int	blue;
+}				t_color;
+
 typedef struct	s_mapinfo
 {
-	int	rows;
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+	t_color	*F;
+	t_color	*C;
 }				t_mapinfo;
 
 typedef struct s_mapchecker
@@ -44,5 +56,8 @@ void	ft_free(void *ptr);
 int		ft_error(char *str);
 int		valid_map(int fd, char ***map);
 int		parse_cub(char *argv, char ***mapinfo);
+void    set_element_boolean(int a, t_mapchecker *elements);
+int		correct_path(char *str, int a);
+int		correct_color_parse(char *str, char c);
 
 # endif

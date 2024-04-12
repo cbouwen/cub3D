@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:41:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/11 14:16:27 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/12 11:27:35 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 //	int		fd;
-	char	**mapinfo;
+	t_mapinfo	mapinfo;
 
 	if (argc != 2)
 		ft_error("Wrong number of arguments. Try again!");

@@ -6,7 +6,7 @@ CFLAGS = -Wall -Werror -Wextra -g
 SRC_DIR = ./src/
 SRC_MAIN = main.c utils.c
 SRC_FILES = $(addprefix $(SRC_DIR), $(SRC_MAIN))
-PARSER_SRC = $(addprefix $(SRC_DIR)parser/, map_checker.c element_checker.c utils.c)
+PARSER_SRC = $(addprefix $(SRC_DIR)parser/, map_parser.c)
 
 SRC = $(SRC_FILES) $(PARSER_SRC)
 
