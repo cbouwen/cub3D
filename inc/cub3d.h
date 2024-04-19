@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:42:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/12 11:14:45 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/19 15:09:26 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdlib.h>
+
+typedef enum	e_color
+{
+	RED,
+	GREEN,
+	BLUE
+}				t_color;
 
 typedef struct	s_color
 {
