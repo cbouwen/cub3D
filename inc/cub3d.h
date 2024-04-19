@@ -1,12 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
+	/* ************************************************************************** */
+	/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:42:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/19 15:09:26 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/19 16:48:34 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdlib.h>
-
-typedef enum	e_color
-{
-	RED,
-	GREEN,
-	BLUE
-}				t_color;
 
 typedef struct	s_color
 {
@@ -62,7 +55,7 @@ int     map_name(char *str);
 void	ft_free(void *ptr);
 int		ft_error(char *str);
 int		valid_map(int fd, char ***map);
-int		parse_cub(char *argv, char ***mapinfo);
+int		parse_cub(char *argv, t_mapinfo *mapinfo);
 void    set_element_boolean(int a, t_mapchecker *elements);
 int		correct_path(char *str, int a);
 int		correct_color_parse(char *str, char c);

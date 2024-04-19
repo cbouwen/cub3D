@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:10:31 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/19 16:24:48 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/19 16:44:26 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,35 @@
 
 void	check_duplicates(char *str, t_mapchecker *elements)
 {
-	if (str[0] == 'N' && *elements.NO == true)
-		*elements.duplicate = true;
-	else if (str[0] == 'S'&& *elements.SO == true)
-		*elements.duplicate = true;
-	else if (str[0] == 'W' && *elements.WE == true)
-		*elements.duplicate = true;
-	else if (str[0] == 'E' && *elements.EA == true)
-		*elements.duplicate = true;
-	else if (str[0] == 'C' && *elements.C == true)
-		*elements.duplicate = true;
-	else if (str[0] == 'F' && *elements.F == true)
-		*elements.duplicate = true;
+	if (str[0] == 'N' && elements->NO == true)
+		elements->duplicate = true;
+	else if (str[0] == 'S'&& elements->SO == true)
+		elements->duplicate = true;
+	else if (str[0] == 'W' && elements->WE == true)
+		elements->duplicate = true;
+	else if (str[0] == 'E' && elements->EA == true)
+		elements->duplicate = true;
+	else if (str[0] == 'C' && elements->C == true)
+		elements->duplicate = true;
+	else if (str[0] == 'F' && elements->F == true)
+		elements->duplicate = true;
 }
 
 void	update_mapchecker(char *str, t_mapchecker *elements)
 {
 	check_duplicates(str, elements);
 	if (str[0] == 'N')
-		*elements.NO = true;
+		elements->NO = true;
 	else if (str[0] == 'S')
-		*elements.SO = true;
+		elements->SO = true;
 	else if (str[0] == 'W')
-		*elements.WE = true;
+		elements->WE = true;
 	else if (str[0] == 'E')
-		*elements.EA = true;
+		elements->EA = true;
 	else if (str[0] == 'C')
-		*elements.C = true;
+		elements->C = true;
 	else if (str[0] == 'F')
-		*elements.F = true;
+		elements->F = true;
 }
 
 void	parse_path(char *str, t_mapinfo *mapinfo)
@@ -72,25 +72,25 @@ void	parse_color(char *str, t_mapinfo *mapinfo)
 		i++;
 	if (str[0] == 'F')
 	{
-		mapinfo->F.red = ft_atoi(str + i);
+		mapinfo->F->red = ft_atoi(str + i);
 		while (str[i] != 44)
 			i++;
 		i++;
-		mapinfo->F.green = ft_atoi(str + i);
+		mapinfo->F->green = ft_atoi(str + i);
 		while (str[i] != 44)
 			i++;
-		mapinfo->F.blue = ft_atoi(str + i);
+		mapinfo->F->blue = ft_atoi(str + i);
 	}
 	else
 	{
-		mapinfo->C.red = ft_atoi(str + i);
+		mapinfo->C->red = ft_atoi(str + i);
 		while (str[i] != 44)
 			i++;
 		i++;
-		mapinfo->C.green = ft_atoi(str + i);
+		mapinfo->C->green = ft_atoi(str + i);
 		while (str[i] != 44)
 			i++;
-		mapinfo->C.blue = ft_atoi(str + i);
+		mapinfo->C->blue = ft_atoi(str + i);
 	}
 	//check for overflow after parse?
 }
@@ -150,13 +150,14 @@ void	parse_map(int fd, t_mapinfo *mapinfo, t_mapchecker *elements)
 int	parse_cub(char *argv, t_mapinfo *mapinfo)
 {
 	t_mapchecker	elements;
+	int	fd;
 
 	init_map_checker(&elements);
 	if (!(fd = open(argv, O_RDONLY)))
 		ft_error("Error opening map.. Weird. Try again!");
 	parse_map(fd, mapinfo, &elements);
 	close(fd);
-	if (elements.duplicate = true)
+	if (elements.duplicate == true)
 		return (1); //error code for duplicate element
 	return (0);
 }
