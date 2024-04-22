@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-int		map_name(char *str)
+int	map_name(char *str)
 {
 	int	i;
 
@@ -30,11 +30,11 @@ void	ft_free(void *ptr)
 	if (ptr)
 		free(ptr);
 	write(1, "Error\n", 6);
-	exit (1);
+	exit(1);
 }
 
 int	ft_error(char *str)
 {
 	printf("%s\n", str);
-	exit (1);
+	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:10:31 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/22 15:45:21 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:48:48 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ void	parse_path(char *str, t_mapinfo *mapinfo)
 		mapinfo->WE = ft_strndup(str + 3, i);
 	else if (str[0] == 'E')
 		mapinfo->EA = ft_strndup(str + 3, i);
-
 }
 
 void	parse_color(char *str, t_mapinfo *mapinfo)
-{	
+{
 	int	i;
 
 	i = 2;
@@ -42,7 +41,6 @@ void	parse_color(char *str, t_mapinfo *mapinfo)
 		mapinfo->F.red = ft_atoi(str + i);
 		while (str[i] != 44)
 			i++;
-	//	i++;
 		mapinfo->F.green = ft_atoi(str + ++i);
 		while (str[i] != 44)
 			i++;
@@ -53,7 +51,6 @@ void	parse_color(char *str, t_mapinfo *mapinfo)
 		mapinfo->C.red = ft_atoi(str + i);
 		while (str[i] != 44)
 			i++;
-		//i++;
 		mapinfo->C.green = ft_atoi(str + ++i);
 		while (str[i] != 44)
 			i++;
@@ -76,7 +73,8 @@ void	check_input(char *str, t_mapinfo *mapinfo, t_mapchecker *elements)
 			parse_color(str + i, mapinfo);
 			update_mapchecker(str + i, elements);
 		}
-		if (!ft_strncmp(str + i, "NO ", 3) || !ft_strncmp(str + i, "SO ", 3) || !ft_strncmp(str + i, "WE ", 3) || !ft_strncmp(str + i, "EA ", 3))
+		if (!ft_strncmp(str + i, "NO ", 3) || !ft_strncmp(str + i, "SO ", 3)
+			|| !ft_strncmp(str + i, "WE ", 3) || !ft_strncmp(str + i, "EA ", 3))
 		{
 			parse_path(str + i, mapinfo);
 			update_mapchecker(str + i, elements);
@@ -102,7 +100,7 @@ void	parse_map(int fd, t_mapinfo *mapinfo, t_mapchecker *elements)
 int	parse_cub(char *argv, t_mapinfo *mapinfo)
 {
 	t_mapchecker	elements;
-	int	fd;
+	int				fd;
 
 	init_map_checker(&elements);
 	if (!(fd = open(argv, O_RDONLY)))
@@ -110,7 +108,7 @@ int	parse_cub(char *argv, t_mapinfo *mapinfo)
 	parse_map(fd, mapinfo, &elements);
 	close(fd);
 	if (elements.duplicate == true)
-		return (1); //error code for duplicate element
-	tester(*mapinfo);
+		return (1);
+	tester(*mapinfo); //remove later
 	return (0);
 }

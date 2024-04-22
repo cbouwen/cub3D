@@ -14,18 +14,17 @@
 
 int	main(int argc, char **argv)
 {
-//	int		fd;
 	t_mapinfo	mapinfo;
 
+	//	int		fd;
 	if (argc != 2)
 		ft_error("Wrong number of arguments. Try again!");
 	if (!(map_name(argv[1])))
 		ft_error("Hmmmm. Map should end with .cub. Can you make sure of that please?");
 	if (parse_cub(argv[1], &mapinfo) == 1)
 		ft_error("Duplicate map arguments.");
-//	if (!(valid_map(fd, &map)))
-//		ft_error("Invalid map. Try again!");
+	//	if (!(valid_map(fd, &map)))
+	//		ft_error("Invalid map. Try again!");
 	//run_cub3d(map);
-//	close(fd);
-
+	//	close(fd);
 }

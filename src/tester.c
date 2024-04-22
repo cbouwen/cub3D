@@ -18,6 +18,8 @@ void	tester(t_mapinfo mapinfo)
 	printf("Path to SO is: %s\n", mapinfo.SO);
 	printf("Path to WE is: %s\n", mapinfo.WE);
 	printf("Path to EA is: %s\n", mapinfo.EA);
-	printf("Color for the floor is: %i, %i, %i\n", mapinfo.F.red, mapinfo.F.green, mapinfo.F.blue);
-	printf("Color for the ceiling is: %i, %i, %i\n", mapinfo.C.red, mapinfo.C.green, mapinfo.C.blue);
+	printf("Color for the floor is: %i, %i, %i\n", mapinfo.F.red,
+			mapinfo.F.green, mapinfo.F.blue);
+	printf("Color for the ceiling is: %i, %i, %i\n", mapinfo.C.red,
+			mapinfo.C.green, mapinfo.C.blue);
 }
