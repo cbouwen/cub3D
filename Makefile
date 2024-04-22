@@ -4,9 +4,9 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 
 SRC_DIR = ./src/
-SRC_MAIN = main.c utils.c
+SRC_MAIN = main.c utils.c tester.c
 SRC_FILES = $(addprefix $(SRC_DIR), $(SRC_MAIN))
-PARSER_SRC = $(addprefix $(SRC_DIR)parser/, map_parser.c)
+PARSER_SRC = $(addprefix $(SRC_DIR)parser/, map_parser.c parse_utils.c)
 
 SRC = $(SRC_FILES) $(PARSER_SRC)
 

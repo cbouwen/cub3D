@@ -1,12 +1,12 @@
-	/* ************************************************************************** */
-	/*                                                                            */
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:42:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/19 16:48:34 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/22 15:39:57 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct	s_mapinfo
 	char	*SO;
 	char	*WE;
 	char	*EA;
-	t_color	*F;
-	t_color	*C;
+	t_color	F;
+	t_color	C;
 }				t_mapinfo;
 
 typedef struct s_mapchecker
@@ -50,14 +50,14 @@ typedef struct s_mapchecker
 	bool	all_eles;
 }			t_mapchecker;
 
-char	*ft_strdup_no_space(const char *s);
 int     map_name(char *str);
 void	ft_free(void *ptr);
 int		ft_error(char *str);
-int		valid_map(int fd, char ***map);
 int		parse_cub(char *argv, t_mapinfo *mapinfo);
-void    set_element_boolean(int a, t_mapchecker *elements);
-int		correct_path(char *str, int a);
-int		correct_color_parse(char *str, char c);
+void	init_map_checker(t_mapchecker *elements);
+void	update_mapchecker(char *str, t_mapchecker *elements);
+
+//tester ft's
+void	tester(t_mapinfo mapinfo);
 
 # endif
