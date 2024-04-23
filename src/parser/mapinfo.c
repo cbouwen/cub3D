@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   mapinfo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 11:10:31 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/22 15:48:48 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/04/23 09:42:49 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/04/23 16:28:11 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,24 @@ void	parse_path(char *str, t_mapinfo *mapinfo)
 	while (str[i + 3] && (str[i + 3] != 32 && str[i + 3] != '\n'))
 		i++;
 	if (str[0] == 'N')
-		mapinfo->NO = ft_strndup(str + 3, i);
+		mapinfo->no = ft_strndup(str + 3, i);
 	else if (str[0] == 'S')
-		mapinfo->SO = ft_strndup(str + 3, i);
+		mapinfo->so = ft_strndup(str + 3, i);
 	else if (str[0] == 'W')
-		mapinfo->WE = ft_strndup(str + 3, i);
+		mapinfo->we = ft_strndup(str + 3, i);
 	else if (str[0] == 'E')
-		mapinfo->EA = ft_strndup(str + 3, i);
+		mapinfo->ea = ft_strndup(str + 3, i);
+}
+
+void	parse_color_values(t_color *X, char *str, int i)
+{
+	X->red = ft_atoi(str + i);
+	while (str[i] != 44)
+		i++;
+	X->green = ft_atoi(str + ++i);
+	while (str[i] != 44)
+		i++;
+	X->blue = ft_atoi(str + ++i);
 }
 
 void	parse_color(char *str, t_mapinfo *mapinfo)
@@ -37,26 +48,9 @@ void	parse_color(char *str, t_mapinfo *mapinfo)
 	while (str[i] == 32)
 		i++;
 	if (str[0] == 'F')
-	{
-		mapinfo->F.red = ft_atoi(str + i);
-		while (str[i] != 44)
-			i++;
-		mapinfo->F.green = ft_atoi(str + ++i);
-		while (str[i] != 44)
-			i++;
-		mapinfo->F.blue = ft_atoi(str + ++i);
-	}
+		parse_color_values(&mapinfo->f, str, i);
 	else
-	{
-		mapinfo->C.red = ft_atoi(str + i);
-		while (str[i] != 44)
-			i++;
-		mapinfo->C.green = ft_atoi(str + ++i);
-		while (str[i] != 44)
-			i++;
-		mapinfo->C.blue = ft_atoi(str + ++i);
-	}
-	//check for overflow after parse?
+		parse_color_values(&mapinfo->c, str, i);
 }
 
 void	check_input(char *str, t_mapinfo *mapinfo, t_mapchecker *elements)
@@ -81,34 +75,4 @@ void	check_input(char *str, t_mapinfo *mapinfo, t_mapchecker *elements)
 		}
 		i++;
 	}
-}
-
-void	parse_map(int fd, t_mapinfo *mapinfo, t_mapchecker *elements)
-{
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line)
-	{
-		check_input(line, mapinfo, elements);
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-}
-
-int	parse_cub(char *argv, t_mapinfo *mapinfo)
-{
-	t_mapchecker	elements;
-	int				fd;
-
-	init_map_checker(&elements);
-	if (!(fd = open(argv, O_RDONLY)))
-		ft_error("Error opening map.. Weird. Try again!");
-	parse_map(fd, mapinfo, &elements);
-	close(fd);
-	if (elements.duplicate == true)
-		return (1);
-	tester(*mapinfo); //remove later
-	return (0);
 }
