@@ -2,9 +2,10 @@ NAME = cub3D
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
+MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 SRC_DIR = ./src/
-SRC_MAIN = main.c utils.c tester.c
+SRC_MAIN = main.c utils.c tester.c window_utils.c execute.c
 SRC_FILES = $(addprefix $(SRC_DIR), $(SRC_MAIN))
 PARSER_SRC = $(addprefix $(SRC_DIR)parser/, parser.c parse_utils.c valid_map.c mapinfo.c parse_map.c)
 
@@ -21,7 +22,7 @@ LIBFT_INC = -I $(LIBFT_DIR)
 all : $(NAME)
 
 $(NAME) : $(LIBFT_LIB) $(SRC) $(GNL_LIB)
-	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) $(GNL_LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) $(GNL_LIB) $(MLX_FLAGS) -o $(NAME)
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_DIR)

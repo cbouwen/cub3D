@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:41:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/23 14:34:09 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/24 16:27:34 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		mapinfo.rows = 0;
 		mapinfo.colomns = 0;
 		parse_cub(argv[1], &mapinfo, &map);//error exit check?
+		execute_map(&map, mapinfo);
 	}
 	//	if (!(valid_map(fd, &map)))
 	//		ft_error("Invalid map. Try again!");
