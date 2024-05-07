@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:42:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/24 16:27:08 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/05/07 17:10:01 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,65 +21,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "../mlx_linux/mlx.h"
+# include "typedefs.h"
 
 #define HEIGHT 1080
 #define WIDTH 1980
-
-typedef struct s_color
-{
-	int		red;
-	int		green;
-	int		blue;
-}			t_color;
-
-typedef struct s_mapinfo
-{
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	t_color	f;
-	t_color	c;
-	int		rows;
-	int		colomns;
-}			t_mapinfo;
-
-typedef struct s_map
-{
-	int		x;
-	int		y;
-	char	c;
-}			t_map;
-
-typedef struct s_mapchecker
-{
-	bool	no;
-	bool	so;
-	bool	we;
-	bool	ea;
-	bool	f;
-	bool	c;
-	bool	duplicate;
-	bool	all_eles;
-}			t_mapchecker;
-
-//mlx struct for image
-typedef struct	s_data
-{
-	void	*img;
-	char	*addr;
-	int	bits_per_pixel;
-	int	endian;
-	int	line_length;
-}			t_data;
-
-//mlx struct for window initialization
-typedef struct	s_mlx_data
-{
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
-}			t_mlx_data;
+#define FOV_ANGLE 90
 
 //utils
 int			map_name(char *str);
@@ -103,6 +49,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);//we need this?
 
 //executing part
 void	execute_map(t_map ***map, t_mapinfo mapinfo);
+
+//raycasting ft's
+void	init_raycasting(t_map **map, t_player *player, t_camera *camera);
 
 
 //tester ft's
