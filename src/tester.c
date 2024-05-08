@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:39:36 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/23 16:28:52 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:21:03 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,24 @@ void	test_map(t_map **map, t_mapinfo mapinfo)
 			printf("%c", map[y][x].c);
 		printf("\n");
 		y++;
+	}
+}
+
+void	test_player(t_player player)
+{
+	printf("\n\nPlayer is on coordinate[%f][%f] and his direction vector is [%f][%f]\n", player.position.x, player.position.y, player.direction.x, player.direction.y);
+	printf("Plane is on coordinates[%f][%f]\n", player.plane.x, player.plane.y);
+}
+
+void	raytester(t_raycaster raycaster[])
+{
+	int	x;
+
+	x = 0;
+	printf("\n\n");
+	while (x < WIDTH)
+	{
+		printf("Percentile of screen: %f   rayDirX = %f rayDirY = %f\n", (double)x/(double)WIDTH, raycaster[x].rayDirX, raycaster[x].rayDirY);
+		x = x + 100;
 	}
 }

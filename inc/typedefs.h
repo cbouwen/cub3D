@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:49:22 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/05/07 17:09:21 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:52:43 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,30 @@ typedef struct  s_mlx_data
     t_data  img;
 }           t_mlx_data;
 
+typedef struct	s_coordinates
+{
+	double	x;
+	double	y;
+}				t_coordinates;
+
 typedef struct	s_player
 {
-    double x;
-    double y;
-    double dx;
-    double dy;
-    double speed;
-    double rotation_speed;
-} 				t_player
+	t_coordinates	position;
+	t_coordinates	direction;
+	t_coordinates	plane;
+}			t_player;
 
-typedef struct	s_camera
+typedef struct	s_raycaster
 {
-    double plane_x;
-    double plane_y;
-    double fov_angle;
-    double view_distance;
-    int screen_width;//
-    int screen_height;//
-}				t_camera;
+	double	camera_x;
+	//double	camera_y;
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX;
+	int		mapY;
+
+
+
+}				t_raycaster;
 
 #endif

@@ -7,7 +7,7 @@ MLX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 SRC_DIR = ./src/
 SRC_MAIN = main.c utils.c tester.c window_utils.c execute.c init_raycasting.c
 SRC_FILES = $(addprefix $(SRC_DIR), $(SRC_MAIN))
-PARSER_SRC = $(addprefix $(SRC_DIR)parser/, parser.c parse_utils.c valid_map.c mapinfo.c parse_map.c)
+PARSER_SRC = $(addprefix $(SRC_DIR)parser/, parser.c parse_utils.c valid_map.c mapinfo.c parse_map.c parse_player.c)
 
 SRC = $(SRC_FILES) $(PARSER_SRC)
 

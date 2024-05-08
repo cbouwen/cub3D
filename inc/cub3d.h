@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:42:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/05/07 17:10:01 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/05/08 17:18:57 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		update_mapchecker(char *str, t_mapchecker *elements);
 void		check_input(char *str, t_mapinfo *mapinfo, t_mapchecker *elements);
 t_map		**parse_map(int fd, t_mapinfo mapinfo, t_map ***map);
 int			valid_map(t_map **map, t_mapinfo mapinfo);
+void	parse_player(t_mapinfo mapinfo, t_map **map, t_player *player);
 
 //mlx_ft's
 void	init_window(t_mlx_data *win_data);
@@ -51,11 +52,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);//we need this?
 void	execute_map(t_map ***map, t_mapinfo mapinfo);
 
 //raycasting ft's
-void	init_raycasting(t_map **map, t_player *player, t_camera *camera);
-
+void	init_raycasting(t_raycaster raycaster[], t_player player);
 
 //tester ft's
 void		tester(t_mapinfo mapinfo);
 void		test_map(t_map **map, t_mapinfo mapinfo);
+void		test_player(t_player player);
+void		raytester(t_raycaster raycaster[]);
 
 #endif
