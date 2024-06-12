@@ -6,15 +6,45 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:41:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/05/07 16:57:23 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/12 18:00:01 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+typedef struct	s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	void	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_mlx;
+
+void	init_mlx(t_mlx *mlx)
+{
+	mlx->mlx = mlx_init();
+	mlx->win = mlx_new_window(mlx->mlx, 600, 600, "cub3d");
+	mlx->img = mlx_new_image(mlx->mlx, 600, 6000);
+	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_len, &mlx->endian);
+}
+
 int	main(int argc, char **argv)
 {
-	t_mapinfo		mapinfo;
+	(void)argc;
+	(void)argv;
+
+	t_mlx *mlx;
+
+	mlx = malloc(sizeof(t_mlx));
+	if (!mlx)
+		return (-1);
+	init_mlx(mlx);
+	mlx_loop(mlx->mlx);	
+
+	/*t_mapinfo		mapinfo;
 	t_map			**map;
 
 	//	int		fd;
@@ -33,4 +63,5 @@ int	main(int argc, char **argv)
 	//		ft_error("Invalid map. Try again!");
 	//run_cub3d(map);
 	//	close(fd);
+	*/
 }
