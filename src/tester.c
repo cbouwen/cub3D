@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:39:36 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/05/08 17:21:03 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/17 15:10:29 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	raytester(t_raycaster raycaster[])
 	printf("\n\n");
 	while (x < WIDTH)
 	{
-		printf("Percentile of screen: %f   rayDirX = %f rayDirY = %f\n", (double)x/(double)WIDTH, raycaster[x].rayDirX, raycaster[x].rayDirY);
+		printf("Percentile of screen: %f   rayDirX = %f rayDirY = %f\n", (double)x/(double)WIDTH, raycaster[x].raydirx, raycaster[x].raydiry);
 		x = x + 100;
 	}
 }

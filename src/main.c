@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:41:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/05/07 16:57:23 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/12 15:54:32 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	main(int argc, char **argv)
 
 	//	int		fd;
 	if (argc != 2)
-		ft_error("Wrong number of arguments. Try again!");
+		ft_error("Wrong number of arguments. Try again!\n");
 	else if (!(map_name(argv[1])))
-		ft_error("Hmmmm. Map should end with .cub. Can you make sure of that please?");
+		ft_error("Hmmmm. Map should end with .cub. Can you make sure of that please?\n");
 	else
 	{
 		mapinfo.rows = 0;

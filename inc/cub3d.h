@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:42:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/05/08 17:18:57 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/17 15:11:39 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <math.h>
 # include <unistd.h>
 # include "../mlx_linux/mlx.h"
 # include "typedefs.h"
 
 #define HEIGHT 1080
 #define WIDTH 1980
-#define FOV_ANGLE 90
+#define FOV_ANGLE 66
 
 //utils
 int			map_name(char *str);
@@ -53,6 +54,7 @@ void	execute_map(t_map ***map, t_mapinfo mapinfo);
 
 //raycasting ft's
 void	init_raycasting(t_raycaster raycaster[], t_player player);
+//void	ft_draw_map(t_map **map, t_mapinfo mapinfo, t_mlx_data *win_data);
 
 //tester ft's
 void		tester(t_mapinfo mapinfo);
