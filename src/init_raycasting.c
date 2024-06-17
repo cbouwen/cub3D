@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:28:38 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/17 15:09:46 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/17 16:54:06 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init_raycasting(t_raycaster raycaster[], t_player player)
 	x = -1;
 	while (++x < WIDTH)
 	{
+		raycaster[x].x = x;
 		raycaster[x].camera_x = 2 * x / (double)WIDTH - 1;
 		raycaster[x].raydirx = player.direction.x + player.plane.x * raycaster[x].camera_x;
 		raycaster[x].raydiry = player.direction.y + player.plane.y * raycaster[x].camera_x;

@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:49:22 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/17 15:00:13 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/17 16:53:33 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_mapinfo
     char    *so;
     char    *we;
     char    *ea;
-    t_color f;
+    t_color f; //unsigned long
     t_color c;
     int     rows;
     int     colomns;
@@ -92,18 +92,23 @@ typedef struct	s_player
 typedef struct	s_raycaster
 {
 	double	camera_x; //what percentile of the screen are we on?
-	double	raydirx; //where on the screen is the ray casting to?
+	double	raydirx; //using camera_x, where on the screen is the ray casting to?
 	double	raydiry;
 	double	sidedistx; //distance from player position to first x side encountered
 	double	sidedisty;
 	double	deltadistx; //distance the ray has to travel to go from one x-side of a tile to the other x-side of the tile.
 	double	deltadisty;
-	int		stepx; //what direction are we moving in? Left right up down? Expressed in positive or neg 1
+	int		stepx; //what direction are we moving in? Left or right (for y values: up or down)? Expressed in positive or neg 1
 	int		stepy;
-	int		mapx; //what tile is the player position in?
+	int		mapx; //what tile is the player position in? !!different than player position. player position is position in tile. mapx is tile in map
 	int		mapy;
-	//double	PerpWallDist;
-	// double time && double oldTime?
+	int		side; //what side of the wall is hit? need this to know what texture to print
+	double	perpwalldist; //extra thing to avoid fisheye effect. With this we cast rays from a camera plane, ie a line instead of one point (the player position)
+	int		lineheight; //calculation of the size of the line to cast by using the length of the ray
+	int		drawstart;//calculate lowest and highest pixel
+	int		drawend;
+	int		x; //added this to use the draw ft
+	// double time && double oldTime? ==> Do we want to implement FPS? I fucking think not
 }				t_raycaster;
 
 #endif
