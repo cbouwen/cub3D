@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:28:38 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/17 16:54:06 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/18 20:21:32 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,72 @@ void	fill_variables(t_raycaster raycaster, int posx, int posy)
 {
 	raycaster.mapx = posx;
 	raycaster.mapy = posy;
-	raycaster.deltadistx = sqrt(1 + (raycaster.raydirx / raycaster.raydiry));
-	raycaster.deltadisty = sqrt(1 + (raycaster.raydiry / raycaster.raydirx));
+
+	/*
+	Lode said to do this for some languages
+	*/
+	if (raycaster.raydirx == 0.0)
+		raycaster.raydirx = 1e30;
+	if (raycaster.raydiry == 0.0)
+		raycaster.raydiry = 1e30;
+	
+	printf("raycaster.raydirx = %f\n", raycaster.raydirx); //just a quick check to see what value comes in
+	
+	/*
+	Original method of calculation
+
+	the original used sqrt, changd it to sqrtf to support floating point numbers.
+	
+	I think this is wrong? I have no real way of validating this by the way. Every number this returns could be right for all I know.
+	*/
+	raycaster.deltadistx = sqrtf(1.0f + (raycaster.raydirx / raycaster.raydiry));
+	printf("raycaster.deltadistx = %f\n", raycaster.deltadistx);
+	
+	/*
+	As per the guide:
+	deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX))
+
+	I changed sqrt to sqrtf to support floating point numbers.
+	
+	I also don't think this is correct, I don't know why but it always return 1 for X calculations. I'll have to carefully check the math.
+	*/
+	raycaster.deltadistx = sqrtf(1.0f + (raycaster.raydiry * raycaster.raydiry) / (raycaster.raydirx * raycaster.raydirx));
+	printf("lode (non simplified) raycaster.deltadistx = %f\n", raycaster.deltadistx);
+	
+	/*
+	This is the simplified version of the above formula.
+	This returns a completely different number than the other formula though. No real idea why. Seems to work for Y calculations though.
+	*/
+	raycaster.deltadistx = fabs(1.0f / raycaster.raydirx);
+	printf("lode (simplified) raycaster.deltadistx = %f\n", raycaster.deltadistx);
+
+	/*
+	This is the calculation method used in the lode youtube video.
+	Somehow another version of this formula.
+	
+	When calculating X,  the result is different from the simplified version
+	When calculating Y, the result is the same as the simplified version
+	*/
+	raycaster.deltadistx = sqrtf(1.0f + (raycaster.raydiry / raycaster.raydirx) * (raycaster.raydiry / raycaster.raydirx));
+	printf("lode (yt video)raycaster.deltadistx = %f\n", raycaster.deltadistx);
+	
+	printf("\n");
+	
+	printf("raycaster.raydiry = %f\n", raycaster.raydiry);
+	
+	raycaster.deltadisty = sqrtf(1 + (raycaster.raydiry / raycaster.raydirx));
+	printf("raycaster.deltadisty = %f\n", raycaster.deltadisty);
+
+	raycaster.deltadisty = sqrtf(1 + (raycaster.raydirx * raycaster.raydirx) / (raycaster.raydiry * raycaster.raydiry));
+	printf("lode (non simplified) raycaster.deltadisty = %f\n", raycaster.deltadisty);
+	
+	raycaster.deltadisty = fabs(1 / raycaster.raydiry);
+	printf("lode (simplified) raycaster.deltadisty = %f\n", raycaster.deltadisty);
+
+	raycaster.deltadistx = sqrtf(1.0 + (raycaster.raydirx / raycaster.raydiry) * (raycaster.raydirx / raycaster.raydiry));
+	printf("lode (yt video)raycaster.deltadisty = %f\n", raycaster.deltadisty);
+	
+	printf("\n\n");
 	define_step(raycaster, posx, posy);
 }
 
