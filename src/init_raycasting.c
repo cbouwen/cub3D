@@ -81,6 +81,11 @@ void	fill_variables(t_raycaster raycaster, int posx, int posy)
 	/*
 	This is the simplified version of the above formula.
 	This returns a completely different number than the other formula though. No real idea why. Seems to work for Y calculations though.
+
+	~~
+	JUISTE BEREKENING
+	~~
+
 	*/
 	raycaster.deltadistx = fabs(1.0f / raycaster.raydirx);
 	printf("lode (simplified) raycaster.deltadistx = %f\n", raycaster.deltadistx);
