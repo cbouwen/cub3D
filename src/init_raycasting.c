@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:28:38 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/18 20:21:32 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:35:49 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,21 @@ void	fill_variables(t_raycaster raycaster, int posx, int posy)
 	raycaster.mapx = posx;
 	raycaster.mapy = posy;
 
+	//just a quick check to see what value comes in
+	printf("pre if: raycaster.raydirx = %f\n", raycaster.raydirx);
+	printf("pre if: raycaster.raydiry = %f\n", raycaster.raydiry);
+
 	/*
 	Lode said to do this for some languages
 	*/
-	if (raycaster.raydirx == 0.0)
+	if (raycaster.raydirx == 0.0f)
 		raycaster.raydirx = 1e30;
-	if (raycaster.raydiry == 0.0)
+	if (raycaster.raydiry == 0.0f)
 		raycaster.raydiry = 1e30;
 	
-	printf("raycaster.raydirx = %f\n", raycaster.raydirx); //just a quick check to see what value comes in
+	//just a quick check to see what value comes in
+	printf("raycaster.raydirx = %f\n", raycaster.raydirx);
+	printf("raycaster.raydiry = %f\n", raycaster.raydiry);
 	
 	/*
 	Original method of calculation
@@ -91,6 +97,7 @@ void	fill_variables(t_raycaster raycaster, int posx, int posy)
 	
 	printf("\n");
 	
+	printf("raycaster.raydirx = %f\n", raycaster.raydirx);
 	printf("raycaster.raydiry = %f\n", raycaster.raydiry);
 	
 	raycaster.deltadisty = sqrtf(1 + (raycaster.raydiry / raycaster.raydirx));
