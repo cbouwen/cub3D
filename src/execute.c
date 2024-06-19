@@ -132,7 +132,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	x = 0;
 	while (1)
 	{
-		init_raycasting(raycaster, player);
+		init_raycasting(raycaster, &player);
 		printf("execute_map: raycaster[0].raydirx = %f\n", raycaster[0].raydirx);
 		printf("execute_map: raycaster[0].raydiry = %f\n", raycaster[0].raydiry);
 		x++;
