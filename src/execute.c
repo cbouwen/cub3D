@@ -12,23 +12,6 @@
 
 #include "../inc/cub3d.h"
 
-void	load_texture(t_raycaster raycaster, int side, t_data *img)
-{
-	int	y;
-	int	color;
-
-	if (side == 1)
-		color = 16711680;
-	else
-		color = 16743936;
-	y = -1;
-	while (++y < HEIGHT)
-	{
-		if (y > raycaster.drawstart && y < raycaster.drawend)
-			my_mlx_pixel_put(img, raycaster.x, y, color);
-	}
-}
-
 void	print_rc(t_raycaster raycaster)
 {
 	printf("\n\nRaycaster\n\n");
@@ -52,6 +35,23 @@ void	print_rc(t_raycaster raycaster)
 	printf("\n\n");
 }
 
+void	load_texture(t_raycaster raycaster, int side, t_data *img)
+{
+	int	y;
+	int	color;
+
+	if (side == 1)
+		color = 16711680;
+	else
+		color = 16743936;
+	y = -1;
+	while (++y < HEIGHT)
+	{
+		if (y > raycaster.drawstart && y < raycaster.drawend)
+			my_mlx_pixel_put(img, raycaster.x, y, color);
+	}
+}
+
 void	calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
 {
 	//print_rc(raycaster);
@@ -67,11 +67,14 @@ void	calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT 
 	if (raycaster.drawend >= HEIGHT)
 		raycaster.drawend = HEIGHT - 1;
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
+	printf("calculate_lineheight");
 	print_rc(raycaster);
 }
 
 void	calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 {
+	printf("calculate_dda");
+	print_rc(raycaster);
 	/*printf("calculate_dda: raycaster.stepx = %i\n", raycaster.stepx);
 	printf("calculate_dda: raycaster.stepy = %i\n", raycaster.stepy);*/
 	int	hit;
@@ -96,27 +99,6 @@ void	calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 	}
 	calculate_lineheight(raycaster, raycaster.side);
 	load_texture(raycaster, raycaster.side, img);
-}
-
-void    __execute_map(t_map ***map, t_mapinfo mapinfo)
-{
-    t_mlx_data  win_data;
-	t_player	player;
-	t_raycaster	raycaster[WIDTH];
-	int	x;
-
-    win_data.mlx = mlx_init();
-    init_window(&win_data);
-	parse_player(mapinfo, *map, &player);
-	while (1) //unsure if this is the correct way to be handling this. Let's leave it in for now
-	{
-		//init_raycasting(raycaster, player);
-		x = -1;
-		while (++x < WIDTH)
-			calculate_dda(raycaster[x], *map, &win_data.img);
-		mlx_loop(win_data.mlx);//?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
-	}
-	//	free_params(map, &mapinfo);
 }
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
@@ -146,3 +128,26 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 		mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
 	}
 }
+
+/*
+void    __execute_map(t_map ***map, t_mapinfo mapinfo)
+{
+    t_mlx_data  win_data;
+	t_player	player;
+	t_raycaster	raycaster[WIDTH];
+	int	x;
+
+    win_data.mlx = mlx_init();
+    init_window(&win_data);
+	parse_player(mapinfo, *map, &player);
+	while (1) //unsure if this is the correct way to be handling this. Let's leave it in for now
+	{
+		//init_raycasting(raycaster, player);
+		x = -1;
+		while (++x < WIDTH)
+			calculate_dda(raycaster[x], *map, &win_data.img);
+		mlx_loop(win_data.mlx);//?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
+	}
+	//	free_params(map, &mapinfo);
+}
+*/
