@@ -129,6 +129,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 {
+	print_rc(*rc);
 	int	hit;
 
 	hit = 0;
