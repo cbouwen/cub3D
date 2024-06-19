@@ -129,18 +129,20 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	win_data.mlx = mlx_init();
 	init_window(&win_data);
 	parse_player(mapinfo, *map, &player);
-	x = 0;
-	while (x < WIDTH)
+	while (1) //unsure if this is the correct way to be handling this. Let's leave it in for now
 	{
-		printf("\n\nexecute_map: x = %i\n", x);
 		/*
 			This function is now a collection of functions that initialize the raycaster struct.
 			All the calculations are the same as the old versions, but the struct is now passed as a pointer.
 			There is also an additional function that initializes the raycaster struct to zero, to avoid conditional jumps.
 		*/
 		init_raycasting(raycaster, &player);
-		printf("execute_map: raycaster[%d].stepx = %i\n", x, raycaster[x].stepx);
-		printf("execute_map: raycaster[%d].stepy = %i\n", x, raycaster[x].stepy);
-		x++;
+		x = 0;
+		while (x < WIDTH)
+		{
+			calculate_dda(raycaster[x], *map, &win_data.img);
+			x++;
+		}
+		mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
 	}
 }
