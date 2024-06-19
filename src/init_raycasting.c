@@ -38,7 +38,7 @@ void	define_step(t_raycaster raycaster, int posx, int posy)
 	printf("DEFINE_STEP: raycaster.stepy = %i\n", raycaster.stepy);
 }
 
-void	fill_variables(t_raycaster raycaster, int posx, int posy, int x)
+void	fill_variables(t_raycaster raycaster, int posx, int posy)
 {
 	raycaster.mapx = posx;
 	raycaster.mapy = posy;
