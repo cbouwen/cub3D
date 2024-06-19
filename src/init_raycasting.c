@@ -98,6 +98,7 @@ void	init_raycasting(t_raycaster *raycaster, t_player *player)
 	x = 0;
 	while (x < WIDTH)
 	{
+		printf("init_raycasting: x = %i\n", x);
 		/*
 			Init all values to 0 (default), avoids conditional jump
 			Can also make free-ing later easier, if we ever need to free the raycaster array
@@ -107,7 +108,7 @@ void	init_raycasting(t_raycaster *raycaster, t_player *player)
 			Setup the ray direction, camera_x, etc.
 			Exact same as the old version but uses pointers
 		*/
-		setup_ray_dir(&raycaster[x], player, x); //setup the ray direction, camera_x, etc.
+		setup_ray_dir(&raycaster[x], player, x);
 		x++;
 	}
 }
