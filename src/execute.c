@@ -73,8 +73,6 @@ void	calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT 
 
 void	calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 {
-	printf("calculate_dda");
-	print_rc(raycaster);
 	/*printf("calculate_dda: raycaster.stepx = %i\n", raycaster.stepx);
 	printf("calculate_dda: raycaster.stepy = %i\n", raycaster.stepy);*/
 	int	hit;
@@ -99,6 +97,8 @@ void	calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 	}
 	calculate_lineheight(raycaster, raycaster.side);
 	load_texture(raycaster, raycaster.side, img);
+	printf("calculate_dda");
+	print_rc(raycaster);
 }
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
