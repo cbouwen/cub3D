@@ -86,6 +86,10 @@ void	init_tile_traversal(t_raycaster *rc, int posx, int posy)
 		No actula changes, like at all
 	*/
 	define_step(rc, posx, posy);
+	if (rc->raydirx == 1e30)
+		rc->raydirx = 0.0f;
+	if (rc->raydiry == 1e30)
+		rc->raydiry = 0.0f;
 }
 
 void	define_step(t_raycaster *rc, int posx, int posy)
