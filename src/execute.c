@@ -67,7 +67,7 @@ void	calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT 
 	if (raycaster.drawend >= HEIGHT)
 		raycaster.drawend = HEIGHT - 1;
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
-	//print_rc(raycaster);
+	print_rc(raycaster);
 }
 
 void	calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
