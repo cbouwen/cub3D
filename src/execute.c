@@ -132,6 +132,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	x = 0;
 	while (x < WIDTH)
 	{
+		printf("\n\nexecute_map: x = %i\n", x);
 		/*
 			This function is now a collection of functions that initialize the raycaster struct.
 			All the calculations are the same as the old versions, but the struct is now passed as a pointer.
