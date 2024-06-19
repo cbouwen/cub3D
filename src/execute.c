@@ -138,8 +138,8 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 			There is also an additional function that initializes the raycaster struct to zero, to avoid conditional jumps.
 		*/
 		init_raycasting(raycaster, &player);
-		printf("execute_map: rc[%d].stepx = %i\n", x, rc[x]->stepx);
-		printf("execute_map: rc[%d].stepy = %i\n", x, rc[x]->stepy);
+		printf("execute_map: raycaster[%d].stepx = %i\n", x, raycaster[x]->stepx);
+		printf("execute_map: raycaster[%d].stepy = %i\n", x, raycaster[x]->stepy);
 		x++;
 	}
 }
