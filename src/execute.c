@@ -97,7 +97,6 @@ void	__calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 	load_texture(raycaster, raycaster.side, img);
 }
 
-void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img);
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img);
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
@@ -118,56 +117,41 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 			There is also an additional function that initializes the raycaster struct to zero, to avoid conditional jumps.
 		*/
 		init_raycasting(raycaster, &player);
-		/*x = 0;
+		x = 0;
 		while (x < WIDTH)
 		{
-			calculate_dda(raycaster[x], *map, &win_data.img);
+			calculate_dda(raycaster, *map, &win_data.img);
 			x++;
-		}*/
-		prep_dda(raycaster, *map, &win_data.img);
+		}
 		mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
 	}
 }
 
-void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img)
+void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 {
-	int x;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		calculate_dda(&raycaster[x], map, img);
-		x++;
-	}
-}
-
-void	calculate_dda(t_raycaster *rc, t_map *map, t_data img)
-{
-	printf("calculate_dda");
-	print_rc(*rc);
 	int	hit;
 
 	hit = 0;
 	while (hit == 0)
 	{
-		if (rc->sidedistx < rc->sidedisty)
+		if (rc[rc->x]->sidedistx < rc[rc->x]->sidedisty)
 		{
-			rc->sidedistx += rc->deltadistx;
-			rc->mapx += rc->stepx;
-			rc->side = 0; //look at comment under
+			rc[rc->x]->sidedistx += rc[rc->x]->deltadistx;
+			rc[rc->x]->mapx += rc[rc->x]->stepx;
+			rc[rc->x]->side = 0; //look at comment under
 		}
 		else
 		{
-			rc->sidedisty += rc->deltadisty;
-			rc->mapy += rc->stepy;
-			rc->side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
+			rc[rc->x]->sidedisty += rc[rc->x]->deltadisty;
+			rc[rc->x]->mapy += rc[rc->x]->stepy;
+			rc[rc->x]->side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
 		}
-		if (map[rc->mapx][rc->mapy].c == '1')
+		if (map[rc[rc->x]->mapx][rc[rc->x]->mapy].c == '1')
 			hit = 1;
 	}
 	(void)img;
-	//calculate_lineheight(raycaster, raycaster.side);
-	//load_texture(raycaster, raycaster.side, img);
+	//calculate_lineheight(rc, rc[rc->x]->side);
+	//load_texture(rc, rc[rc->x]->.side, img);
 }
 
 /*
