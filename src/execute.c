@@ -98,6 +98,7 @@ void	__calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 }
 
 void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img);
+void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img);
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
