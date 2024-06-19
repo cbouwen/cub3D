@@ -129,7 +129,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	}
 }
 
-void	prep_dda(t_raycaster *raycaster, t_map ***map, t_data *img)
+void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img)
 {
 	int	x;
 
