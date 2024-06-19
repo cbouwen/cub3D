@@ -91,7 +91,7 @@ void	__init_raycasting(t_raycaster raycaster[], t_player player)
 void	init_raycasting_real(t_raycaster *rc);
 void	setup_ray_dir(t_raycaster *rc, int x);
 
-void	init_raycasting(t_raycaster *raycaster)
+void	init_raycasting(t_raycaster *raycaster, t_player *player)
 {
 	int x;
 
@@ -124,11 +124,11 @@ void	init_raycasting_real(t_raycaster *rc)
 	rc->x = 0;
 }
 
-void	setup_ray_dir(t_raycaster *rc, int x)
+void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 {
 	raycaster->x = x;
 	raycaster->camera_x = 2 * x / (double)WIDTH - 1;
-	raycaster->raydirx = player.direction.x + player.plane.x * raycaster->camera_x;
-	raycaster->raydiry = player.direction.y + player.plane.y * raycaster->camera_x;
-	fill_variables(raycaster[x], player.position.x, player.position.y);
+	raycaster->raydirx = player->direction->x + player->plane->x * raycaster->camera_x;
+	raycaster->raydiry = player->direction->y + player->plane->y * raycaster->camera_x;
+	fill_variables(raycaster[x], player->position->x, player->position->y);
 }

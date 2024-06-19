@@ -55,7 +55,7 @@ void	execute_map(t_map ***map, t_mapinfo mapinfo);
 //raycasting ft's
 
 //void	init_raycasting(t_raycaster raycaster[], t_player player);
-void	init_raycasting(t_raycaster *raycaster);
+void	init_raycasting(t_raycaster *raycaster, t_player *player);
 
 //void	ft_draw_map(t_map **map, t_mapinfo mapinfo, t_mlx_data *win_data);
 
