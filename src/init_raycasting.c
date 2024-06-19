@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:28:38 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/19 14:13:54 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/19 16:44:33 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	define_step(t_raycaster *raycaster, int posx, int posy)
 		raycaster->stepy = 1;
 		raycaster->sidedisty = (raycaster->mapy + 1 - posy) * raycaster->deltadisty;
 	}
-	if (raycaster->x == 1931)
+	if (raycaster->x == 1800)
 		printf("\n\nStepx = %i\nStepy = %i\n", raycaster->stepx, raycaster->stepy);
 }
 
@@ -121,12 +121,12 @@ void	fill_variables(t_raycaster *raycaster, int posx, int posy)
 	
 	//printf("\n\n");
 	define_step(raycaster, posx, posy);
-	if (raycaster->x == 1931)
+	if (raycaster->x == 1800)
 		printf("\n\nStepx = %i\nStepy = %i\n", raycaster->stepx, raycaster->stepy);
 
 }
 
-void	init_raycasting(t_raycaster *raycaster[], t_player player)
+void	init_raycasting(t_raycaster **raycaster, t_player player)
 {
 	int x;
 
