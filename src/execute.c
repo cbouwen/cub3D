@@ -52,7 +52,7 @@ void	load_texture(t_raycaster raycaster, int side, t_data *img)
 	}
 }
 
-void	__calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
+void	calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
 {
 	//print_rc(raycaster);
 	if (side == 0)
@@ -69,7 +69,7 @@ void	__calculate_lineheight(t_raycaster raycaster, int side) //Will this work? F
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
 }
 
-/*void	__calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
+void	__calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 {
 	//printf("calculate_dda: raycaster.stepx = %i\n", raycaster.stepx);
 	//printf("calculate_dda: raycaster.stepy = %i\n", raycaster.stepy);
@@ -95,17 +95,17 @@ void	__calculate_lineheight(t_raycaster raycaster, int side) //Will this work? F
 	}
 	calculate_lineheight(raycaster, raycaster.side);
 	load_texture(raycaster, raycaster.side, img);
-}*/
+}
 
+void	prep_dda(t_raycaster raycaster, t_map ***map, t_data *img);
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img);
-void	calculate_lineheight(t_raycaster *rc, int side);
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
 	t_mlx_data	win_data;
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
-	int			x;
+	//int			x;
 
 	win_data.mlx = mlx_init();
 	init_window(&win_data);
@@ -118,61 +118,55 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 			There is also an additional function that initializes the raycaster struct to zero, to avoid conditional jumps.
 		*/
 		init_raycasting(raycaster, &player);
-		x = 0;
+		/*x = 0;
 		while (x < WIDTH)
 		{
 			calculate_dda(raycaster, *map, &win_data.img);
 			x++;
-		}
+		}*/
+		prep_dda(raycaster, *map, &win_data.img);
 		mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
+	}
+}
+
+void	prep_dda(t_raycaster raycaster, t_map ***map, t_data *img)
+{
+	int	x;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		calculate_dda(raycaster, map, img);
+		x++;
 	}
 }
 
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 {
+	//printf("calculate_dda: raycaster.stepx = %i\n", raycaster.stepx);
+	//printf("calculate_dda: raycaster.stepy = %i\n", raycaster.stepy);
 	int	hit;
 
 	hit = 0;
 	while (hit == 0)
 	{
-		if (rc[rc->x].sidedistx < rc[rc->x].sidedisty)
+		if (raycaster.sidedistx < raycaster.sidedisty)
 		{
-			rc[rc->x].sidedistx += rc[rc->x].deltadistx;
-			rc[rc->x].mapx += rc[rc->x].stepx;
-			rc[rc->x].side = 0; //look at comment under
+			raycaster.sidedistx += raycaster.deltadistx;
+			raycaster.mapx += raycaster.stepx;
+			raycaster.side = 0; //look at comment under
 		}
 		else
 		{
-			rc[rc->x].sidedisty += rc[rc->x].deltadisty;
-			rc[rc->x].mapy += rc[rc->x].stepy;
-			rc[rc->x].side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
+			raycaster.sidedisty += raycaster.deltadisty;
+			raycaster.mapy += raycaster.stepy;
+			raycaster.side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
 		}
-		if (map[rc[rc->x].mapx][rc[rc->x].mapy].c == '1')
+		if (map[raycaster.mapx][raycaster.mapy].c == '1')
 			hit = 1;
 	}
-	(void)map;
-	(void)img;
-	calculate_lineheight(rc[rc->x], rc[rc->x].side);
-	print_rc(rc[rc->x]);
-	//load_texture(rc, rc[rc->x]->.side, img);
-}
-
-void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
-{
-	//print_rc(raycaster);
-	if (side == 0)
-		rc->perpwalldist = (rc->sidedistx - rc->deltadistx);
-	else
-		rc->perpwalldist = (rc->sidedisty - rc->deltadisty);
-	rc->lineheight = (int)(HEIGHT / rc->perpwalldist);
-	rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2;
-	if (rc->drawstart < 0)
-		rc->drawstart = 0;
-	rc->drawend = rc->lineheight / 2 + HEIGHT / 2;
-	if (rc->drawend >= HEIGHT)
-		rc->drawend = HEIGHT - 1;
-	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
-	print_rc(*rc);
+	calculate_lineheight(raycaster, raycaster.side);
+	load_texture(raycaster, raycaster.side, img);
 }
 
 /*
