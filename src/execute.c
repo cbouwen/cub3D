@@ -67,11 +67,9 @@ void	calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT 
 	if (raycaster.drawend >= HEIGHT)
 		raycaster.drawend = HEIGHT - 1;
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
-	printf("calculate_lineheight");
-	print_rc(raycaster);
 }
 
-void	calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
+void	__calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 {
 	/*printf("calculate_dda: raycaster.stepx = %i\n", raycaster.stepx);
 	printf("calculate_dda: raycaster.stepy = %i\n", raycaster.stepy);*/
@@ -97,16 +95,16 @@ void	calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 	}
 	calculate_lineheight(raycaster, raycaster.side);
 	load_texture(raycaster, raycaster.side, img);
-	printf("calculate_dda");
-	print_rc(raycaster);
 }
+
+void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img);
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
 	t_mlx_data	win_data;
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
-	int			x;
+	//int			x;
 
 	win_data.mlx = mlx_init();
 	init_window(&win_data);
@@ -119,14 +117,55 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 			There is also an additional function that initializes the raycaster struct to zero, to avoid conditional jumps.
 		*/
 		init_raycasting(raycaster, &player);
-		x = 0;
+		/*x = 0;
 		while (x < WIDTH)
 		{
 			calculate_dda(raycaster[x], *map, &win_data.img);
 			x++;
-		}
+		}*/
+		prep_dda(raycaster, map, &win_data.img);
 		mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
 	}
+}
+
+void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img)
+{
+	int x;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		calculate_dda(&raycaster[x], *map, img);
+		x++;
+	}
+}
+
+void	calculate_dda(t_raycaster *raycaster, t_map **map, t_data *img)
+{
+	printf("calculate_dda");
+	print_rc(*raycaster);
+	int	hit;
+
+	hit = 0;
+	while (hit == 0)
+	{
+		if (raycaster.sidedistx < raycaster.sidedisty)
+		{
+			raycaster.sidedistx += raycaster.deltadistx;
+			raycaster.mapx += raycaster.stepx;
+			raycaster.side = 0; //look at comment under
+		}
+		else
+		{
+			raycaster.sidedisty += raycaster.deltadisty;
+			raycaster.mapy += raycaster.stepy;
+			raycaster.side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
+		}
+		if (map[raycaster.mapx][raycaster.mapy].c == '1')
+			hit = 1;
+	}
+	calculate_lineheight(raycaster, raycaster.side);
+	load_texture(raycaster, raycaster.side, img);
 }
 
 /*
