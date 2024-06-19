@@ -49,7 +49,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	win_data.mlx = mlx_init();
 	init_window(&win_data);
 	parse_player(mapinfo, *map, &player);
-	x = 0;
+	int x = 0;
 	while (x < WIDTH) //unsure if this is the correct way to be handling this. Let's leave it in for now
 	{
 		/*
