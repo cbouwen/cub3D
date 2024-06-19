@@ -64,7 +64,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 			calculate_dda(raycaster, *map, &win_data.img);
 			x++;
 		}*/
-		//prep_dda(raycaster, *map, &win_data.img);
+		prep_dda(raycaster, *map, &win_data.img);
 		//mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
 	}
 }
@@ -77,6 +77,7 @@ void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img)
 	while (x < WIDTH)
 	{
 		calculate_dda(raycaster, map, img);
+		print_rc(raycaster[x]);
 		x++;
 	}
 }
