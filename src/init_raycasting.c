@@ -99,7 +99,7 @@ void	init_raycasting(t_raycaster *raycaster, t_player *player)
 	while (x < WIDTH)
 	{
 		init_raycasting_real(&raycaster[x]);
-		setup_ray_dir(&raycaster[x], &player, x);
+		setup_ray_dir(&raycaster[x], player, x);
 		x++;
 	}
 }
