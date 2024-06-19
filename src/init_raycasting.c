@@ -89,7 +89,7 @@ void	__init_raycasting(t_raycaster raycaster[], t_player player)
 }
 
 void	init_raycasting_real(t_raycaster *rc);
-void	setup_ray_dir(t_raycaster *rc, int x);
+void	setup_ray_dir(t_raycaster *rc, t_player *player, int x);
 
 void	init_raycasting(t_raycaster *raycaster, t_player *player)
 {
