@@ -136,13 +136,13 @@ void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 
 void	initTileTraversal(t_raycaster *rc, int posx, int posy)
 {
-	rc.mapx = posx;
-	rc.mapy = posy;
-	if (rc.raydirx == 0.0f)
-		rc.raydirx = 1e30;
-	if (rc.raydiry == 0.0f)
-		rc.raydiry = 1e30;
-	rc.deltadistx = fabs(1.0f / rc.raydirx);
-	rc.deltadisty = fabs(1 / rc.raydiry);
+	rc->mapx = posx;
+	rc->mapy = posy;
+	if (rc->raydirx == 0.0f)
+		rc->raydirx = 1e30;
+	if (rc->raydiry == 0.0f)
+		rc->raydiry = 1e30;
+	rc->deltadistx = fabs(1.0f / rc->raydirx);
+	rc->deltadisty = fabs(1 / rc->raydiry);
 	//define_step(rc, posx, posy);
 }
