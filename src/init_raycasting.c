@@ -38,10 +38,10 @@ void	define_step(t_raycaster raycaster, int posx, int posy)
 	printf("DEFINE_STEP: raycaster.stepy = %i\n", raycaster.stepy);
 }
 
-void	fill_variables(t_raycaster raycaster, int posx, int posy)
+void	fill_variables(t_raycaster raycaster[], int posx, int posy, int x)
 {
-	raycaster.mapx = posx;
-	raycaster.mapy = posy;
+	raycaster[x].mapx = posx;
+	raycaster[x].mapy = posy;
 
 	//just a quick check to see what value comes in
 	//printf("pre if: raycaster.raydirx = %f\n", raycaster.raydirx);
@@ -50,26 +50,26 @@ void	fill_variables(t_raycaster raycaster, int posx, int posy)
 	/*
 	Lode said to do this for some languages
 	*/
-	if (raycaster.raydirx == 0.0f)
-		raycaster.raydirx = 1e30;
-	if (raycaster.raydiry == 0.0f)
-		raycaster.raydiry = 1e30;
+	if (raycaster[x].raydirx == 0.0f)
+		raycaster[x].raydirx = 1e30;
+	if (raycaster[x].raydiry == 0.0f)
+		raycaster[x].raydiry = 1e30;
 	
 	//just a quick check to see what value comes in
 	//printf("raycaster.raydirx = %f\n", raycaster.raydirx);
 	//printf("raycaster.raydiry = %f\n", raycaster.raydiry);
 	
-	raycaster.deltadistx = fabs(1.0f / raycaster.raydirx);
+	raycaster[x].deltadistx = fabs(1.0f / raycaster[x].raydirx);
 	//printf("lode (simplified) raycaster.deltadistx = %f\n", raycaster.deltadistx);
 
 	//printf("\n");
 		
-	raycaster.deltadisty = fabs(1 / raycaster.raydiry);
+	raycaster[x].deltadisty = fabs(1 / raycaster[x].raydiry);
 	//printf("lode (simplified) raycaster.deltadisty = %f\n", raycaster.deltadisty);
 
 	//printf("\n\n");
-	printf("FILL_VARIABLES: raycaster.stepx = %i\n", raycaster.stepx);
-	printf("FILL_VARIABLES: raycaster.stepy = %i\n", raycaster.stepy);
+	printf("FILL_VARIABLES: raycaster.stepx = %i\n", raycaster[x].stepx);
+	printf("FILL_VARIABLES: raycaster.stepy = %i\n", raycaster[x].stepy);
 	define_step(raycaster, posx, posy);
 }
 
