@@ -165,8 +165,10 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 		if (map[rc->mapx][rc->mapy].c == '1')
 			hit = 1;
 	}
-	calculate_lineheight(rc, rc->side);
-	load_texture(rc, rc->side, img);
+	(void)map;
+	(void)img;
+	//calculate_lineheight(rc, rc->side);
+	//load_texture(rc, rc->side, img);
 }
 
 /*
