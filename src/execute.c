@@ -52,7 +52,7 @@ void	load_texture(t_raycaster raycaster, int side, t_data *img)
 	}
 }
 
-void	calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
+void	__calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
 {
 	//print_rc(raycaster);
 	if (side == 0)
@@ -69,10 +69,10 @@ void	calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT 
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
 }
 
-void	__calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
+/*void	__calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 {
-	/*printf("calculate_dda: raycaster.stepx = %i\n", raycaster.stepx);
-	printf("calculate_dda: raycaster.stepy = %i\n", raycaster.stepy);*/
+	//printf("calculate_dda: raycaster.stepx = %i\n", raycaster.stepx);
+	//printf("calculate_dda: raycaster.stepy = %i\n", raycaster.stepy);
 	int	hit;
 
 	hit = 0;
@@ -95,9 +95,10 @@ void	__calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 	}
 	calculate_lineheight(raycaster, raycaster.side);
 	load_texture(raycaster, raycaster.side, img);
-}
+}*/
 
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img);
+void	__calculate_lineheight(t_raycaster *rc, int side);
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
@@ -129,7 +130,6 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 {
-	print_rc(*rc);
 	int	hit;
 
 	hit = 0;
@@ -152,8 +152,25 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 	}
 	(void)map;
 	(void)img;
-	//calculate_lineheight(rc, rc[rc->x]->side);
+	calculate_lineheight(rc, rc[rc->x]->side);
 	//load_texture(rc, rc[rc->x]->.side, img);
+}
+
+void	__calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
+{
+	//print_rc(raycaster);
+	if (side == 0)
+		rc->perpwalldist = (rc->sidedistx - rc->deltadistx);
+	else
+		rc->perpwalldist = (rc->sidedisty - rc->deltadisty);
+	rc->lineheight = (int)(HEIGHT / rc->perpwalldist);
+	rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2;
+	if (rc->drawstart < 0)
+		rc->drawstart = 0;
+	rc->drawend = rc->lineheight / 2 + HEIGHT / 2;
+	if (rc->drawend >= HEIGHT)
+		rc->drawend = HEIGHT - 1;
+	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
 }
 
 /*
