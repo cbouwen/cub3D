@@ -141,7 +141,7 @@ void	prep_dda(t_raycaster raycaster, t_map ***map, t_data *img)
 	}
 }
 
-void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
+void	calculate_dda(t_raycaster *raycaster, t_map **map, t_data *img)
 {
 	//printf("calculate_dda: raycaster.stepx = %i\n", raycaster.stepx);
 	//printf("calculate_dda: raycaster.stepy = %i\n", raycaster.stepy);
