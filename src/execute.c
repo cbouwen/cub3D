@@ -134,21 +134,22 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 	hit = 0;
 	while (hit == 0)
 	{
-		if (rc[rc->x]->sidedistx < rc[rc->x]->sidedisty)
+		if (rc[rc->x].sidedistx < rc[rc->x].sidedisty)
 		{
-			rc[rc->x]->sidedistx += rc[rc->x]->deltadistx;
-			rc[rc->x]->mapx += rc[rc->x]->stepx;
-			rc[rc->x]->side = 0; //look at comment under
+			rc[rc->x].sidedistx += rc[rc->x].deltadistx;
+			rc[rc->x].mapx += rc[rc->x].stepx;
+			rc[rc->x].side = 0; //look at comment under
 		}
 		else
 		{
-			rc[rc->x]->sidedisty += rc[rc->x]->deltadisty;
-			rc[rc->x]->mapy += rc[rc->x]->stepy;
-			rc[rc->x]->side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
+			rc[rc->x].sidedisty += rc[rc->x].deltadisty;
+			rc[rc->x].mapy += rc[rc->x].stepy;
+			rc[rc->x].side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
 		}
-		if (map[rc[rc->x]->mapx][rc[rc->x]->mapy].c == '1')
+		if (map[rc[rc->x].mapx][rc[rc->x].mapy].c == '1')
 			hit = 1;
 	}
+	(void)map;
 	(void)img;
 	//calculate_lineheight(rc, rc[rc->x]->side);
 	//load_texture(rc, rc[rc->x]->.side, img);
