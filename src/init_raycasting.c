@@ -73,7 +73,7 @@ void	fill_variables(t_raycaster raycaster, int posx, int posy)
 	define_step(raycaster, posx, posy);
 }
 
-void	init_raycasting(t_raycaster raycaster[], t_player player)
+void	init_raycasting(t_raycaster *raycaster[], t_player player)
 {
 	int x;
 
