@@ -38,7 +38,7 @@ void	define_step(t_raycaster raycaster, int posx, int posy)
 	printf("DEFINE_STEP: raycaster.stepy = %i\n", raycaster.stepy);
 }
 
-void	fill_variables(t_raycaster raycaster, int posx, int posy)
+void	__fill_variables(t_raycaster raycaster, int posx, int posy)
 {
 	raycaster.mapx = posx;
 	raycaster.mapy = posy;
@@ -90,6 +90,7 @@ void	__init_raycasting(t_raycaster raycaster[], t_player player)
 
 void	init_raycasting_real(t_raycaster *rc);
 void	setup_ray_dir(t_raycaster *rc, t_player *player, int x);
+void	initTileTraversal(t_raycaster *rc, int posx, int posy);
 
 void	init_raycasting(t_raycaster *raycaster, t_player *player)
 {
@@ -130,5 +131,18 @@ void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 	rc->camera_x = 2 * x / (double)WIDTH - 1;
 	rc->raydirx = player->direction.x + player->plane.x * rc->camera_x;
 	rc->raydiry = player->direction.y + player->plane.y * rc->camera_x;
-	//fill_variables(rc[x], player->position->x, player->position->y);
+	initTileTraversal(rc, player->position.x, player->position.y);
+}
+
+void	initTileTraversal(t_raycaster *rc, int posx, int posy)
+{
+	raycaster.mapx = posx;
+	raycaster.mapy = posy;
+	if (raycaster.raydirx == 0.0f)
+		raycaster.raydirx = 1e30;
+	if (raycaster.raydiry == 0.0f)
+		raycaster.raydiry = 1e30;
+	raycaster.deltadistx = fabs(1.0f / raycaster.raydirx);
+	raycaster.deltadisty = fabs(1 / raycaster.raydiry);
+	//define_step(raycaster, posx, posy);
 }
