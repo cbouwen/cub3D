@@ -98,7 +98,7 @@ void	__calculate_lineheight(t_raycaster raycaster, int side) //Will this work? F
 }*/
 
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img);
-void	__calculate_lineheight(t_raycaster *rc, int side);
+void	calculate_lineheight(t_raycaster *rc, int side);
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
@@ -156,7 +156,7 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 	//load_texture(rc, rc[rc->x]->.side, img);
 }
 
-void	__calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
+void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
 {
 	//print_rc(raycaster);
 	if (side == 0)
