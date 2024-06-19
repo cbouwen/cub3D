@@ -133,8 +133,8 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	while (1)
 	{
 		init_raycasting(raycaster);
-		printf("execute_map: raycaster.stepx = %i\n", raycaster[0].stepx);
-		printf("execute_map: raycaster.stepy = %i\n", raycaster[0].stepy);
+		printf("execute_map: raycaster[0].raydirx = %f\n", raycaster[0].raydirx);
+		printf("execute_map: raycaster[0].raydiry = %f\n", raycaster[0].raydiry);
 		x++;
 	}
 }

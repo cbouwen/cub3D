@@ -89,6 +89,7 @@ void	__init_raycasting(t_raycaster raycaster[], t_player player)
 }
 
 void	init_raycasting_real(t_raycaster *rc);
+void	setup_ray_dir(t_raycaster *rc, int x);
 
 void	init_raycasting(t_raycaster *raycaster)
 {
@@ -98,6 +99,7 @@ void	init_raycasting(t_raycaster *raycaster)
 	while (x < WIDTH)
 	{
 		init_raycasting_real(&raycaster[x]);
+		setup_ray_dir(&raycaster[x], x);
 		x++;
 	}
 }
@@ -111,8 +113,8 @@ void	init_raycasting_real(t_raycaster *rc)
 	rc->sidedisty = 0.0f;
 	rc->deltadistx = 0.0f;
 	rc->deltadisty = 0.0f;
-	rc->stepx = 800;
-	rc->stepy = 800;
+	rc->stepx = 0;
+	rc->stepy = 0;
 	rc->mapx = 0;
 	rc->mapy = 0;
 	rc->perpwalldist = 0.0f;
@@ -120,4 +122,13 @@ void	init_raycasting_real(t_raycaster *rc)
 	rc->drawstart = 0;
 	rc->drawend = 0;
 	rc->x = 0;
+}
+
+void	setup_ray_dir(t_raycaster *rc, int x)
+{
+	raycaster->x = x;
+	raycaster->camera_x = 2 * x / (double)WIDTH - 1;
+	raycaster->raydirx = player.direction.x + player.plane.x * raycaster->camera_x;
+	raycaster->raydiry = player.direction.y + player.plane.y * raycaster->camera_x;
+	fill_variables(raycaster[x], player.position.x, player.position.y);
 }
