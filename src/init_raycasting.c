@@ -157,8 +157,6 @@ void	init_tile_traversal(t_raycaster *rc, int posx, int posy)
 	rc->deltadistx = fabs(1.0f / rc->raydirx);
 	rc->deltadisty = fabs(1 / rc->raydiry);
 	define_step(rc, posx, posy);
-	printf("init_tile_traversal: rc->stepx = %i\n", rc->stepx);
-	printf("init_tile_traversal: rc->stepy = %i\n", rc->stepy);
 }
 
 void	define_step(t_raycaster *rc, int posx, int posy)
