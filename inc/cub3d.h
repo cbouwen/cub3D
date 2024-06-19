@@ -53,7 +53,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);//we need this?
 void	execute_map(t_map ***map, t_mapinfo mapinfo);
 
 //raycasting ft's
-void	init_raycasting(t_raycaster raycaster[], t_player player);
+void	init_raycasting(t_raycaster raycaster[], t_player player, int x);
 //void	ft_draw_map(t_map **map, t_mapinfo mapinfo, t_mlx_data *win_data);
 
 //tester ft's

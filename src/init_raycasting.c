@@ -73,9 +73,9 @@ void	fill_variables(t_raycaster raycaster, int posx, int posy)
 	define_step(raycaster, posx, posy);
 }
 
-void	init_raycasting(t_raycaster raycaster[], t_player player)
+void	init_raycasting(t_raycaster raycaster[], t_player player, int x)
 {
-	int x;
+	/*int x;
 
 	x = -1;
 	while (++x < WIDTH)
@@ -85,5 +85,11 @@ void	init_raycasting(t_raycaster raycaster[], t_player player)
 		raycaster[x].raydirx = player.direction.x + player.plane.x * raycaster[x].camera_x;
 		raycaster[x].raydiry = player.direction.y + player.plane.y * raycaster[x].camera_x;
 		fill_variables(raycaster[x], player.position.x, player.position.y);
-	}
+	}*/
+
+	raycaster[x].x = x;
+	raycaster[x].camera_x = 2 * x / (double)WIDTH - 1;
+	raycaster[x].raydirx = player.direction.x + player.plane.x * raycaster[x].camera_x;
+	raycaster[x].raydiry = player.direction.y + player.plane.y * raycaster[x].camera_x;
+	fill_variables(raycaster[x], player.position.x, player.position.y);
 }

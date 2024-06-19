@@ -129,7 +129,7 @@ void    execute_map(t_map ***map, t_mapinfo mapinfo)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			init_raycasting(raycaster, player);
+			init_raycasting(raycaster, player, x);
 			calculate_dda(raycaster[x], *map, &win_data.img);
 		}
 		mlx_loop(win_data.mlx);//?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
