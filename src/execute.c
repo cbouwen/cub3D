@@ -141,7 +141,7 @@ void	prep_dda(t_raycaster raycaster, t_map ***map, t_data *img)
 	}
 }
 
-void	calculate_dda(t_raycaster *raycaster, t_map **map, t_data *img)
+void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 {
 	//printf("calculate_dda: raycaster.stepx = %i\n", raycaster.stepx);
 	//printf("calculate_dda: raycaster.stepy = %i\n", raycaster.stepy);
@@ -150,23 +150,23 @@ void	calculate_dda(t_raycaster *raycaster, t_map **map, t_data *img)
 	hit = 0;
 	while (hit == 0)
 	{
-		if (raycaster.sidedistx < raycaster.sidedisty)
+		if (rc->sidedistx < rc->sidedisty)
 		{
-			raycaster.sidedistx += raycaster.deltadistx;
-			raycaster.mapx += raycaster.stepx;
-			raycaster.side = 0; //look at comment under
+			rc->sidedistx += rc->deltadistx;
+			rc->mapx += rc->stepx;
+			rc->side = 0; //look at comment under
 		}
 		else
 		{
-			raycaster.sidedisty += raycaster.deltadisty;
-			raycaster.mapy += raycaster.stepy;
-			raycaster.side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
+			rc->sidedisty += rc->deltadisty;
+			rc->mapy += rc->stepy;
+			rc->side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
 		}
-		if (map[raycaster.mapx][raycaster.mapy].c == '1')
+		if (map[rc->mapx][rc->mapy].c == '1')
 			hit = 1;
 	}
-	calculate_lineheight(raycaster, raycaster.side);
-	load_texture(raycaster, raycaster.side, img);
+	calculate_lineheight(rc, rc->side);
+	load_texture(rc, rc->side, img);
 }
 
 /*
