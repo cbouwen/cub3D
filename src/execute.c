@@ -98,7 +98,7 @@ void	calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 
 void    execute_map(t_map ***map, t_mapinfo mapinfo)
 {
-    t_mlx_data  win_data;
+    /*t_mlx_data  win_data;
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
 	int	x;
@@ -114,5 +114,24 @@ void    execute_map(t_map ***map, t_mapinfo mapinfo)
 			calculate_dda(raycaster[x], *map, &win_data.img);
 		mlx_loop(win_data.mlx);//?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
 	}
+	//	free_params(map, &mapinfo);*/
+
+	t_mlx_data  win_data;
+	t_player	player;
+	t_raycaster	raycaster[WIDTH];
+	int	x;
+
+    win_data.mlx = mlx_init();
+    init_window(&win_data);
+	parse_player(mapinfo, *map, &player);
+	while (1) //unsure if this is the correct way to be handling this. Let's leave it in for now
+	{
+		init_raycasting(&raycaster, player);
+		x = -1;
+		while (++x < WIDTH)
+			calculate_dda(raycaster[x], *map, &win_data.img);
+		mlx_loop(win_data.mlx);//?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
+	}
 	//	free_params(map, &mapinfo);
+
 }
