@@ -130,11 +130,11 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	init_window(&win_data);
 	parse_player(mapinfo, *map, &player);
 	x = 0;
-	while (1)
+	while (x < WIDTH)
 	{
 		init_raycasting(raycaster, &player);
-		printf("execute_map: raycaster[0].raydirx = %f\n", raycaster[0].raydirx);
-		printf("execute_map: raycaster[0].raydiry = %f\n", raycaster[0].raydiry);
+		printf("execute_map: raycaster[%d].raydirx = %f\n", x, raycaster[x].raydirx);
+		printf("execute_map: raycaster[%d].raydiry = %f\n", x, raycaster[x].raydiry);
 		x++;
 	}
 }
