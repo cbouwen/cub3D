@@ -152,7 +152,8 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 	}
 	(void)map;
 	(void)img;
-	calculate_lineheight(rc, rc[rc->x].side);
+	calculate_lineheight(rc[rc->x], rc[rc->x].side);
+	print_rc(rc[rc->x]);
 	//load_texture(rc, rc[rc->x]->.side, img);
 }
 
