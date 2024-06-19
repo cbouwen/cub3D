@@ -124,15 +124,17 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	t_mlx_data	win_data;
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
-	//int			x;
+	int			x;
 
 	win_data.mlx = mlx_init();
 	init_window(&win_data);
 	parse_player(mapinfo, *map, &player);
-	while (1)
+	x = 0;
+	while (x < WIDTH)
 	{
 		init_raycasting(raycaster);
 		printf("execute_map: raycaster.stepx = %i\n", raycaster[0].stepx);
 		printf("execute_map: raycaster.stepy = %i\n", raycaster[0].stepy);
+		x++;
 	}
 }
