@@ -171,6 +171,7 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 	if (rc->drawend >= HEIGHT)
 		rc->drawend = HEIGHT - 1;
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
+	print_rc(raycaster);
 }
 
 /*
