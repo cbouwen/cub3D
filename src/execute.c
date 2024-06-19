@@ -131,7 +131,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	parse_player(mapinfo, *map, &player);
 	while (1)
 	{
-		init_raycasting(&raycaster);
+		init_raycasting(raycaster);
 		printf("execute_map: raycaster.stepx = %i\n", raycaster[0].stepx);
 		printf("execute_map: raycaster.stepy = %i\n", raycaster[0].stepy);
 	}
