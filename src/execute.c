@@ -49,7 +49,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	win_data.mlx = mlx_init();
 	init_window(&win_data);
 	parse_player(mapinfo, *map, &player);
-	while (1) //unsure if this is the correct way to be handling this. Let's leave it in for now
+	while (int x < WIDTH) //unsure if this is the correct way to be handling this. Let's leave it in for now
 	{
 		/*
 			This function is now a collection of functions that initialize the raycaster struct.
@@ -63,6 +63,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 			This is currently broken.
 		*/
 		prep_dda(raycaster, *map, &win_data.img);
+		x++;
 	}
 	mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
 }
