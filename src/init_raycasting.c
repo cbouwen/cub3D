@@ -34,8 +34,8 @@ void	define_step(t_raycaster raycaster, int posx, int posy)
 		raycaster.stepy = 1;
 		raycaster.sidedisty = (raycaster.mapy + 1 - posy) * raycaster.deltadisty;
 	}
-	printf("raycaster.stepx = %i\n", raycaster.stepx);
-	printf("raycaster.stepy = %i\n", raycaster.stepy);
+	printf("DEFINE_STEP: raycaster.stepx = %i\n", raycaster.stepx);
+	printf("DEFINE_STEP: raycaster.stepy = %i\n", raycaster.stepy);
 }
 
 void	fill_variables(t_raycaster raycaster, int posx, int posy)
@@ -68,8 +68,8 @@ void	fill_variables(t_raycaster raycaster, int posx, int posy)
 	//printf("lode (simplified) raycaster.deltadisty = %f\n", raycaster.deltadisty);
 
 	//printf("\n\n");
-	printf("raycaster.stepx = %i\n", raycaster.stepx);
-	printf("raycaster.stepy = %i\n", raycaster.stepy);
+	printf("FILL_VARIABLES: raycaster.stepx = %i\n", raycaster.stepx);
+	printf("FILL_VARIABLES: raycaster.stepy = %i\n", raycaster.stepy);
 	define_step(raycaster, posx, posy);
 }
 
