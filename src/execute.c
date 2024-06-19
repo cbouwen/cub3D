@@ -127,6 +127,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 			x++;
 		}*/
 		prep_dda(raycaster, *map, &win_data.img);
+		print_rc(raycaster[0]);
 		mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
 	}
 }
@@ -175,7 +176,6 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 
 void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
 {
-	print_rc(*rc);
 	if (side == 0)
 		rc->perpwalldist = (rc->sidedistx - rc->deltadistx);
 	else
