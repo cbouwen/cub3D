@@ -136,7 +136,7 @@ void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img)
 	x = 0;
 	while (x < WIDTH)
 	{
-		calculate_dda(&raycaster[x], *map, img);
+		calculate_dda(&raycaster[x], *map, &img);
 		x++;
 	}
 }
@@ -162,7 +162,7 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 			rc->mapy += rc->stepy;
 			rc->side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
 		}
-		if ((*map)[rc->mapx][rc->mapy].c == '1')
+		if (map[rc->mapx][rc->mapy].c == '1')
 			hit = 1;
 	}
 	(void)img;
