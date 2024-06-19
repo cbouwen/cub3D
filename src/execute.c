@@ -35,7 +35,7 @@ void	print_rc(t_raycaster raycaster)
 	printf("\n\n");
 }
 
-void	load_texture(t_raycaster raycaster, int side, t_data *img)
+/*void	__load_texture(t_raycaster raycaster, int side, t_data *img)
 {
 	int	y;
 	int	color;
@@ -50,9 +50,9 @@ void	load_texture(t_raycaster raycaster, int side, t_data *img)
 		if (y > raycaster.drawstart && y < raycaster.drawend)
 			my_mlx_pixel_put(img, raycaster.x, y, color);
 	}
-}
+}*/
 
-void	__calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
+/*void	__calculate_lineheight(t_raycaster raycaster, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
 {
 	//print_rc(raycaster);
 	if (side == 0)
@@ -67,7 +67,7 @@ void	__calculate_lineheight(t_raycaster raycaster, int side) //Will this work? F
 	if (raycaster.drawend >= HEIGHT)
 		raycaster.drawend = HEIGHT - 1;
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
-}
+}*/
 
 /*void	__calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 {
@@ -100,6 +100,7 @@ void	__calculate_lineheight(t_raycaster raycaster, int side) //Will this work? F
 void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img);
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img);
 void	calculate_lineheight(t_raycaster *rc, int side);
+void	load_texture(t_raycaster *rc, int side, t_data *img);
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
@@ -167,9 +168,9 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 	(void)map;
 	(void)img;
 	calculate_lineheight(rc, rc->side);
+	load_texture(rc, rc->side, img);
 	printf("\ncalculate_dda\n");
 	print_rc(*rc);
-	//load_texture(rc, rc->side, img);
 }
 
 void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
@@ -186,9 +187,24 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 	rc->drawend = rc->lineheight / 2 + HEIGHT / 2;
 	if (rc->drawend >= HEIGHT)
 		rc->drawend = HEIGHT - 1;
-	printf("\n\ntteesstt\n");
-	print_rc(*rc);
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
+}
+
+void	load_texture(t_raycaster *rc, int side, t_data *img)
+{
+	int	y;
+	int	color;
+
+	if (side == 1)
+		color = 16711680;
+	else
+		color = 16743936;
+	y = -1;
+	while (++y < HEIGHT)
+	{
+		if (y > rc->drawstart && y < rc->drawend)
+			my_mlx_pixel_put(img, rc->x, y, color);
+	}
 }
 
 /*
