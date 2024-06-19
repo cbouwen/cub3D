@@ -126,9 +126,9 @@ void	init_raycasting_real(t_raycaster *rc)
 
 void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 {
-	raycaster->x = x;
-	raycaster->camera_x = 2 * x / (double)WIDTH - 1;
-	raycaster->raydirx = player->direction->x + player->plane->x * raycaster->camera_x;
-	raycaster->raydiry = player->direction->y + player->plane->y * raycaster->camera_x;
-	fill_variables(raycaster[x], player->position->x, player->position->y);
+	rc->x = x;
+	rc->camera_x = 2 * x / (double)WIDTH - 1;
+	rc->raydirx = player->direction->x + player->plane->x * rc->camera_x;
+	rc->raydiry = player->direction->y + player->plane->y * rc->camera_x;
+	fill_variables(rc[x], player->position->x, player->position->y);
 }
