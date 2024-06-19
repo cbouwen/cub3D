@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-void	define_step(t_raycaster raycaster, int posx, int posy)
+void	__define_step(t_raycaster raycaster, int posx, int posy)
 {
 	if (raycaster.raydirx < 0)
 	{
@@ -38,7 +38,7 @@ void	define_step(t_raycaster raycaster, int posx, int posy)
 	printf("DEFINE_STEP: raycaster.stepy = %i\n", raycaster.stepy);
 }
 
-void	__fill_variables(t_raycaster raycaster, int posx, int posy)
+/*void	__fill_variables(t_raycaster raycaster, int posx, int posy)
 {
 	raycaster.mapx = posx;
 	raycaster.mapy = posy;
@@ -47,9 +47,7 @@ void	__fill_variables(t_raycaster raycaster, int posx, int posy)
 	//printf("pre if: raycaster.raydirx = %f\n", raycaster.raydirx);
 	//printf("pre if: raycaster.raydiry = %f\n", raycaster.raydiry);
 
-	/*
-	Lode said to do this for some languages
-	*/
+	//Lode said to do this for some languages
 	if (raycaster.raydirx == 0.0f)
 		raycaster.raydirx = 1e30;
 	if (raycaster.raydiry == 0.0f)
@@ -71,9 +69,9 @@ void	__fill_variables(t_raycaster raycaster, int posx, int posy)
 	printf("FILL_VARIABLES: raycaster.stepx = %i\n", raycaster.stepx);
 	printf("FILL_VARIABLES: raycaster.stepy = %i\n", raycaster.stepy);
 	define_step(raycaster, posx, posy);
-}
+}*/
 
-void	__init_raycasting(t_raycaster raycaster[], t_player player)
+/*void	__init_raycasting(t_raycaster raycaster[], t_player player)
 {
 	int x;
 
@@ -86,11 +84,12 @@ void	__init_raycasting(t_raycaster raycaster[], t_player player)
 		raycaster[x].raydiry = player.direction.y + player.plane.y * raycaster[x].camera_x;
 		__fill_variables(raycaster[x], player.position.x, player.position.y);
 	}
-}
+}*/
 
-void	init_raycasting_real(t_raycaster *rc);
+void	init_ray_default(t_raycaster *rc);
 void	setup_ray_dir(t_raycaster *rc, t_player *player, int x);
-void	initTileTraversal(t_raycaster *rc, int posx, int posy);
+void	init_tile_traversal(t_raycaster *rc, int posx, int posy);
+void	define_step(t_raycaster *rc, int posx, int posy);
 
 void	init_raycasting(t_raycaster *raycaster, t_player *player)
 {
@@ -99,13 +98,21 @@ void	init_raycasting(t_raycaster *raycaster, t_player *player)
 	x = 0;
 	while (x < WIDTH)
 	{
-		init_raycasting_real(&raycaster[x]);
-		setup_ray_dir(&raycaster[x], player, x);
+		/*
+			Init all values to 0 (default), avoids conditional jump
+			Can also make free-ing later easier, if we ever need to free the raycaster array
+		*/
+		init_ray_default(&raycaster[x]);
+		/*
+			Setup the ray direction, camera_x, etc.
+			Exact same as the old version but uses pointers
+		*/
+		setup_ray_dir(&raycaster[x], player, x); //setup the ray direction, camera_x, etc.
 		x++;
 	}
 }
 
-void	init_raycasting_real(t_raycaster *rc)
+void	init_ray_default(t_raycaster *rc)
 {
 	rc->camera_x = 0.0f;
 	rc->raydirx = 0.0f;
@@ -131,10 +138,14 @@ void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 	rc->camera_x = 2 * x / (double)WIDTH - 1;
 	rc->raydirx = player->direction.x + player->plane.x * rc->camera_x;
 	rc->raydiry = player->direction.y + player->plane.y * rc->camera_x;
-	initTileTraversal(rc, player->position.x, player->position.y);
+	/*
+		Function to setup the tile traversal
+		Again, sama as the old vesrion but uses pointers
+	*/
+	init_tile_traversal(rc, player->position.x, player->position.y);
 }
 
-void	initTileTraversal(t_raycaster *rc, int posx, int posy)
+void	init_tile_traversal(t_raycaster *rc, int posx, int posy)
 {
 	rc->mapx = posx;
 	rc->mapy = posy;
@@ -144,5 +155,33 @@ void	initTileTraversal(t_raycaster *rc, int posx, int posy)
 		rc->raydiry = 1e30;
 	rc->deltadistx = fabs(1.0f / rc->raydirx);
 	rc->deltadisty = fabs(1 / rc->raydiry);
-	//define_step(rc, posx, posy);
+	printf("init_tile_traversal: rc->stepx = %i\n", rc->stepx);
+	printf("init_tile_traversal: rc->stepy = %i\n", rc->stepy);
+	define_step(rc, posx, posy);
+}
+
+void	define_step(t_raycaster *rc, int posx, int posy)
+{
+	if (rc->raydirx < 0)
+	{
+		rc->stepx = -1;
+		rc->sidedistx = (posx - rc->mapx) * rc->deltadistx;
+	}
+	else
+	{
+		rc->stepx = 1;
+		rc->sidedistx = (rc->mapx + 1 - posx) * rc->deltadistx;
+	}
+	if (rc->raydiry < 0)
+	{
+		rc->stepy = -1;
+		rc->sidedisty = (posy - rc->mapy) * rc->deltadisty;
+	}
+	else
+	{
+		rc->stepy = 1;
+		rc->sidedisty = (rc->mapy + 1 - posy) * rc->deltadisty;
+	}
+	printf("define_step: rc->stepx = %i\n", rc->stepx);
+	printf("define_step: rc->stepy = %i\n", rc->stepy);
 }

@@ -132,9 +132,14 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	x = 0;
 	while (x < WIDTH)
 	{
+		/*
+			This function is now a collection of functions that initialize the raycaster struct.
+			All the calculations are the same as the old versions, but the struct is now passed as a pointer.
+			There is also an additional function that initializes the raycaster struct to zero, to avoid conditional jumps.
+		*/
 		init_raycasting(raycaster, &player);
-		printf("execute_map: raycaster[x].deltadistx = %f\n", raycaster[x].deltadistx);
-		printf("execute_map: raycaster[x].deltadisty = %f\n", raycaster[x].deltadisty);
+		printf("execute_map: rc[%d].stepx = %i\n", x, rc[x]->stepx);
+		printf("execute_map: rc[%d].stepy = %i\n", x, rc[x]->stepy);
 		x++;
 	}
 }
