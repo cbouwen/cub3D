@@ -130,5 +130,5 @@ void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 	rc->camera_x = 2 * x / (double)WIDTH - 1;
 	rc->raydirx = player->direction.x + player->plane.x * rc->camera_x;
 	rc->raydiry = player->direction.y + player->plane.y * rc->camera_x;
-	fill_variables(rc[x], player->position->x, player->position->y);
+	//fill_variables(rc[x], player->position->x, player->position->y);
 }
