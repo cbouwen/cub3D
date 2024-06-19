@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:16:09 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/18 20:21:36 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:05:05 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	calculate_dda(t_raycaster raycaster, t_map **map, t_data *img)
 	int	hit;
 
 	hit = 0;
+	if (raycaster.x == 1931)
+		printf("\n\nStepx = %i\nStepy = %i\n", raycaster.stepx, raycaster.stepy);
 	while (hit == 0)
 	{
 		if (raycaster.sidedistx < raycaster.sidedisty)
@@ -108,7 +110,7 @@ void    execute_map(t_map ***map, t_mapinfo mapinfo)
 	parse_player(mapinfo, *map, &player);
 	while (1) //unsure if this is the correct way to be handling this. Let's leave it in for now
 	{
-		init_raycasting(raycaster, player);
+		init_raycasting(&raycaster, player);
 		x = -1;
 		while (++x < WIDTH)
 			calculate_dda(raycaster[x], *map, &win_data.img);
