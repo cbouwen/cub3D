@@ -124,7 +124,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	t_mlx_data	win_data;
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
-	int			x;
+	//int			x;
 
 	win_data.mlx = mlx_init();
 	init_window(&win_data);
