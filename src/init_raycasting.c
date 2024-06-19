@@ -97,12 +97,12 @@ void	init_raycasting(t_raycaster *raycaster)
 	x = 0;
 	while (x < WIDTH)
 	{
-		init_raycasting_real(&raycaster[x]);
+		init_raycasting_real(raycaster[x]);
 		x++;
 	}
 }
 
-void	init_raycasting_real(t_raycaster *rc)
+void	init_raycasting_real(t_raycaster rc)
 {
 	rc->camera_x = 0.0f;
 	rc->raydirx = 0.0f;
