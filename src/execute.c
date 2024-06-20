@@ -103,6 +103,7 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 	}
 	calculate_lineheight(rc, rc->side);
 	load_texture(rc, rc->side, img);
+	print_rc(*rc);
 }
 
 void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
