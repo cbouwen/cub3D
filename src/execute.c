@@ -38,9 +38,9 @@ void	print_rc(t_raycaster raycaster)
 void	print_debug(t_raycaster *rc, char *function_name)
 {
 	printf("\n\nDebugging %s\n\n", function_name);
-	printf("lineheight = %i\n", raycaster.lineheight);
-	printf("drawstart = %i\n", raycaster.drawstart);
-	printf("drawend = %i\n", raycaster.drawend);
+	printf("lineheight = %i\n", rc->lineheight);
+	printf("drawstart = %i\n", rc->drawstart);
+	printf("drawend = %i\n", rc->drawend);
 }
 
 void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img);
