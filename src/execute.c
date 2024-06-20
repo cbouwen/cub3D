@@ -100,15 +100,15 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 			rc->sidedistx += rc->deltadistx;
 			rc->mapx += rc->stepx;
 			rc->side = 0; //look at comment under
+			print_debug(rc, "calculate_dda_after_if_1");
 		}
-		print_debug(rc, "calculate_dda_after_if_1");
 		else
 		{
 			rc->sidedisty += rc->deltadisty;
 			rc->mapy += rc->stepy;
 			rc->side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
+			print_debug(rc, "calculate_dda_after_if_2");
 		}
-		print_debug(rc, "calculate_dda_after_if_2");
 		if (map[rc->mapx][rc->mapy].c == '1')
 			hit = 1;
 		print_debug(rc, "calculate_dda_after_if_3");
