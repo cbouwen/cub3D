@@ -117,8 +117,8 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 	print_debug(rc, "calculate_dda_after_while");
 	calculate_lineheight(rc, rc->side);
 	print_debug(rc, "calculate_dda_after_lineheight");
-	load_texture(rc, rc->side, img);
-	print_debug(rc, "calculate_dda_after_texture");
+	//load_texture(rc, rc->side, img);
+	//print_debug(rc, "calculate_dda_after_texture");
 }
 
 void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
