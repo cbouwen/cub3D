@@ -35,6 +35,14 @@ void	print_rc(t_raycaster raycaster)
 	printf("\n\n");
 }
 
+void	print_debug(t_raycaster *rc, char *function_name)
+{
+	printf("\n\nDebugging %s\n\n", function_name);
+	printf("lineheight = %i\n", raycaster.lineheight);
+	printf("drawstart = %i\n", raycaster.drawstart);
+	printf("drawend = %i\n", raycaster.drawend);
+}
+
 void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img);
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img);
 void	calculate_lineheight(t_raycaster *rc, int side);
@@ -81,6 +89,7 @@ void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img)
 
 void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 {
+	print_debug(rc, "calculate_dda_start");
 	int	hit;
 
 	hit = 0;
@@ -92,18 +101,23 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 			rc->mapx += rc->stepx;
 			rc->side = 0; //look at comment under
 		}
+		print_debug(rc, "calculate_dda_after_if_1");
 		else
 		{
 			rc->sidedisty += rc->deltadisty;
 			rc->mapy += rc->stepy;
 			rc->side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
 		}
+		print_debug(rc, "calculate_dda_after_if_2");
 		if (map[rc->mapx][rc->mapy].c == '1')
 			hit = 1;
+		print_debug(rc, "calculate_dda_after_if_3");
 	}
+	print_debug(rc, "calculate_dda_after_while");
 	calculate_lineheight(rc, rc->side);
+	print_debug(rc, "calculate_dda_after_lineheight");
 	load_texture(rc, rc->side, img);
-	print_rc(*rc);
+	print_debug(rc, "calculate_dda_after_texture");
 }
 
 void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
