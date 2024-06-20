@@ -26,6 +26,8 @@
 
 #define HEIGHT 1080
 #define WIDTH 1980
+#define D_HEIGHT 1080.0
+#define D_WIDTH 1980.0
 #define FOV_ANGLE 66
 
 //utils

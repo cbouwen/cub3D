@@ -40,18 +40,18 @@ void	init_raycasting(t_raycaster *raycaster, t_player *player)
 
 void	init_ray_default(t_raycaster *rc)
 {
-	rc->camera_x = 0.0f;
-	rc->raydirx = 0.0f;
-	rc->raydiry = 0.0f;
-	rc->sidedistx = 0.0f;
-	rc->sidedisty = 0.0f;
-	rc->deltadistx = 0.0f;
-	rc->deltadisty = 0.0f;
+	rc->camera_x = 0.0;
+	rc->raydirx = 0.0;
+	rc->raydiry = 0.0;
+	rc->sidedistx = 0.0;
+	rc->sidedisty = 0.0;
+	rc->deltadistx = 0.0;
+	rc->deltadisty = 0.0;
 	rc->stepx = 0;
 	rc->stepy = 0;
 	rc->mapx = 0;
 	rc->mapy = 0;
-	rc->perpwalldist = 0.0f;
+	rc->perpwalldist = 0.0;
 	rc->lineheight = 0;
 	rc->drawstart = 0;
 	rc->drawend = 0;
@@ -75,21 +75,25 @@ void	init_tile_traversal(t_raycaster *rc, int posx, int posy)
 {
 	rc->mapx = posx;
 	rc->mapy = posy;
-	if (rc->raydirx == 0.0f)
+	if (rc->raydirx == 0.0)
 		rc->raydirx = 1e30;
-	if (rc->raydiry == 0.0f)
+	if (rc->raydiry == 0.0)
 		rc->raydiry = 1e30;
-	rc->deltadistx = fabs(1.0f / rc->raydirx);
-	rc->deltadisty = fabs(1 / rc->raydiry);
+	rc->deltadistx = fabs(1.0 / rc->raydirx);
+	rc->deltadisty = fabs(1.0 / rc->raydiry);
 	/*
 		Function to define the step
 		No actula changes, like at all
 	*/
 	define_step(rc, posx, posy);
+	/*
+		I don't really know if resetting these variables to 0 is really necessary
+		I'll keep it in for now, but it might be removed later
+	*/
 	if (rc->raydirx == 1e30)
-		rc->raydirx = 0.0f;
+		rc->raydirx = 0.0;
 	if (rc->raydiry == 1e30)
-		rc->raydiry = 0.0f;
+		rc->raydiry = 0.0;
 }
 
 void	define_step(t_raycaster *rc, int posx, int posy)
