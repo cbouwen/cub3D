@@ -79,6 +79,7 @@ void	init_tile_traversal(t_raycaster *rc, int posx, int posy)
 		rc->raydirx = 1e30;
 	if (rc->raydiry == 0.0)
 		rc->raydiry = 1e30;
+	printf("raycaster.raydirx = %f\n", rc->raydirx);
 	rc->deltadistx = fabs(1.0 / rc->raydirx);
 	printf("lode (simplified) raycaster.deltadistx = %f\n", rc->deltadistx);
 	rc->deltadisty = fabs(1.0 / rc->raydiry);
