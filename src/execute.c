@@ -137,8 +137,8 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 		printf("rc->perpwalldist = %f\n", rc->perpwalldist);
 	}
 
-	if (rc->perpwalldist == 0.0)
-		rc->perpwalldist = 1.0;
+	if (rc->perpwalldist == 0)
+		rc->perpwalldist = 1;
 	printf("rc->perpwalldist = %f\n", rc->perpwalldist);
 
 	rc->lineheight = (int)(HEIGHT / rc->perpwalldist);
