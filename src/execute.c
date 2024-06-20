@@ -117,36 +117,20 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 	print_debug(rc, "calculate_dda_after_while");
 	calculate_lineheight(rc, rc->side);
 	print_debug(rc, "calculate_dda_after_lineheight");
-	(void)img;
-	//load_texture(rc, rc->side, img);
-	//print_debug(rc, "calculate_dda_after_texture");
+	load_texture(rc, rc->side, img);
+	print_debug(rc, "calculate_dda_after_texture");
 }
 
 void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
 {
 	if (side == 0)
-	{
 		rc->perpwalldist = (rc->sidedistx - rc->deltadistx);
-		printf("rc->sidedistx = %f\n", rc->sidedistx);
-		printf("rc->deltadistx = %f\n", rc->deltadistx);
-		printf("rc->perpwalldist = %f\n", rc->perpwalldist);
-	}
 	else
-	{
 		rc->perpwalldist = (rc->sidedisty - rc->deltadisty);
-		printf("rc->sidedisty = %f\n", rc->sidedisty);
-		printf("rc->deltadisty = %f\n", rc->deltadisty);
-		printf("rc->perpwalldist = %f\n", rc->perpwalldist);
-	}
 
-	if (rc->perpwalldist == 0)
-		rc->perpwalldist = 1;
-	printf("rc->perpwalldist = %f\n", rc->perpwalldist);
+	rc->perpwalldist = 800;
 
 	rc->lineheight = (int)(HEIGHT / rc->perpwalldist);
-	printf("original calculation: %d\n", (int)(HEIGHT / rc->perpwalldist));
-	printf("Altered calculation: %d\n", (int)(D_HEIGHT / rc->perpwalldist));
-	printf("Altered calculation part 2: %f\n", D_HEIGHT / rc->perpwalldist);
 	rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2;
 	if (rc->drawstart < 0)
 		rc->drawstart = 0;
