@@ -83,6 +83,7 @@ void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img)
 	while (x < WIDTH)
 	{
 		calculate_dda(raycaster, map, img);
+		print_rc(raycaster[x]);
 		x++;
 	}
 }
