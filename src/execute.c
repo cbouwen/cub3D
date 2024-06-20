@@ -113,9 +113,9 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 			hit = 1;
 		print_debug(rc, "calculate_dda_after_if_3");
 	}
-	print_debug(rc, "calculate_dda_after_while");
-	calculate_lineheight(rc, rc->side);
-	print_debug(rc, "calculate_dda_after_lineheight");
+	//print_debug(rc, "calculate_dda_after_while");
+	//calculate_lineheight(rc, rc->side);
+	//print_debug(rc, "calculate_dda_after_lineheight");
 	load_texture(rc, rc->side, img);
 	print_debug(rc, "calculate_dda_after_texture");
 }
