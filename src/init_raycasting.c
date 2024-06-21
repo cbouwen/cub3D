@@ -6,37 +6,11 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:21:38 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 09:21:51 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 11:20:41 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-void	init_ray_default(t_raycaster *rc);
-void	setup_ray_dir(t_raycaster *rc, t_player *player, int x);
-void	init_tile_traversal(t_raycaster *rc, int posx, int posy);
-void	define_step(t_raycaster *rc, int posx, int posy);
-
-void	init_raycasting(t_raycaster *raycaster, t_player *player)
-{
-	int x;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		/*
-			Init all values to 0 (default), avoids conditional jump
-			Can also make free-ing later easier, if we ever need to free the raycaster array
-		*/
-		init_ray_default(&raycaster[x]);
-		/*
-			Setup the ray direction, camera_x, etc.
-			Exact same as the old version but uses pointers
-		*/
-		setup_ray_dir(&raycaster[x], player, x);
-		x++;
-	}
-}
 
 void	init_ray_default(t_raycaster *rc)
 {
@@ -58,47 +32,7 @@ void	init_ray_default(t_raycaster *rc)
 	rc->x = 0;
 }
 
-void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
-{
-	rc->x = x;
-	rc->camera_x = 2 * x / (double)WIDTH - 1;
-	rc->raydirx = player->direction.x + player->plane.x * rc->camera_x;
-	rc->raydiry = player->direction.y + player->plane.y * rc->camera_x;
-	/*
-		Function to setup the tile traversal
-		Again, sama as the old vesrion but uses pointers
-	*/
-	init_tile_traversal(rc, player->position.x, player->position.y);
-}
-
-void	init_tile_traversal(t_raycaster *rc, int posx, int posy)
-{
-	rc->mapx = posx;
-	rc->mapy = posy;
-	if (rc->raydirx == 0.0)
-		rc->raydirx = 1e30;
-	if (rc->raydiry == 0.0)
-		rc->raydiry = 1e30;
-	printf("raycaster.raydirx = %f\n", rc->raydirx);
-	rc->deltadistx = fabs(1.0 / rc->raydirx);
-	printf("lode (simplified) raycaster.deltadistx = %f\n", rc->deltadistx);
-	rc->deltadisty = fabs(1.0 / rc->raydiry);
-	/*
-		Function to define the step
-		No actula changes, like at all
-	*/
-	define_step(rc, posx, posy);
-	/*
-		I don't really know if resetting these variables to 0 is really necessary
-		I'll keep it in for now, but it might be removed later
-	*/
-	if (rc->raydirx == 1e30)
-		rc->raydirx = 0.0;
-	if (rc->raydiry == 1e30)
-		rc->raydiry = 0.0;
-}
-
-void	define_step(t_raycaster *rc, int posx, int posy)
+void	define_step(t_raycaster *rc, double posx, double posy)
 {
 	if (rc->raydirx < 0)
 	{
@@ -122,76 +56,42 @@ void	define_step(t_raycaster *rc, int posx, int posy)
 	}
 }
 
-/*void	__define_step(t_raycaster raycaster, int posx, int posy)
+void	init_tile_traversal(t_raycaster *rc, double posx, double posy)
 {
-	if (raycaster.raydirx < 0)
-	{
-		raycaster.stepx = -1;
-		raycaster.sidedistx = (posx - raycaster.mapx) * raycaster.deltadistx;
-	}
-	else
-	{
-		raycaster.stepx = 1;
-		raycaster.sidedistx = (raycaster.mapx + 1 - posx) * raycaster.deltadistx;
-	}
-	if (raycaster.raydiry < 0)
-	{
-		raycaster.stepy = -1;
-		raycaster.sidedisty = (posy - raycaster.mapy) * raycaster.deltadisty;
-	}
-	else
-	{
-		raycaster.stepy = 1;
-		raycaster.sidedisty = (raycaster.mapy + 1 - posy) * raycaster.deltadisty;
-	}
-	printf("DEFINE_STEP: raycaster.stepx = %i\n", raycaster.stepx);
-	printf("DEFINE_STEP: raycaster.stepy = %i\n", raycaster.stepy);
-}*/
+	rc->mapx = posx;
+	rc->mapy = posy;
+	if (rc->raydirx == 0.0)
+		rc->raydirx = 1e30;
+	if (rc->raydiry == 0.0)
+		rc->raydiry = 1e30;
+	rc->deltadistx = fabs(1.0 / rc->raydirx);
+	rc->deltadisty = fabs(1.0 / rc->raydiry);
+	define_step(rc, posx, posy);
+	if (rc->raydirx == 1e30)
+		rc->raydirx = 0.0;
+	if (rc->raydiry == 1e30)
+		rc->raydiry = 0.0;
+}
 
-/*void	__fill_variables(t_raycaster raycaster, int posx, int posy)
+void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 {
-	raycaster.mapx = posx;
-	raycaster.mapy = posy;
+	rc->x = x;
+	rc->camera_x = 2 * x / (double)WIDTH - 1;
+	rc->raydirx = player->direction.x + player->plane.x * rc->camera_x;
+	rc->raydiry = player->direction.y + player->plane.y * rc->camera_x;
+	init_tile_traversal(rc, player->position.x, player->position.y);
+}
 
-	//just a quick check to see what value comes in
-	//printf("pre if: raycaster.raydirx = %f\n", raycaster.raydirx);
-	//printf("pre if: raycaster.raydiry = %f\n", raycaster.raydiry);
-
-	//Lode said to do this for some languages
-	if (raycaster.raydirx == 0.0f)
-		raycaster.raydirx = 1e30;
-	if (raycaster.raydiry == 0.0f)
-		raycaster.raydiry = 1e30;
-	
-	//just a quick check to see what value comes in
-	//printf("raycaster.raydirx = %f\n", raycaster.raydirx);
-	//printf("raycaster.raydiry = %f\n", raycaster.raydiry);
-	
-	raycaster.deltadistx = fabs(1.0f / raycaster.raydirx);
-	//printf("lode (simplified) raycaster.deltadistx = %f\n", raycaster.deltadistx);
-
-	//printf("\n");
-		
-	raycaster.deltadisty = fabs(1 / raycaster.raydiry);
-	//printf("lode (simplified) raycaster.deltadisty = %f\n", raycaster.deltadisty);
-
-	//printf("\n\n");
-	printf("FILL_VARIABLES: raycaster.stepx = %i\n", raycaster.stepx);
-	printf("FILL_VARIABLES: raycaster.stepy = %i\n", raycaster.stepy);
-	define_step(raycaster, posx, posy);
-}*/
-
-/*void	__init_raycasting(t_raycaster raycaster[], t_player player)
+void	init_raycasting(t_raycaster *raycaster, t_player *player)
 {
 	int x;
 
-	x = -1;
-	while (++x < WIDTH)
+	x = 0;
+	while (x < WIDTH)
 	{
-		raycaster[x].x = x;
-		raycaster[x].camera_x = 2 * x / (double)WIDTH - 1;
-		raycaster[x].raydirx = player.direction.x + player.plane.x * raycaster[x].camera_x;
-		raycaster[x].raydiry = player.direction.y + player.plane.y * raycaster[x].camera_x;
-		__fill_variables(raycaster[x], player.position.x, player.position.y);
+		init_ray_default(&raycaster[x]);
+		setup_ray_dir(&raycaster[x], player, x);
+		x++;
 	}
-}*/
+}
+

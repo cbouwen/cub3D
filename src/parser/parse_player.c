@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:56:48 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/12 15:43:39 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 11:48:04 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,34 @@ void	parse_direction(t_player *player, char c)
 	}
 }
 
-char	player_info(char c)
+void	parse_plane(t_player *player, char c)
 {
-	if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
-		return (c);
-	return (0);
+	if (c == 'N')
+	{
+		(*player).plane.x = -0.66;
+		(*player).plane.y = 0;
+	}	
+	if (c == 'E')
+	{
+		(*player).plane.x = 0;
+		(*player).direction.y = 0.66;
+	}	
+	if (c == 'S')
+	{
+		(*player).plane.x = 0.66;
+		(*player).plane.y = 0;
+	}
+	if (c == 'W')
+	{
+		(*player).plane.x = 0;
+		(*player).plane.y = -0.66;
+	}
 }
 
 void	find_player(int rows, int colomns, t_map **map, t_player *player)
 {
 	int	x;
 	int	y;
-	char direction;
 
 	y = -1;
 	while (++y < rows)
@@ -55,21 +71,20 @@ void	find_player(int rows, int colomns, t_map **map, t_player *player)
 		x = -1;
 		while (++x < colomns)
 		{
-			if ((direction = player_info(map[y][x].c)) != 0)
+			if ((map[y][x].c) != '0' && map[y][x].c != '1')
 			{
-				(*player).position.x = x;
-				(*player).position.y = y;
-				parse_direction(player, direction);
+				(*player).position.x = x + 0.5;
+				(*player).position.y = y + 0.5;
+				parse_direction(player, map[y][x].c);
+				parse_plane(player, map[y][x].c);
 				return ;
 			}
 		}
 	}
 }
 
-void	parse_player(t_mapinfo mapinfo, t_map **map, t_player *player)
+void	parse_player(t_mapinfo mapinfo, t_map **map, t_player *player)//we can probably leave this out
 {
 	find_player(mapinfo.rows, mapinfo.colomns, map, player);
-	(*player).plane.x = 0;
-	(*player).plane.y = 0.66;
 //	test_player(*player);//	
 }
