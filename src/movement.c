@@ -20,10 +20,10 @@ void	update_player(t_raycaster *rc, t_mapinfo mapinfo)
 
 	win_data.mlx = mlx_init();
 	init_window(&win_data);
-	draw_screen(rc, &win_data.img, mapinfo);
 
 	while (1)
 	{
+		draw_screen(rc, &win_data.img, mapinfo);
 		mlx_loop(win_data.mlx);
 	}
 
