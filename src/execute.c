@@ -72,6 +72,8 @@ void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //c
 	int	y;
 	int	color;
 
+	(void)mapinfo;
+
 	if (side == 1)
 		color = 16711680;
 	else
