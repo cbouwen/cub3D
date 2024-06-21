@@ -41,7 +41,7 @@ void	init_window(t_mlx_data *win_data)
 	win_data->mlx_win = mlx_new_window(win_data->mlx, WIDTH, HEIGHT, "cub3D");
 	win_data->img.img = mlx_new_image(win_data->mlx, WIDTH, HEIGHT);
 	win_data->img.addr = mlx_get_data_addr(win_data->img.img, &win_data->img.bits_per_pixel, &win_data->img.line_length, &win_data->img.endian);
-	mlx_put_image_to_window(win_data->mlx, win_data->mlx_win, win_data->img.img, 0, 0);
+	//mlx_put_image_to_window(win_data->mlx, win_data->mlx_win, win_data->img.img, 0, 0);
 	mlx_hook(win_data->mlx_win, 17, 1L<<17, &close_window, win_data);
 	mlx_key_hook(win_data->mlx_win, handle_input, win_data);
 }
