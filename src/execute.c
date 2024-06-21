@@ -134,9 +134,9 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
 
-	t_mlx_data  win_data;
+	/*t_mlx_data  win_data;
 	win_data.mlx = mlx_init();
-    init_window(&win_data);
+    init_window(&win_data);*/
 
 	parse_player(mapinfo, *map, &player);
 	init_raycasting(raycaster, &player);
@@ -144,5 +144,5 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 
 	update_player(raycaster, mapinfo);//Final step
 
-	mlx_loop(win_data.mlx);
+	//mlx_loop(win_data.mlx);
 }
