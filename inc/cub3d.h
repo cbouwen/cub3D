@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/10 14:42:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/19 14:07:59 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/06/21 09:23:20 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 #define HEIGHT 1080
 #define WIDTH 1980
+#define D_HEIGHT 1080.0
+#define D_WIDTH 1980.0
 #define FOV_ANGLE 66
 
 //utils
@@ -53,7 +55,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);//we need this?
 void	execute_map(t_map ***map, t_mapinfo mapinfo);
 
 //raycasting ft's
-void	init_raycasting(t_raycaster *raycaster[], t_player player);
+
+//void	init_raycasting(t_raycaster raycaster[], t_player player);
+void	init_raycasting(t_raycaster *raycaster, t_player *player);
+
 //void	ft_draw_map(t_map **map, t_mapinfo mapinfo, t_mlx_data *win_data);
 
 //tester ft's
