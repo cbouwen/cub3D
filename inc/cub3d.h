@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 10:07:43 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 14:22:52 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ void	execute_map(t_map ***map, t_mapinfo mapinfo);
 
 //raycasting ft's
 
-//void	init_raycasting(t_raycaster raycaster[], t_player player);
+void	update_player(t_raycaster *rc, t_mapinfo mapinfo);
 void	init_raycasting(t_raycaster *raycaster, t_player *player);
+void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo);
 
 //void	ft_draw_map(t_map **map, t_mapinfo mapinfo, t_mlx_data *win_data);
 

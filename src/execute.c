@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:22:09 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 13:29:05 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 14:23:29 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	calculate_dda(t_raycaster *rc, t_map **map)
 			rc->sidedisty += rc->deltadisty;
 			rc->mapy += rc->stepy;
 			rc->side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
+			//Edit: Maybe this is enough. Maybe with a combination of stepdirx or whatever value, we know which side we'll be facing. Either way this is for the end
 		}
 		if (map[rc->mapy][rc->mapx].c == '1')
 			hit = 1;
@@ -119,7 +120,7 @@ void	prep_dda(t_raycaster *raycaster, t_map **map)
 	}
 }
 
-void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)
+void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
 {
 	int	x;
 
@@ -130,16 +131,11 @@ void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
-	t_mlx_data	win_data;
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
 
-	win_data.mlx = mlx_init();
-	init_window(&win_data);
 	parse_player(mapinfo, *map, &player);
 	init_raycasting(raycaster, &player);
 	prep_dda(raycaster, *map);
-	draw_screen(raycaster, &win_data.img, mapinfo);
-//	update_player(   );//Final step
-	mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
+	update_player(raycaster, mapinfo);//Final step
 }
