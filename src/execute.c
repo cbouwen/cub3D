@@ -64,7 +64,7 @@ void	put_color_to_pixel(t_data *mlx, int x, int y, int color)
 	int	*buffer;
 
 	buffer = mlx->addr;
-	buffer[(y * mlx->line_length / 4) + x] = color;
+	buffer[(y * mlx->line_length / 4) + x * (data->bits_per_pixel / 8)] = color;
 }
 
 void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
