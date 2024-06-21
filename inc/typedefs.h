@@ -59,7 +59,8 @@ typedef struct s_mapchecker
 typedef struct  s_data
 {
     void    *img;
-    char    *addr;
+    //char    *addr;
+    void    *addr;
     int bits_per_pixel;
     int endian;
     int line_length;

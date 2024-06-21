@@ -64,7 +64,7 @@ void	put_color_to_pixel(t_data *mlx, int x, int y, int color)
 	int	*buffer;
 
 	buffer = mlx->addr;
-	buffer[(y * mlx->line_len / 4) + x] = color;
+	buffer[(y * mlx->line_length / 4) + x] = color;
 }
 
 void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
@@ -148,9 +148,9 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
 
-	/*t_mlx_data  win_data;
+	t_mlx_data  win_data;
 	win_data.mlx = mlx_init();
-    init_window(&win_data);*/
+    init_window(&win_data);
 
 	parse_player(mapinfo, *map, &player);
 	init_raycasting(raycaster, &player);
@@ -158,5 +158,5 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 
 	update_player(raycaster, mapinfo);//Final step
 
-	//mlx_loop(win_data.mlx);
+	mlx_loop(win_data.mlx);
 }
