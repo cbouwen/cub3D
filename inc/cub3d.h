@@ -25,9 +25,9 @@
 # include "typedefs.h"
 
 #define HEIGHT 1080
-#define WIDTH 1980
+#define WIDTH 1920
 #define D_HEIGHT 1080.0
-#define D_WIDTH 1980.0
+#define D_WIDTH 1920.0
 #define FOV_ANGLE 66
 
 //utils
