@@ -59,20 +59,10 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
 }
 
-void	put_color_to_pixel(t_data *mlx, int x, int y, int color)
-{
-	int	*buffer;
-
-	buffer = mlx->addr;
-	buffer[(y * mlx->line_length / 4) + x * (mlx->bits_per_pixel / 8)] = color;
-}
-
 void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
 {
 	int	y;
 	int	color;
-
-	(void)mapinfo;
 
 	if (side == 1)
 		color = 16711680;
@@ -81,18 +71,12 @@ void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //c
 	y = -1;
 	while (++y < HEIGHT)
 	{
-		/*if (y < HEIGHT / 2)	//not super efficient because it constantly overwrites but hey. If we want, easy fix
+		if (y < HEIGHT / 2)	//not super efficient because it constantly overwrites but hey. If we want, easy fix
 			my_mlx_pixel_put(img, rc->x, y, mapinfo.c);
 		if (y > HEIGHT / 2)
 			my_mlx_pixel_put(img, rc->x, y, mapinfo.f);
 		if (y > rc->drawstart && y < rc->drawend)
-			my_mlx_pixel_put(img, rc->x, y, color);*/
-		if (y < HEIGHT / 2)	//not super efficient because it constantly overwrites but hey. If we want, easy fix
-			put_color_to_pixel(img, rc->x, y, color);
-		if (y > HEIGHT / 2)
-			put_color_to_pixel(img, rc->x, y, color);
-		if (y > rc->drawstart && y < rc->drawend)
-			put_color_to_pixel(img, rc->x, y, color);
+			my_mlx_pixel_put(img, rc->x, y, color);
 	}
 }
 
