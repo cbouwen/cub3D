@@ -71,12 +71,21 @@ void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //c
 	y = -1;
 	while (++y < HEIGHT)
 	{
-		if (y < HEIGHT / 2)   //not super efficient because it constantly overwrites but hey. If we want, easy fix
+		if (y < HEIGHT / 2)	//not super efficient because it constantly overwrites but hey. If we want, easy fix
+		{
+			printf("y < HEIGHT / 2= %i\n", y);
 			my_mlx_pixel_put(img, rc->x, y, mapinfo.c);
+		}
 		if (y > HEIGHT / 2)
+		{
+			printf("y > HEIGHT / 2= %i\n", y);
 			my_mlx_pixel_put(img, rc->x, y, mapinfo.f);
+		}
 		if (y > rc->drawstart && y < rc->drawend)
+		{
+			printf("y > rc->drawstart && y < rc->drawend= %i\n", y);
 			my_mlx_pixel_put(img, rc->x, y, color);
+		}
 	}
 }
 
