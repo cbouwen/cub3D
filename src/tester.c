@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:39:36 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/17 15:10:29 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 12:48:42 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ void	tester(t_mapinfo mapinfo)
 	printf("Path to SO is: %s\n", mapinfo.so);
 	printf("Path to WE is: %s\n", mapinfo.we);
 	printf("Path to EA is: %s\n", mapinfo.ea);
-	printf("Color for the floor is: %i, %i, %i\n", mapinfo.f.red,
-			mapinfo.f.green, mapinfo.f.blue);
-	printf("Color for the ceiling is: %i, %i, %i\n", mapinfo.c.red,
-			mapinfo.c.green, mapinfo.c.blue);
+	printf("Color for the floor is: %i\n", mapinfo.f);
+	printf("Color for the ceiling is: %i\n", mapinfo.c);
 	printf("\nAmount of rows: %i\n", mapinfo.rows);
 	printf("Amount of colomns: %i\n\n", mapinfo.colomns);
 }

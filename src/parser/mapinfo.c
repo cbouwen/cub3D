@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:42:49 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/23 16:28:11 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 12:57:24 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,20 @@ void	parse_path(char *str, t_mapinfo *mapinfo)
 		mapinfo->ea = ft_strndup(str + 3, i);
 }
 
-void	parse_color_values(t_color *X, char *str, int i)
+void	parse_color_values(int *X, char *str, int i)
 {
-	X->red = ft_atoi(str + i);
+	int	red;
+	int	green;
+	int	blue;
+
+	red = ft_atoi(str + i);
 	while (str[i] != 44)
 		i++;
-	X->green = ft_atoi(str + ++i);
+	green = ft_atoi(str + ++i);
 	while (str[i] != 44)
 		i++;
-	X->blue = ft_atoi(str + ++i);
+	blue = ft_atoi(str + ++i);
+	*X = (red << 16) | (green << 8) | blue;
 }
 
 void	parse_color(char *str, t_mapinfo *mapinfo)

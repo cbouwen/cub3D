@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:49:22 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/17 16:53:33 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 12:48:25 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ typedef struct s_color
 //struct to store path names and general map info
 typedef struct s_mapinfo
 {
-    char    *no;
-    char    *so;
-    char    *we;
-    char    *ea;
-    t_color f; //unsigned long
-    t_color c;
-    int     rows;
-    int     colomns;
-}           t_mapinfo;
+    char			*no;
+    char			*so;
+    char			*we;
+    char			*ea;
+    int	f; //unsigned long
+    int	c;
+    int				rows;
+    int				colomns;
+}					t_mapinfo;
 
 //struct to parse the map[][]
 typedef struct s_map

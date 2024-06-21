@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:56:48 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 11:48:04 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 13:43:36 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	find_player(int rows, int colomns, t_map **map, t_player *player)
 		x = -1;
 		while (++x < colomns)
 		{
-			if ((map[y][x].c) != '0' && map[y][x].c != '1')
+			if ((map[y][x].c) != '0' && map[y][x].c != '1' && map[y][x].c != ' ')
 			{
 				(*player).position.x = x + 0.5;
 				(*player).position.y = y + 0.5;

@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:22:09 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 10:12:59 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 13:29:05 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,16 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 	else
 		rc->perpwalldist = (rc->sidedisty - rc->deltadisty);
 	rc->lineheight = (int)(HEIGHT / rc->perpwalldist);
-	rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2;
+	rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2 - 1;
 	if (rc->drawstart < 0)
 		rc->drawstart = 0;
 	rc->drawend = rc->lineheight / 2 + HEIGHT / 2;
 	if (rc->drawend >= HEIGHT)
-		rc->drawend = HEIGHT - 1;
+		rc->drawend = HEIGHT;
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
 }
 
-void	load_texture(t_raycaster *rc, int side, t_data *img)
+void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
 {
 	int	y;
 	int	color;
@@ -71,12 +71,16 @@ void	load_texture(t_raycaster *rc, int side, t_data *img)
 	y = -1;
 	while (++y < HEIGHT)
 	{
+		if (y < HEIGHT / 2)   //not super efficient because it constantly overwrites but hey. If we want, easy fix
+			my_mlx_pixel_put(img, rc->x, y, mapinfo.c);
+		if (y > HEIGHT / 2)
+			my_mlx_pixel_put(img, rc->x, y, mapinfo.f);
 		if (y > rc->drawstart && y < rc->drawend)
 			my_mlx_pixel_put(img, rc->x, y, color);
 	}
 }
 
-void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
+void	calculate_dda(t_raycaster *rc, t_map **map)
 {
 	int	hit;
 
@@ -99,21 +103,29 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_data *img)
 			hit = 1;
 	}
 	calculate_lineheight(rc, rc->side);
-	if (rc->x % 100 == 0)
-		print_rc(*rc);
-	load_texture(rc, rc->side, img);
+//	if (rc->x % 100 == 0)//for testing purposes. can be deleted
+//		print_rc(*rc);
 }
 
-void	prep_dda(t_raycaster *raycaster, t_map **map, t_data *img)
+void	prep_dda(t_raycaster *raycaster, t_map **map)
 {
 	int	x;
 
 	x = 0;
 	while (x < WIDTH)
 	{
-		calculate_dda(&raycaster[x], map, img);
+		calculate_dda(&raycaster[x], map);
 		x++;
 	}
+}
+
+void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)
+{
+	int	x;
+
+	x = -1;
+	while (++x < WIDTH)
+		load_texture(&rc[x], rc[x].side, img, mapinfo);
 }
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
@@ -125,10 +137,9 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	win_data.mlx = mlx_init();
 	init_window(&win_data);
 	parse_player(mapinfo, *map, &player);
-	while (1) //unsure if this is the correct way to be handling this. Let's leave it in for now
-	{
-		init_raycasting(raycaster, &player);
-		prep_dda(raycaster, *map, &win_data.img);
-		mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
-	}
+	init_raycasting(raycaster, &player);
+	prep_dda(raycaster, *map);
+	draw_screen(raycaster, &win_data.img, mapinfo);
+//	update_player(   );//Final step
+	mlx_loop(win_data.mlx); //?? do we keep the mlx_loop in the permanent loop? how do we refresh the screen. Problems for later
 }

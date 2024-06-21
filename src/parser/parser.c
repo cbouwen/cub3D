@@ -6,19 +6,17 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:10:31 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/23 16:29:22 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/21 12:55:03 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	color_range(t_color X)
+int	color_range(int	x)
 {
-	if (X.red < 0 || X.red > 255)
+	if (x < 0)
 		return (0);
-	if (X.green < 0 || X.green > 255)
-		return (0);
-	if (X.blue < 0 || X.blue > 255)
+	if (x > 16777215)
 		return (0);
 	return (1);
 }
