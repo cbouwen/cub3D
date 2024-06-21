@@ -24,6 +24,7 @@ void	update_player(t_raycaster *rc, t_mapinfo mapinfo)
 	while (1)
 	{
 		draw_screen(rc, &win_data.img, mapinfo);
+		mlx_put_image_to_window(win_data->mlx, win_data->mlx_win, win_data->img.img, 0, 0);
 		mlx_loop(win_data.mlx);
 	}
 

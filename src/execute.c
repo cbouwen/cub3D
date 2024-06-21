@@ -133,7 +133,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
-	
+
 	parse_player(mapinfo, *map, &player);
 	init_raycasting(raycaster, &player);
 	prep_dda(raycaster, *map);
