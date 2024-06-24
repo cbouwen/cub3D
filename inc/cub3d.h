@@ -25,7 +25,7 @@
 
 #define HEIGHT 1080
 #define WIDTH 1980
-#define FOV_ANGLE 90
+//#define FOV_ANGLE 90
 
 //utils
 int			map_name(char *str);
