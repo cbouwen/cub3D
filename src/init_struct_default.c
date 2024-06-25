@@ -66,4 +66,3 @@ void	init_mapinfo_default(new_t_mapinfo *mapinfo)
 	mapinfo->columns = 0;
 	mapinfo->map = NULL;
 }
-	
