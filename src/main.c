@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 		ft_error("Hmmmm. Map should end with .cub. Can you make sure of that please?\n");
 	else
 	{
-		init_data(&data);
+		init_data_default(&data);
 		print_data(&data);
 	}
 }
