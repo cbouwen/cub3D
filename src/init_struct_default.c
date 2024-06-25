@@ -12,7 +12,7 @@ void	init_data_default(new_t_data *data)
 	data->endian = 0;
 	data->line_length = 0;
 	init_player_default(&data->player);
-	init_rc_default(&data->rc);
+	init_rc_default(data->rc);
 	init_mapinfo_default(&data->mapinfo);
 }
 
