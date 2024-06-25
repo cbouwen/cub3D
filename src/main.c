@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-void print_player(t_player *player)
+void print_player(new_t_player *player)
 {
 	printf("position.x: %f\n", player->position.x);
 	printf("position.y: %f\n", player->position.y);
@@ -22,7 +22,7 @@ void print_player(t_player *player)
 	printf("plane.y: %f\n", player->plane.y);
 }
 
-void print_mapinfo(t_mapinfo *mapinfo)
+void print_mapinfo(new_t_mapinfo *mapinfo)
 {
 	printf("no: %s\n", mapinfo->no);
 	printf("so: %s\n", mapinfo->so);
@@ -34,7 +34,7 @@ void print_mapinfo(t_mapinfo *mapinfo)
 	printf("columns: %d\n", mapinfo->columns);
 }
 
-void print_data(t_data *data)
+void print_data(new_t_data *data)
 {
 	printf("mlx: %p\n", data->mlx);
 	printf("mlx_win: %p\n", data->mlx_win);
@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	//run_cub3d(map);
 	//	close(fd);*/
 
-	t_data	data;
+	new_t_data	data;
 
 	if (argc != 2)
 		ft_error("Wrong number of arguments. Try again!\n");

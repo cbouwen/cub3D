@@ -22,7 +22,7 @@ typedef struct s_color
 }           t_color;
 
 //struct to store path names and general map info
-typedef struct _s_mapinfo
+typedef struct s_mapinfo
 {
     char			*no;
     char			*so;
@@ -32,18 +32,18 @@ typedef struct _s_mapinfo
     int	c;
     int				rows;
     int				colomns;
-}					_t_mapinfo;
+}					t_mapinfo;
 
 //struct to parse the map[][]
-typedef struct _s_map
+typedef struct s_map
 {
     int     x;  
     int     y;  
     char    c;  
-}           _t_map;
+}           t_map;
 
 //struct to check if map is valid
-typedef struct _s_mapchecker
+typedef struct s_mapchecker
 {
     bool    no; 
     bool    so; 
@@ -53,13 +53,13 @@ typedef struct _s_mapchecker
     bool    c;  
     bool    duplicate;
     bool    all_eles;
-}           _t_mapchecker;
+}           t_mapchecker;
 
 //mlx struct for image
 
 //Combine this with t_mlx_data?
 
-typedef struct  _s_data
+typedef struct  s_data
 {
     void    *img;
     //char    *addr;
@@ -67,7 +67,7 @@ typedef struct  _s_data
     int bits_per_pixel;
     int endian;
     int line_length;
-}           _t_data;
+}           t_data;
 
 //mlx struct for window initialization
 
@@ -82,26 +82,26 @@ typedef struct  s_mlx_data
 //simple x,y struct
 
 //Seems to be a helper struct for s_player
-typedef struct	_s_coordinates
+typedef struct	s_coordinates
 {
 	double	x;
 	double	y;
-}				_t_coordinates;
+}				t_coordinates;
 
 //struct to store all relevant player data for raycasting. Position vector, direction vector, camera plane vector
 
 //important struct for player data
-typedef struct	_s_player
+typedef struct	s_player
 {
-	_t_coordinates	position;
-	_t_coordinates	direction;
-	_t_coordinates	plane;
-}			_t_player;
+	t_coordinates	position;
+	t_coordinates	direction;
+	t_coordinates	plane;
+}			t_player;
 
 //struct to store all raycasting calculations
 
 //contains all the big data for the raycaster
-typedef struct	_s_raycaster
+typedef struct	s_raycaster
 {
 	double	camera_x; //what percentile of the screen are we on?
 	double	raydirx; //using camera_x, where on the screen is the ray casting to?
@@ -121,7 +121,7 @@ typedef struct	_s_raycaster
 	int		drawend;
 	int		x; //added this to use the draw ft
 	// double time && double oldTime? ==> Do we want to implement FPS? I fucking think not
-}				_t_raycaster;
+}				t_raycaster;
 
 //Combine this data in a massive struct, which can be far too difficult to use, let alone init to default
 //Add all the tiny structs to the t_mlx_data struct as a reference, keeps all the struct seperate but allow them to be used everywhere else without passing more than one parameter
