@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:09:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/25 16:45:12 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:54:27 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 static int  handle_input(int key, t_mlx_data *win_data)
 {
     if (key == 119)
-        printf("w is pressed\n\n");
+        printf("w is pressed\n\n");//move_player(&player, key);
     if (key == 115)
         printf("s is pressed\n\n");
     if (key == 97)
@@ -31,7 +31,7 @@ static int  handle_input(int key, t_mlx_data *win_data)
     if (key == 100)
         printf("d is pressed\n\n");
     if (key == 65361)
-        printf("Left arrow is pressed\n\n");
+        printf("Left arrow is pressed\n\n");//rotate_player(&player, key);
     if (key == 65363)
         printf("Right arrow is pressed\n\n");
     if (key == 65307)
