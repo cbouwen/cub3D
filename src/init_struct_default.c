@@ -43,7 +43,7 @@ void	init_rc_default(new_t_raycaster *rc)
 		rc[i].stepx = 0;
 		rc[i].stepy = 0;
 		rc[i].mapx = 0;
-		rc[i].mapy = 800;
+		rc[i].mapy = 0;
 		rc[i].side = 0;
 		rc[i].perpwalldist = 0.0;
 		rc[i].lineheight = 0;
