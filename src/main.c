@@ -32,15 +32,7 @@ void print_mapinfo(new_t_mapinfo *mapinfo)
 	printf("c: %d\n", mapinfo->c);
 	printf("rows: %d\n", mapinfo->rows);
 	printf("columns: %d\n", mapinfo->columns);
-	if (mapinfo->map != NULL) {
-        printf("map:\n");
-        for (int i = 0; i < mapinfo->rows; i++) {
-            // Assuming each row is a null-terminated string
-            printf("%s\n", mapinfo->map[i]);
-        }
-    } else {
-        printf("map: (null)\n");
-    }
+	printf("map: %p\n", mapinfo->map);
 }
 
 void	print_rc_new(new_t_raycaster *rc)
