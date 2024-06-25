@@ -55,14 +55,14 @@ void	init_rc_default(new_t_raycaster *rc)
 
 void	init_mapinfo_default(new_t_mapinfo *mapinfo)
 {
-	map->no = NULL;
-	map->so = NULL;
-	map->we = NULL;
-	map->ea = NULL;
-	map->f = 0;
-	map->c = 0;
-	map->rows = 0;
-	map->columns = 0;
-	map->map = NULL;
+	mapinfo->no = NULL;
+	mapinfo->so = NULL;
+	mapinfo->we = NULL;
+	mapinfo->ea = NULL;
+	mapinfo->f = 0;
+	mapinfo->c = 0;
+	mapinfo->rows = 0;
+	mapinfo->columns = 0;
+	mapinfo->map = NULL;
 }
 	

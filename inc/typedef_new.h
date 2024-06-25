@@ -2,7 +2,9 @@
 #ifndef TYPEDEF_NEW_H
 # define TYPEDEF_NEW_H
 
-#include "cub3d.h"
+# include "cub3d.h"
+
+#define WIDTH 1920
 
 //struct to check if map is valid
 typedef struct	new_s_mapchecker
