@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:49:22 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 12:48:25 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/25 15:50:41 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,14 @@ typedef struct	s_raycaster
 	int		x; //added this to use the draw ft
 	// double time && double oldTime? ==> Do we want to implement FPS? I fucking think not
 }				t_raycaster;
+
+typedef struct	s_file
+{
+	t_mlx_data	*win_data;
+	t_player	*player;
+	t_raycaster	*raycaster;
+	t_mapinfo	mapinfo;
+	t_map		**map;
+}				t_file;
 
 #endif

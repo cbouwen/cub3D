@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:21:38 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/25 12:10:35 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/25 15:32:52 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 
 void	init_raycasting(t_raycaster *raycaster, t_player *player)
 {
-	int x;
+	int 		x;
 
 	x = 0;
 	while (x < WIDTH)
 	{
-		init_ray_default(&raycaster[x]);
+		//init_ray_default(&raycaster[x]);
 		setup_ray_dir(&raycaster[x], player, x);
 		x++;
 	}

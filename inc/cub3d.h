@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 14:22:52 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/25 15:57:25 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 # include <unistd.h>
 # include "../mlx_linux/mlx.h"
 # include "typedefs.h"
@@ -29,6 +31,8 @@
 #define D_HEIGHT 1080.0
 #define D_WIDTH 1920.0
 #define FOV_ANGLE 66
+#define MOVESPEED 0.25
+#define ROTSPEED 0.33
 
 //utils
 int			map_name(char *str);
@@ -47,18 +51,21 @@ int			valid_map(t_map **map, t_mapinfo mapinfo);
 void	parse_player(t_mapinfo mapinfo, t_map **map, t_player *player);
 
 //mlx_ft's
-void	init_window(t_mlx_data *win_data);
+void	init_window(t_file *file);
 int		close_window(t_mlx_data *win_data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);//we need this?
 
 //executing part
 void	execute_map(t_map ***map, t_mapinfo mapinfo);
+void	change_position(t_player *player, int x);
 
 //raycasting ft's
 
-void	update_player(t_raycaster *rc, t_mapinfo mapinfo);
+void	init_ray_default(t_raycaster *rc);
+void	update_player(t_file *file);
 void	init_raycasting(t_raycaster *raycaster, t_player *player);
 void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo);
+void	prep_dda(t_raycaster *raycaster, t_map **map);
 
 //void	ft_draw_map(t_map **map, t_mapinfo mapinfo, t_mlx_data *win_data);
 

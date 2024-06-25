@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:22:09 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 14:23:29 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/25 15:53:58 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,23 @@ void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mention
 
 void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
+	t_file		*file;
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
+	int	x;
 
+	file = (t_file *)malloc(sizeof(t_file));
+	if (!file)
+		exit(0);//don't forget to free. maybe add perror code
+	x = -1;
 	parse_player(mapinfo, *map, &player);
+	while (++x < WIDTH)
+		init_ray_default(&raycaster[x]);
 	init_raycasting(raycaster, &player);
 	prep_dda(raycaster, *map);
-
-	update_player(raycaster, mapinfo);//Final step
+	file->player = player;
+	file->raycaster = rc;
+	file->map = *map;
+	file->mapinfo = mapinfo;
+	update_player(file);
 }

@@ -22,7 +22,7 @@ LIBFT_INC = -I $(LIBFT_DIR)
 all : $(NAME)
 
 $(NAME) : $(LIBFT_LIB) $(SRC) $(GNL_LIB)
-	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) $(GNL_LIB) $(MLX_FLAGS) -o $(NAME)
+	$(CC) -g $(SRC) $(LIBFT_LIB) $(GNL_LIB) $(MLX_FLAGS) -o $(NAME)
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_DIR)
