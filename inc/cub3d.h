@@ -23,7 +23,7 @@
 # include <unistd.h>
 # include "../mlx_linux/mlx.h"
 # include "typedefs.h"
-# include "typedef.h"
+# include "typedef_new.h"
 
 #define HEIGHT 1080
 #define WIDTH 1920

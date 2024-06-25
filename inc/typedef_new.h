@@ -1,6 +1,6 @@
 
-#ifndef TYPEDEF_H
-# define TYPEDEF_H
+#ifndef TYPEDEF_NEW_H
+# define TYPEDEF_NEW_H
 
 # include "cub3d.h"
 
