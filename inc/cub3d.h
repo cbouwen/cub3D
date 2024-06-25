@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 14:22:52 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:33:08 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 #define D_HEIGHT 1080.0
 #define D_WIDTH 1920.0
 #define FOV_ANGLE 66
+#define MOVESPEED 0.25
+#define ROTSPEED 0.33
 
 //utils
 int			map_name(char *str);

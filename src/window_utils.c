@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:09:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/24 16:43:02 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:45:12 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,24 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-static int     handle_input(int key, t_mlx_data *win_data)
+static int  handle_input(int key, t_mlx_data *win_data)
 {
-        if (key == 65307)
-			close_window(win_data);
-        return (0);
+    if (key == 119)
+        printf("w is pressed\n\n");
+    if (key == 115)
+        printf("s is pressed\n\n");
+    if (key == 97)
+        printf("a is pressed\n\n");
+    if (key == 100)
+        printf("d is pressed\n\n");
+    if (key == 65361)
+        printf("Left arrow is pressed\n\n");
+    if (key == 65363)
+        printf("Right arrow is pressed\n\n");
+    if (key == 65307)
+        close_window(win_data);
+//	update_player(win_data, key);      We need to call a function here which performs the dda with the new player data changed by the above key presses and afterwards prints it on the screen as well
+    return (0);
 }
 
 int	close_window(t_mlx_data *win_data)
