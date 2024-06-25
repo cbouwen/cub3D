@@ -1,6 +1,6 @@
 
 
-#include "cub3d.h"
+#include "../inc/cub3d.h"
 
 void	init_data_default(t_data *data)
 {
