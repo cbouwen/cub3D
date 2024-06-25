@@ -25,7 +25,7 @@ int	map_name(char *str)
 	return (0);
 }
 
-void	ft_free_array(t_map **map, int count)
+/*void	ft_free_array(t_map **map, int count)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ void	ft_free_array(t_map **map, int count)
 	while (++i < count)
 		free(map[i]);
 	free(map);
-}
+}*/
 
 void	ft_free(void *ptr)
 {
