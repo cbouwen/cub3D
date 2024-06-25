@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   typedef.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 16:49:22 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 12:48:25 by cbouwen          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
@@ -98,7 +87,7 @@ typedef struct	s_data
 	int			endian;
 	int			line_length;
 	t_player	player;
-	t_raycaster	raycaster[WIDTH];
+	t_raycaster	rc[WIDTH];
 	t_mapinfo	mapinfo;
 }				t_data;
 

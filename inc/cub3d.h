@@ -23,6 +23,7 @@
 # include <unistd.h>
 # include "../mlx_linux/mlx.h"
 # include "typedefs.h"
+# include "typedef.h"
 
 #define HEIGHT 1080
 #define WIDTH 1920
@@ -69,5 +70,11 @@ void		tester(t_mapinfo mapinfo);
 void		test_map(t_map **map, t_mapinfo mapinfo);
 void		test_player(t_player player);
 void		raytester(t_raycaster raycaster[]);
+
+//init ft's
+void	init_data_default(t_data *data);
+void	init_player_default(t_player *player);
+void	init_rc_default(t_raycaster *rc);
+void	init_mapinfo_default(t_mapinfo *mapinfo);
 
 #endif
