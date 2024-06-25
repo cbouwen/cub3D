@@ -68,8 +68,7 @@ void print_data(new_t_data *data)
 	int i = 0;
 	while (i < 3)
 	{
-		printf("potato\n");
-		//print_rc_new(&data->rc[i]);
+		print_rc_new(&data->rc[i]);
 		i++;
 	}
 	print_mapinfo(&data->mapinfo);
