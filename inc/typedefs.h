@@ -76,7 +76,7 @@ typedef struct  s_mlx_data
 {
     void    *mlx;
     void    *mlx_win;
-    _t_data  img;
+    t_data  img;
 }           t_mlx_data;
 
 //simple x,y struct
