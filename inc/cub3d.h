@@ -72,9 +72,9 @@ void		test_player(t_player player);
 void		raytester(t_raycaster raycaster[]);
 
 //init ft's
-void	init_data_default(t_data *data);
-void	init_player_default(t_player *player);
-void	init_rc_default(t_raycaster *rc);
-void	init_mapinfo_default(t_mapinfo *mapinfo);
+void	init_data_default(new_t_data *data);
+void	init_player_default(new_t_player *player);
+void	init_rc_default(new_t_raycaster *rc);
+void	init_mapinfo_default(new_t_mapinfo *mapinfo);
 
 #endif

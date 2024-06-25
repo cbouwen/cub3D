@@ -34,6 +34,27 @@ void print_mapinfo(new_t_mapinfo *mapinfo)
 	printf("columns: %d\n", mapinfo->columns);
 }
 
+void	print_rc_new(new_t_raycaster *rc)
+{
+	printf("x = %i\n", rc->x);
+	printf("camera_x = %f\n", rc->camera_x);
+	printf("raydirx = %f\n", rc->raydirx);
+	printf("raydiry = %f\n", rc->raydiry);
+	printf("sidedistx = %f\n", rc->sidedistx);
+	printf("sidedisty = %f\n", rc->sidedisty);
+	printf("deltadistx = %f\n", rc->deltadistx);
+	printf("deltadisty = %f\n", rc->deltadisty);
+	printf("stepx = %i\n", rc->stepx);
+	printf("stepy = %i\n", rc->stepy);
+	printf("mapx = %i\n", rc->mapx);
+	printf("mapy = %i\n", rc->mapy);
+	printf("side = %i\n", rc->side);
+	printf("perpwalldist = %f\n", rc->perpwalldist);
+	printf("lineheight = %i\n", rc->lineheight);
+	printf("drawstart = %i\n", rc->drawstart);
+	printf("drawend = %i\n", rc->drawend);
+}
+
 void print_data(new_t_data *data)
 {
 	printf("mlx: %p\n", data->mlx);
@@ -47,7 +68,7 @@ void print_data(new_t_data *data)
 	int i = 0;
 	while (i < 3)
 	{
-		print_rc(&data->rc[i]);
+		print_rc_new(&data->rc[i]);
 		i++;
 	}
 	print_mapinfo(&data->mapinfo);
