@@ -33,23 +33,23 @@ void	init_rc_default(new_t_raycaster *rc)
 	i = 0;
 	while (i < WIDTH)
 	{
-		rc[i]->camera_x = 0.0;
-		rc[i]->raydirx = 0.0;
-		rc[i]->raydiry = 0.0;
-		rc[i]->sidedistx = 0.0;
-		rc[i]->sidedisty = 0.0;
-		rc[i]->deltadistx = 0.0;
-		rc[i]->deltadisty = 0.0;
-		rc[i]->stepx = 0;
-		rc[i]->stepy = 0;
-		rc[i]->mapx = 0;
-		rc[i]->mapy = 0;
-		rc[i]->side = 0;
-		rc[i]->perpwalldist = 0.0;
-		rc[i]->lineheight = 0;
-		rc[i]->drawstart = 0;
-		rc[i]->drawend = 0;
-		rc[i]->x = 0;
+		rc[i].camera_x = 0.0;
+		rc[i].raydirx = 0.0;
+		rc[i].raydiry = 0.0;
+		rc[i].sidedistx = 0.0;
+		rc[i].sidedisty = 0.0;
+		rc[i].deltadistx = 0.0;
+		rc[i].deltadisty = 0.0;
+		rc[i].stepx = 0;
+		rc[i].stepy = 0;
+		rc[i].mapx = 0;
+		rc[i].mapy = 0;
+		rc[i].side = 0;
+		rc[i].perpwalldist = 0.0;
+		rc[i].lineheight = 0;
+		rc[i].drawstart = 0;
+		rc[i].drawend = 0;
+		rc[i].x = 0;
 		i++;
 	}
 }
