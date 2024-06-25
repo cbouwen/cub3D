@@ -106,6 +106,5 @@ int	main(int argc, char **argv)
 	else
 	{
 		init_data_default(&data);
-		print_data(&data);
 	}
 }
