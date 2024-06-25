@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   typedefs.h                                         :+:      :+:    :+:   */
+/*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,85 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPEDEFS_H
-# define TYPEDEFS_H
+#ifndef TYPEDEF_H
+# define TYPEDEF_H
 
-//struct for RGB
-typedef struct s_color
-{
-    int     red;
-    int     green;
-    int     blue;
-}           t_color;
-
-//struct to store path names and general map info
-typedef struct s_mapinfo
-{
-    char			*no;
-    char			*so;
-    char			*we;
-    char			*ea;
-    int	f; //unsigned long
-    int	c;
-    int				rows;
-    int				colomns;
-}					t_mapinfo;
-
-//struct to parse the map[][]
-typedef struct s_map
-{
-    int     x;  
-    int     y;  
-    char    c;  
-}           t_map;
+# include "cub3d.h"
 
 //struct to check if map is valid
-typedef struct s_mapchecker
+typedef struct	s_mapchecker
 {
-    bool    no; 
-    bool    so; 
-    bool    we; 
-    bool    ea; 
-    bool    f;  
-    bool    c;  
-    bool    duplicate;
-    bool    all_eles;
-}           t_mapchecker;
+	bool	no; 
+	bool	so; 
+	bool	we; 
+	bool	ea; 
+	bool	f;  
+	bool	c;  
+	bool	duplicate;
+	bool	all_eles;
+}				t_mapchecker;
 
-//mlx struct for image
-
-//Combine this with t_mlx_data?
-
-typedef struct  s_data
+//struct to parse the map[][]
+typedef struct	s_map
 {
-    void    *img;
-    //char    *addr;
-    void    *addr;
-    int bits_per_pixel;
-    int endian;
-    int line_length;
-}           t_data;
+	int		x;
+	int		y;
+	char	c;
+}				t_map;
 
-//mlx struct for window initialization
-
-//Seems to be the main mlx struct
-typedef struct  s_mlx_data
+//struct to store path names and general map info
+typedef struct	s_mapinfo
 {
-    void    *mlx;
-    void    *mlx_win;
-    t_data  img;
-}           t_mlx_data;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		f; //unsigned long
+	int		c;
+	int		rows;
+	int		columns;
+	t_map	**map;
+}				t_mapinfo;
 
 //simple x,y struct
-
-//Seems to be a helper struct for s_player
 typedef struct	s_coordinates
 {
 	double	x;
 	double	y;
 }				t_coordinates;
-
-//struct to store all relevant player data for raycasting. Position vector, direction vector, camera plane vector
 
 //important struct for player data
 typedef struct	s_player
@@ -96,11 +63,9 @@ typedef struct	s_player
 	t_coordinates	position;
 	t_coordinates	direction;
 	t_coordinates	plane;
-}			t_player;
+}				t_player;
 
 //struct to store all raycasting calculations
-
-//contains all the big data for the raycaster
 typedef struct	s_raycaster
 {
 	double	camera_x; //what percentile of the screen are we on?
@@ -120,12 +85,21 @@ typedef struct	s_raycaster
 	int		drawstart;//calculate lowest and highest pixel
 	int		drawend;
 	int		x; //added this to use the draw ft
-	// double time && double oldTime? ==> Do we want to implement FPS? I fucking think not
 }				t_raycaster;
 
-//Combine this data in a massive struct, which can be far too difficult to use, let alone init to default
-//Add all the tiny structs to the t_mlx_data struct as a reference, keeps all the struct seperate but allow them to be used everywhere else without passing more than one parameter
+//mlx struct for image & window initialization
+typedef struct	s_data
+{
+	void		*mlx;
+	void		*mlx_win;
+	void		*img;
+	void		*addr;
+	int			bits_per_pixel;
+	int			endian;
+	int			line_length;
+	t_player	player;
+	t_raycaster	raycaster[WIDTH];
+	t_mapinfo	mapinfo;
+}				t_data;
 
-//Additionally, we should add a seperate variable in one of the map structs to store the actual map,
-//I don't want to have to pass variables with more than 1 pointer. Passing 3 pointers is not very efficient
 #endif
