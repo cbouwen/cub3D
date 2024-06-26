@@ -9,7 +9,7 @@ int	color_range(int	x)
 	return (1);
 }
 
-void	map_errors(new_t_mapchecker *elements, new_t_data *data)
+void	map_errors(t_mapchecker *elements, t_data *data)
 {
 	if (elements->all_eles == false)
 		ft_error("Not all elements are defined before map initialization.\n");
@@ -21,7 +21,7 @@ void	map_errors(new_t_mapchecker *elements, new_t_data *data)
 		ft_error("Wrong color ranges for floor\n");
 }
 
-void	parse_mapinfo(char *str, new_t_data *data)
+void	parse_mapinfo(char *str, t_data *data)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ void	parse_mapinfo(char *str, new_t_data *data)
 	data->mapinfo.rows++;
 }
 
-void	parse_input(int fd, new_t_data *data, new_t_mapchecker *elements)
+void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 {
 	char	*line;
 
@@ -54,7 +54,7 @@ void	parse_input(int fd, new_t_data *data, new_t_mapchecker *elements)
 	}
 }
 
-void print_mapchecker(new_t_mapchecker elements)
+void print_mapchecker(t_mapchecker elements)
 {
 	printf("no: %d\n", elements.no);
 	printf("so: %d\n", elements.so);
@@ -66,9 +66,9 @@ void print_mapchecker(new_t_mapchecker elements)
 	printf("duplicate: %d\n", elements.duplicate);
 }
 
-int	parse_cub(char *argv, new_t_data *data)
+int	parse_cub(char *argv, t_data *data)
 {
-	new_t_mapchecker	elements;
+	t_mapchecker	elements;
 	int				fd;
 
 	init_map_checker(&elements);

@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-void	my_mlx_pixel_put(new_t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -8,7 +8,7 @@ void	my_mlx_pixel_put(new_t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int  handle_input(int key, new_t_data *data)
+int  handle_input(int key, t_data *data)
 {
     if (key == 119)
         printf("w is pressed\n\n");//move_player(&player, key);
@@ -28,7 +28,7 @@ int  handle_input(int key, new_t_data *data)
     return (0);
 }
 
-int	close_window(new_t_data *data)
+int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_image(data->mlx, data->img);
@@ -37,7 +37,7 @@ int	close_window(new_t_data *data)
 	exit (1);
 }
 
-void	init_window(new_t_data *data)
+void	init_window(t_data *data)
 {
 	data->mlx_win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
@@ -47,7 +47,7 @@ void	init_window(new_t_data *data)
 	mlx_key_hook(data->mlx_win, handle_input, data);
 }
 
-void	draw_screen(new_t_data *data)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
+void	draw_screen(t_data *data)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
 {
 	int	x;
 
@@ -56,7 +56,7 @@ void	draw_screen(new_t_data *data)//LodeV mentioned that for textures we can't d
 		load_texture(&data->rc[x], data->rc[x].side, data);
 }
 
-void	load_texture(new_t_raycaster *rc, int side, new_t_data *data) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
+void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
 {
 	int	y;
 	int	color;

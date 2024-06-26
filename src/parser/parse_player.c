@@ -1,6 +1,6 @@
 #include "../../inc/cub3d.h"
 
-void	parse_plane(new_t_data *data, char c)
+void	parse_plane(t_data *data, char c)
 {
 	if (c == 'N')
 	{
@@ -24,7 +24,7 @@ void	parse_plane(new_t_data *data, char c)
 	}
 }
 
-void	parse_direction(new_t_data *data, char c)
+void	parse_direction(t_data *data, char c)
 {
 	if (c == 'N')
 	{
@@ -48,11 +48,11 @@ void	parse_direction(new_t_data *data, char c)
 	}
 }
 
-void	find_player(new_t_data *data)
+void	find_player(t_data *data)
 {
 	int	x;
 	int	y;
-	new_t_map	**map;
+	t_map	**map;
 
 	y = -1;
 	map = data->mapinfo.map;
@@ -73,7 +73,7 @@ void	find_player(new_t_data *data)
 	}
 }
 
-void	parse_player(new_t_data *data)//we can probably leave this out
+void	parse_player(t_data *data)//we can probably leave this out
 {
 	find_player(data);
 //	test_player(*player);//	

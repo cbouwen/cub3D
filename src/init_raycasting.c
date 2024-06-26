@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-void	define_step(new_t_raycaster *rc, double posx, double posy)
+void	define_step(t_raycaster *rc, double posx, double posy)
 {
 	if (rc->raydirx < 0)
 	{
@@ -24,7 +24,7 @@ void	define_step(new_t_raycaster *rc, double posx, double posy)
 	}
 }
 
-void	init_tile_traversal(new_t_raycaster *rc, double posx, double posy)
+void	init_tile_traversal(t_raycaster *rc, double posx, double posy)
 {
 	rc->mapx = posx;
 	rc->mapy = posy;
@@ -41,7 +41,7 @@ void	init_tile_traversal(new_t_raycaster *rc, double posx, double posy)
 		rc->raydiry = 0.0;
 }
 
-void	setup_ray_dir(new_t_raycaster *rc, new_t_player *player, int x)
+void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 {
 	rc->x = x;
 	rc->camera_x = 2 * x / (double)WIDTH - 1;
@@ -52,7 +52,7 @@ void	setup_ray_dir(new_t_raycaster *rc, new_t_player *player, int x)
 	init_tile_traversal(rc, player->position.x, player->position.y);
 }
 
-void	init_raycasting(new_t_data *data)
+void	init_raycasting(t_data *data)
 {
 	int x;
 

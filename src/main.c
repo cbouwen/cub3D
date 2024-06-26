@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-void print_player(new_t_player *player)
+void print_player(t_player *player)
 {
 	printf("position.x: %f\n", player->position.x);
 	printf("position.y: %f\n", player->position.y);
@@ -22,7 +22,7 @@ void print_player(new_t_player *player)
 	printf("plane.y: %f\n", player->plane.y);
 }
 
-void print_mapinfo(new_t_mapinfo *mapinfo)
+void print_mapinfo(t_mapinfo *mapinfo)
 {
 	printf("no: %s\n", mapinfo->no);
 	printf("so: %s\n", mapinfo->so);
@@ -35,7 +35,7 @@ void print_mapinfo(new_t_mapinfo *mapinfo)
 	printf("map: %p\n", mapinfo->map);
 }
 
-void	print_rc_new(new_t_raycaster *rc)
+void	print_rc_new(t_raycaster *rc)
 {
 	printf("x = %i\n", rc->x);
 	printf("camera_x = %f\n", rc->camera_x);
@@ -56,7 +56,7 @@ void	print_rc_new(new_t_raycaster *rc)
 	printf("drawend = %i\n", rc->drawend);
 }
 
-void print_data(new_t_data *data)
+void print_data(t_data *data)
 {
 	printf("mlx: %p\n", data->mlx);
 	printf("mlx_win: %p\n", data->mlx_win);
@@ -75,7 +75,7 @@ void print_data(new_t_data *data)
 	print_mapinfo(&data->mapinfo);
 }
 
-void print_map(new_t_mapinfo *mapinfo)
+void print_map(t_mapinfo *mapinfo)
 {
 	int i = 0;
 	int j = 0;
@@ -114,7 +114,7 @@ int	main(int argc, char **argv)
 	//run_cub3d(map);
 	//	close(fd);*/
 
-	new_t_data	data;
+	t_data	data;
 
 	/*t_mapinfo		mapinfo;
 	t_map			**map;*/

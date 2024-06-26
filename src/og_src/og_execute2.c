@@ -111,7 +111,7 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	update_player(raycaster, mapinfo);//Final step
 }*/
 
-void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
+/*void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
 {
 	int	y;
 	int	color;
@@ -130,7 +130,7 @@ void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //c
 		if (y > rc->drawstart && y < rc->drawend)
 			my_mlx_pixel_put(img, rc->x, y, color);
 	}
-}
+}*/
 
 /*void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
 {

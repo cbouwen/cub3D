@@ -2,7 +2,7 @@
 
 #include "../inc/cub3d.h"
 
-void	init_data_default(new_t_data *data)
+void	init_data_default(t_data *data)
 {
 	data->mlx = NULL;
 	data->mlx_win = NULL;
@@ -16,7 +16,7 @@ void	init_data_default(new_t_data *data)
 	init_mapinfo_default(&data->mapinfo);
 }
 
-void	init_player_default(new_t_player *player)
+void	init_player_default(t_player *player)
 {
 	player->position.x = 0;
 	player->position.y = 0;
@@ -26,7 +26,7 @@ void	init_player_default(new_t_player *player)
 	player->plane.y = 0;
 }
 
-void	init_rc_default(new_t_raycaster *rc)
+void	init_rc_default(t_raycaster *rc)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ void	init_rc_default(new_t_raycaster *rc)
 	}
 }
 
-void	init_mapinfo_default(new_t_mapinfo *mapinfo)
+void	init_mapinfo_default(t_mapinfo *mapinfo)
 {
 	mapinfo->no = NULL;
 	mapinfo->so = NULL;

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPEDEFS_H
+/*#ifndef TYPEDEFS_H
 # define TYPEDEFS_H
 
 //struct for RGB
@@ -129,3 +129,4 @@ typedef struct	s_raycaster
 //Additionally, we should add a seperate variable in one of the map structs to store the actual map,
 //I don't want to have to pass variables with more than 1 pointer. Passing 3 pointers is not very efficient
 #endif
+*/

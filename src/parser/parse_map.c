@@ -1,6 +1,6 @@
 #include "../../inc/cub3d.h"
 
-void	set_remainder(new_t_data *data, int *x, int y)
+void	set_remainder(t_data *data, int *x, int y)
 {
 	while (*x < data->mapinfo.columns)
 	{
@@ -9,7 +9,7 @@ void	set_remainder(new_t_data *data, int *x, int y)
 	}
 }
 
-void	fill_map(int fd, new_t_data *data)
+void	fill_map(int fd, t_data *data)
 {
 	char	*line;
 	int		y;
@@ -38,18 +38,18 @@ void	fill_map(int fd, new_t_data *data)
 	}
 }
 
-new_t_map	**init_map(new_t_data *data)
+t_map	**init_map(t_data *data)
 {
-	new_t_map	**map;
+	t_map	**map;
 	int		i;
 
 	i = 0;
-	map = (new_t_map **)malloc(sizeof(new_t_map *) * data->mapinfo.rows);
+	map = (t_map **)malloc(sizeof(t_map *) * data->mapinfo.rows);
 	if (!map)
 		ft_free(&data->mapinfo);
 	while (i < data->mapinfo.rows)
 	{
-		map[i] = (new_t_map *)malloc(sizeof(new_t_map) * data->mapinfo.columns);
+		map[i] = (t_map *)malloc(sizeof(t_map) * data->mapinfo.columns);
 		if (!map[i])
 		{
 			ft_free_array(data->mapinfo.map, i);
@@ -60,7 +60,7 @@ new_t_map	**init_map(new_t_data *data)
 	return (map);
 }
 
-void	parse_map(int fd, new_t_data *data)
+void	parse_map(int fd, t_data *data)
 {
 	data->mapinfo.map = init_map(data);
 	fill_map(fd, data);

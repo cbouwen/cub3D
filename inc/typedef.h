@@ -1,13 +1,13 @@
 
-#ifndef TYPEDEF_NEW_H
-# define TYPEDEF_NEW_H
+#ifndef TYPEDEF_H
+# define TYPEDEF_H
 
 # include "cub3d.h"
 
 #define WIDTH 1920
 
 //struct to check if map is valid
-typedef struct	new_s_mapchecker
+typedef struct	s_mapchecker
 {
 	bool	no; 
 	bool	so; 
@@ -17,18 +17,18 @@ typedef struct	new_s_mapchecker
 	bool	c;  
 	bool	duplicate;
 	bool	all_eles;
-}				new_t_mapchecker;
+}				t_mapchecker;
 
 //struct to parse the map[][]
-typedef struct	new_s_map
+typedef struct	s_map
 {
 	int		x;
 	int		y;
 	char	c;
-}				new_t_map;
+}				t_map;
 
 //struct to store path names and general map info
-typedef struct	new_s_mapinfo
+typedef struct	s_mapinfo
 {
 	char	*no;
 	char	*so;
@@ -38,26 +38,26 @@ typedef struct	new_s_mapinfo
 	int		c;
 	int		rows;
 	int		columns;
-	new_t_map	**map;
-}				new_t_mapinfo;
+	t_map	**map;
+}				t_mapinfo;
 
 //simple x,y struct
-typedef struct	new_s_coordinates
+typedef struct	s_coordinates
 {
 	double	x;
 	double	y;
-}				new_t_coordinates;
+}				t_coordinates;
 
 //important struct for player data
-typedef struct	new_s_player
+typedef struct	s_player
 {
-	new_t_coordinates	position;
-	new_t_coordinates	direction;
-	new_t_coordinates	plane;
-}				new_t_player;
+	t_coordinates	position;
+	t_coordinates	direction;
+	t_coordinates	plane;
+}				t_player;
 
 //struct to store all raycasting calculations
-typedef struct	new_s_raycaster
+typedef struct	s_raycaster
 {
 	double	camera_x; //what percentile of the screen are we on?
 	double	raydirx; //using camera_x, where on the screen is the ray casting to?
@@ -76,10 +76,10 @@ typedef struct	new_s_raycaster
 	int		drawstart;//calculate lowest and highest pixel
 	int		drawend;
 	int		x; //added this to use the draw ft
-}				new_t_raycaster;
+}				t_raycaster;
 
 //mlx struct for image & window initialization
-typedef struct	new_s_data
+typedef struct	s_data
 {
 	void		*mlx;
 	void		*mlx_win;
@@ -88,9 +88,9 @@ typedef struct	new_s_data
 	int			bits_per_pixel;
 	int			endian;
 	int			line_length;
-	new_t_player	player;
-	new_t_raycaster	rc[WIDTH];
-	new_t_mapinfo	mapinfo;
-}				new_t_data;
+	t_player	player;
+	t_raycaster	rc[WIDTH];
+	t_mapinfo	mapinfo;
+}				t_data;
 
 #endif

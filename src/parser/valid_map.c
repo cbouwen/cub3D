@@ -1,8 +1,8 @@
 #include "../../inc/cub3d.h"
 
-int	check_open(new_t_data *data, int y, int x)
+int	check_open(t_data *data, int y, int x)
 {
-	new_t_map	**map;
+	t_map	**map;
 
 	map = data->mapinfo.map;
 	if (map[y][x].c == '0' || map[y][x].c == 'N' || map[y][x].c == 'S'
@@ -30,7 +30,7 @@ int	check_char(char c)
 	return (0);
 }
 
-int	valid_map(new_t_data *data)
+int	valid_map(t_data *data)
 {
 	int	y;
 	int	x;

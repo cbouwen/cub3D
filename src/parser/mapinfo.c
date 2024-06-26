@@ -1,6 +1,6 @@
 #include "../../inc/cub3d.h"
 
-void	parse_path(char *str, new_t_data *data)
+void	parse_path(char *str, t_data *data)
 {
 	size_t	i;
 
@@ -33,7 +33,7 @@ void	parse_color_values(int *X, char *str, int i)
 	*X = (red << 16) | (green << 8) | blue;
 }
 
-void	parse_color(char *str, new_t_data *data)
+void	parse_color(char *str, t_data *data)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ void	parse_color(char *str, new_t_data *data)
 		parse_color_values(&data->mapinfo.c, str, i);
 }
 
-void	check_input(char *str, new_t_data *data, new_t_mapchecker *elements)
+void	check_input(char *str, t_data *data, t_mapchecker *elements)
 {
 	int	i;
 

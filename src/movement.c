@@ -1,6 +1,46 @@
 #include "../inc/cub3d.h"
 
-void	update_player(new_t_data *data)
+/*
+	Alles wat ge zou moeten hebben om dit aan te passen sta in de t_data struct.
+	De prototype zou er dan zo uitzien: 
+		void change_position(t_data *data, int x);
+		void rotate_player(t_data *data, int x);
+
+*/
+
+/*void	change_position(t_player *player, int x) //you really need to think a bit more about this, lol
+{
+	if (x == 119)//up
+	{
+		player->position.x += player->direction.x * MOVESPEED;
+		player->position.y += player->direction.y * MOVESPEED;
+	}
+	if (x == 115)//down
+	{
+		player->position.x -= player->direction.x * MOVESPEED;
+		player->position.y -= player->direction.y * MOVESPEED;
+	}
+	if (x == 97)//strafe left
+	{
+		player->position.x += player->plane.x * ROTSPEED;
+		player->position.y += player->plane.y * ROTSPEED;
+
+	}
+	if (x == 100)//strafe right
+	{
+		player->position.x -= player->plane.x * ROTSPEED;
+		player->position.y -= player->plane.y * ROTSPEED;
+	}
+}
+
+void	rotate_player(t_player *player,	int x)
+{
+	(void)player;
+	(void)x;
+
+}*/
+
+void	update_player(t_data *data)
 {
 	data->mlx = mlx_init();
 	init_window(data);
