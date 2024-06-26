@@ -2,18 +2,22 @@
 
 int	check_open(new_t_data *data, int y, int x)
 {
-	if (data->mapinfo.map[y][x].c == '0' || data->mapinfo.map[y][x].c == 'N' || data->mapinfo.map[y][x].c == 'S'
-		|| data->mapinfo.map[y][x].c == 'E' || data->mapinfo.map[y][x].c == 'W')
+	new_t_map	**map;
+
+	map = data->mapinfo.map;
+	if (map[y][x].c == '0' || map[y][x].c == 'N' || map[y][x].c == 'S'
+		|| map[y][x].c == 'E' || map[y][x].c == 'W')
 	{
-		if (y == 0 || x == 0 || y == data->mapinfo.rows - 1 || x == data->mapinfo.columns - 1)
+		if (y == 0 || x == 0 || y == data->mapinfo.rows - 1
+			|| x == data->mapinfo.columns - 1)
 			return (0);
-		if (y > 0 && data->mapinfo.map[y - 1][x].c == 32)
+		if (y > 0 && map[y - 1][x].c == 32)
 			return (0);
-		if (x > 0 && data->mapinfo.map[y][x - 1].c == 32)
+		if (x > 0 && map[y][x - 1].c == 32)
 			return (0);
-		if (y < data->mapinfo.rows && data->mapinfo.map[y + 1][x].c == 32)
+		if (y < data->mapinfo.rows && map[y + 1][x].c == 32)
 			return (0);
-		if (x > data->mapinfo.columns && data->mapinfo.map[y][x + 1].c == 32)
+		if (x > data->mapinfo.columns && map[y][x + 1].c == 32)
 			return (0);
 	}
 	return (1);

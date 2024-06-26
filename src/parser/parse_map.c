@@ -54,7 +54,6 @@ new_t_map	**init_map(new_t_data *data)
 		{
 			ft_free_array(data->mapinfo.map, i);
 			ft_free(&data->mapinfo);
-			printf("free map, not implemented");
 		}
 		i++;
 	}
@@ -67,6 +66,4 @@ void	parse_map(int fd, new_t_data *data)
 	fill_map(fd, data);
 	if (!valid_map(data))
 		ft_error("Invalid map\n");
-	else
-		printf("Map is valid\n");
 }

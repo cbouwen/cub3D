@@ -130,5 +130,6 @@ int	main(int argc, char **argv)
 		parse_cub(argv[1], &data);//error exit check?
 		print_mapinfo(&data.mapinfo);
 		print_map(&data.mapinfo);
+		ft_free_array(data.mapinfo.map, data.mapinfo.rows);
 	}
 }
