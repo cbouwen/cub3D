@@ -41,7 +41,8 @@ int			ft_error(char *str);
 void		ft_free_array(t_map **map, int count);
 
 //parser
-int			parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map);
+//int			parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map);
+int			parse_cub(char *argv, new_t_data *data);
 void		init_map_checker(t_mapchecker *elements);
 void		update_mapchecker(char *str, t_mapchecker *elements);
 void		check_input(char *str, t_mapinfo *mapinfo, t_mapchecker *elements);
