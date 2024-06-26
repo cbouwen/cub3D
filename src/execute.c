@@ -62,5 +62,5 @@ void execute_map(new_t_data *data)
 	init_raycasting(data);
 	prep_dda(data);
 
-	update_player(data);//Final step*/
+	update_player_new(data);//Final step*/
 }
