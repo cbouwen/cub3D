@@ -99,8 +99,8 @@ int	main(int argc, char **argv)
 
 	new_t_data	data;
 
-	t_mapinfo		mapinfo;
-	t_map			**map;
+	/*t_mapinfo		mapinfo;
+	t_map			**map;*/
 
 	if (argc != 2)
 		ft_error("Wrong number of arguments. Try again!\n");
