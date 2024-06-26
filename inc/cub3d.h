@@ -60,6 +60,13 @@ void	parse_color(char *str, new_t_data *data);
 void	parse_color_values(int *X, char *str, int i);
 void	parse_path(char *str, new_t_data *data);
 
+/*parse utils*/
+int		check_for_map(char *str);
+void	check_all_elements(new_t_mapchecker *elements);
+void	check_duplicates(char *str, new_t_mapchecker *elements);
+void	update_mapchecker(char *str, new_t_mapchecker *elements);
+void	init_map_checker(new_t_mapchecker *elements);
+
 //mlx_ft's
 void	init_window(t_mlx_data *win_data);
 int		close_window(t_mlx_data *win_data);

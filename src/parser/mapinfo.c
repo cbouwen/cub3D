@@ -46,7 +46,7 @@ void	parse_color(char *str, new_t_data *data)
 		parse_color_values(&data->mapinfo.c, str, i);
 }
 
-void	check_input(char *str, new_t_data *data, t_mapchecker *elements)
+void	check_input(char *str, new_t_data *data, new_t_mapchecker *elements)
 {
 	int	i;
 
