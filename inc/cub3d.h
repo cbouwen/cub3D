@@ -75,6 +75,11 @@ new_t_map	**init_map(new_t_data *data);
 void	fill_map(int fd, new_t_data *data);
 void	set_remainder(new_t_data *data, int *x, int y);
 
+/*valid_map.c*/
+int	valid_map(new_t_data *data);
+int	check_char(char c);
+int	check_open(new_t_data *data, int y, int x);
+
 //mlx_ft's
 void	init_window(t_mlx_data *win_data);
 int		close_window(t_mlx_data *win_data);

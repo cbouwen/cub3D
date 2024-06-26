@@ -65,7 +65,8 @@ void	parse_map(int fd, new_t_data *data)
 {
 	data->mapinfo.map = init_map(data);
 	fill_map(fd, data);
-	/*if (!valid_map(*map, mapinfo))
+	if (!valid_map(data))
 		ft_error("Invalid map\n");
-	return (*map);*/
+	else
+		printf("Map is valid\n");
 }
