@@ -99,6 +99,9 @@ int	main(int argc, char **argv)
 
 	new_t_data	data;
 
+	t_mapinfo		mapinfo;
+	t_map			**map;
+
 	if (argc != 2)
 		ft_error("Wrong number of arguments. Try again!\n");
 	else if (!(map_name(argv[1])))
@@ -106,5 +109,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		init_data_default(&data);
+		//old ==> parse_cub(argv[1], &mapinfo, &map);//error exit check?
+		parse_cub(argv[1], &data);//error exit check?
 	}
 }

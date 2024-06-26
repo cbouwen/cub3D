@@ -66,12 +66,34 @@ void	parse_input(int fd, t_mapinfo *mapinfo, t_mapchecker *elements)
 	}
 }
 
-int	parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map)
+int	parse_cub(char *argv, new_t_data *data)
 {
 	t_mapchecker	elements;
 	int				fd;
 
-	init_map_checker(&elements);
+	init_map_checker(&elements); //keep the same, mapchecker is seperate from the main struct
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		ft_error("Error opening map.. Weird. Try again!\n");
+	parse_input(fd, data->mapinfo, &elements);
+	close(fd);
+	map_errors(elements, data->mapinfo);
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		ft_error("Error opening map.. Weird. Try again!\n");
+	parse_map(fd, data->mapinfo, data->mapinfo);
+	close(fd);
+	tester(data->mapinfo); //remove later
+	test_map(data->mapinfo, data->mapinfo);
+	return (0);
+}
+
+int	_parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map)
+{
+	t_mapchecker	elements;
+	int				fd;
+
+	init_map_checker(&elements); //keep the same, mapchecker is seperate from the main struct
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		ft_error("Error opening map.. Weird. Try again!\n");
