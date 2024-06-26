@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   window_utils.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 16:09:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/25 16:54:27 by cbouwen          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../inc/cub3d.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(new_t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -20,7 +8,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-static int  handle_input(int key, t_mlx_data *win_data)
+static int  handle_input(int key, new_t_data *data)
 {
     if (key == 119)
         printf("w is pressed\n\n");//move_player(&player, key);
@@ -35,26 +23,26 @@ static int  handle_input(int key, t_mlx_data *win_data)
     if (key == 65363)
         printf("Right arrow is pressed\n\n");
     if (key == 65307)
-        close_window(win_data);
+        close_window(data);
 //	update_player(win_data, key);      We need to call a function here which performs the dda with the new player data changed by the above key presses and afterwards prints it on the screen as well
     return (0);
 }
 
-int	close_window(t_mlx_data *win_data)
+int	close_window(new_t_data *data)
 {
-	mlx_destroy_window(win_data->mlx, win_data->mlx_win);
-	mlx_destroy_image(win_data->mlx, win_data->img.img);
-	mlx_destroy_display(win_data->mlx);
-	free(win_data->mlx);
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	mlx_destroy_image(data->mlx, data->img);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
 	exit (1);
 }
 
-void	init_window(t_mlx_data *win_data)
+void	init_window(new_t_data *data)
 {
-	win_data->mlx_win = mlx_new_window(win_data->mlx, WIDTH, HEIGHT, "cub3D");
-	win_data->img.img = mlx_new_image(win_data->mlx, WIDTH, HEIGHT);
-	win_data->img.addr = mlx_get_data_addr(win_data->img.img, &win_data->img.bits_per_pixel, &win_data->img.line_length, &win_data->img.endian);
+	data->mlx_win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
 	//mlx_put_image_to_window(win_data->mlx, win_data->mlx_win, win_data->img.img, 0, 0);
-	mlx_hook(win_data->mlx_win, 17, 1L<<17, &close_window, win_data);
-	mlx_key_hook(win_data->mlx_win, handle_input, win_data);
+	mlx_hook(data->mlx_win, 17, 1L<<17, &close_window, data);
+	mlx_key_hook(data->mlx_win, handle_input, data);
 }
