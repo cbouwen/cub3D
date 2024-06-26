@@ -9,7 +9,7 @@ int	color_range(int	x)
 	return (1);
 }
 
-void	map_errors(t_mapchecker *elements, new_t_data *data)
+void	map_errors(new_t_mapchecker *elements, new_t_data *data)
 {
 	if (elements->all_eles == false)
 		ft_error("Not all elements are defined before map initialization.\n");
