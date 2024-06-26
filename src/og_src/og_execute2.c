@@ -132,11 +132,11 @@ void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //c
 	}
 }
 
-void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
+/*void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
 {
 	int	x;
 
 	x = -1;
 	while (++x < WIDTH)
 		load_texture(&rc[x], rc[x].side, img, mapinfo);
-}
+}*/

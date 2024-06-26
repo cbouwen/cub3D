@@ -4,8 +4,8 @@ void	update_player(new_t_data *data)
 {
 	data->mlx = mlx_init();
 	init_window(data);
-	//draw_screen(rc, &win_data.img, mapinfo);
-	//mlx_put_image_to_window(win_data.mlx, win_data.mlx_win, win_data.img.img, 0, 0);
+	draw_screen(data);
+	mlx_put_image_to_window(data->.mlx, data->mlx_win, data->img, 0, 0);
 //	mlx_loop_hook(win_data.mlx, 
 //	mlx_key_hook(win_data.mlx_win, handle_input, &win_data);
 	mlx_loop(data->mlx);

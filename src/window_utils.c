@@ -46,3 +46,33 @@ void	init_window(new_t_data *data)
 	mlx_hook(data->mlx_win, 17, 1L<<17, &close_window, data);
 	mlx_key_hook(data->mlx_win, handle_input, data);
 }
+
+void	draw_screen(new_t_data *data)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
+{
+	int	x;
+
+	x = -1;
+	while (++x < WIDTH)
+		load_texture(&data->rc[x], data->rc[x].side, data);
+}
+
+void	load_texture(new_t_raycaster *rc, int side, new_t_data *data) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
+{
+	int	y;
+	int	color;
+
+	if (side == 1)
+		color = 16711680;
+	else
+		color = 16743936;
+	y = -1;
+	while (++y < HEIGHT)
+	{
+		if (y < HEIGHT / 2)	//not super efficient because it constantly overwrites but hey. If we want, easy fix
+			my_mlx_pixel_put(data, rc->x, y, data->mapinfo.c);
+		if (y > HEIGHT / 2)
+			my_mlx_pixel_put(data, rc->x, y, data->mapinfo.f);
+		if (y > rc->drawstart && y < rc->drawend)
+			my_mlx_pixel_put(data, rc->x, y, color);
+	}
+}

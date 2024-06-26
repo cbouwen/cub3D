@@ -94,6 +94,8 @@ void		init_window(new_t_data *data);
 int			close_window(new_t_data *data);
 int  		handle_input(int key, new_t_data *data);
 void		my_mlx_pixel_put(new_t_data *data, int x, int y, int color);
+void		draw_screen(new_t_data *data);
+void		load_texture(new_t_raycaster *rc, int side, new_t_data *data);
 
 /*movement.c*/
 void	update_player(new_t_data *data);
