@@ -83,6 +83,7 @@ void		execute_map(new_t_data *data);
 /*init_raycasting.c*/
 void		init_raycasting(new_t_data *data);
 void		setup_ray_dir(new_t_raycaster *rc, new_t_player *player, int x);
+void		init_tile_traversal(new_t_raycaster *rc, double posx, double posy);
 
 //parser
 /*int			parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map);

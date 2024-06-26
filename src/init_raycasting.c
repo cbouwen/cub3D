@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-void	init_tile_traversal(t_raycaster *rc, double posx, double posy)
+void	init_tile_traversal(new_t_raycaster *rc, double posx, double posy)
 {
 	rc->mapx = posx;
 	rc->mapy = posy;
