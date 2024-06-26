@@ -108,7 +108,7 @@ void	calculate_dda(t_raycaster *rc, t_map **map)
 //		print_rc(*rc);
 }
 
-void	prep_dda(t_raycaster *raycaster, t_map **map)
+/*void	prep_dda(t_raycaster *raycaster, t_map **map)
 {
 	int	x;
 
@@ -118,7 +118,7 @@ void	prep_dda(t_raycaster *raycaster, t_map **map)
 		calculate_dda(&raycaster[x], map);
 		x++;
 	}
-}
+}*/
 
 void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
 {
@@ -129,7 +129,7 @@ void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mention
 		load_texture(&rc[x], rc[x].side, img, mapinfo);
 }
 
-void execute_map(t_map ***map, t_mapinfo mapinfo)
+/*void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
@@ -139,4 +139,4 @@ void execute_map(t_map ***map, t_mapinfo mapinfo)
 	prep_dda(raycaster, *map);
 
 	update_player(raycaster, mapinfo);//Final step
-}
+}*/
