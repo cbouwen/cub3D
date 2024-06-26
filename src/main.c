@@ -122,14 +122,21 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_error("Wrong number of arguments. Try again!\n");
 	else if (!(map_name(argv[1])))
-		ft_error("Hmmmm. Map should end with .cub. Can you make sure of that please?\n");
+		ft_error("Hmmmm. Map should end with .cub. Can you make sure of that, please?\n");
 	else
 	{
 		init_data_default(&data);
-		//old ==> parse_cub(argv[1], &mapinfo, &map);//error exit check?
 		parse_cub(argv[1], &data);//error exit check?
+
 		print_mapinfo(&data.mapinfo);
 		print_map(&data.mapinfo);
+
+		//execute_map(&map, mapinfo);
+		execute_map(data);
+
+
+
+
 		ft_free_array(data.mapinfo.map, data.mapinfo.rows);
 		free(data.mapinfo.no);
 		free(data.mapinfo.so);

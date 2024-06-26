@@ -50,36 +50,37 @@ int			valid_map(t_map **map, t_mapinfo mapinfo);
 void	parse_player(t_mapinfo mapinfo, t_map **map, t_player *player);*/
 
 /*parser.c*/
-int		parse_cub(char *argv, new_t_data *data);
-void	parse_input(int fd, new_t_data *data, new_t_mapchecker *elements);
-int		color_range(int	x);
-void	parse_mapinfo(char *str, new_t_data *data);
-void	map_errors(new_t_mapchecker *elements, new_t_data *data);
+int			parse_cub(char *argv, new_t_data *data);
+void		parse_input(int fd, new_t_data *data, new_t_mapchecker *elements);
+int			color_range(int	x);
+void		parse_mapinfo(char *str, new_t_data *data);
+void		map_errors(new_t_mapchecker *elements, new_t_data *data);
 
 /*mapinfo.c*/
-void	check_input(char *str, new_t_data *data, new_t_mapchecker *elements);
-void	parse_color(char *str, new_t_data *data);
-void	parse_color_values(int *X, char *str, int i);
-void	parse_path(char *str, new_t_data *data);
+void		check_input(char *str, new_t_data *data, new_t_mapchecker *elements);
+void		parse_color(char *str, new_t_data *data);
+void		parse_color_values(int *X, char *str, int i);
+void		parse_path(char *str, new_t_data *data);
 
 /*parse_utils.c*/
-int		check_for_map(char *str);
-void	check_all_elements(new_t_mapchecker *elements);
-void	check_duplicates(char *str, new_t_mapchecker *elements);
-void	update_mapchecker(char *str, new_t_mapchecker *elements);
-void	init_map_checker(new_t_mapchecker *elements);
+int			check_for_map(char *str);
+void		check_all_elements(new_t_mapchecker *elements);
+void		check_duplicates(char *str, new_t_mapchecker *elements);
+void		update_mapchecker(char *str, new_t_mapchecker *elements);
+void		init_map_checker(new_t_mapchecker *elements);
 
 /*parse_map.c*/
-void	parse_map(int fd, new_t_data *data);
+void		parse_map(int fd, new_t_data *data);
 new_t_map	**init_map(new_t_data *data);
-void	fill_map(int fd, new_t_data *data);
-void	set_remainder(new_t_data *data, int *x, int y);
+void		fill_map(int fd, new_t_data *data);
+void		set_remainder(new_t_data *data, int *x, int y);
 
 /*valid_map.c*/
-int	valid_map(new_t_data *data);
-int	check_char(char c);
-int	check_open(new_t_data *data, int y, int x);
+int			valid_map(new_t_data *data);
+int			check_char(char c);
+int			check_open(new_t_data *data, int y, int x);
 
+/*
 //mlx_ft's
 void	init_window(t_mlx_data *win_data);
 int		close_window(t_mlx_data *win_data);
@@ -101,6 +102,7 @@ void		tester(t_mapinfo mapinfo);
 void		test_map(t_map **map, t_mapinfo mapinfo);
 void		test_player(t_player player);
 void		raytester(t_raycaster raycaster[]);
+*/
 
 //init ft's
 void	init_data_default(new_t_data *data);
