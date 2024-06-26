@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
+void	calculate_lineheight(new_t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
 {
 	if (side == 0)
 		rc->perpwalldist = (rc->sidedistx - rc->deltadistx);
@@ -16,7 +16,7 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
 }
 
-void	calculate_dda(t_raycaster *rc, t_map **map)
+void	calculate_dda(new_t_raycaster *rc, new_t_map **map)
 {
 	int	hit;
 
