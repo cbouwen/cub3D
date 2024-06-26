@@ -131,5 +131,9 @@ int	main(int argc, char **argv)
 		print_mapinfo(&data.mapinfo);
 		print_map(&data.mapinfo);
 		ft_free_array(data.mapinfo.map, data.mapinfo.rows);
+		free(data.mapinfo.no);
+		free(data.mapinfo.so);
+		free(data.mapinfo.we);
+		free(data.mapinfo.ea);
 	}
 }
