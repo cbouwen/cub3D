@@ -92,7 +92,7 @@ void		define_step(new_t_raycaster *rc, double posx, double posy);
 /*window_utils.c*/
 void		init_window(new_t_data *data);
 int			close_window(new_t_data *data);
-int  handle_input(int key, new_t_data *data);
+int  		handle_input(int key, new_t_data *data);
 void		my_mlx_pixel_put(new_t_data *data, int x, int y, int color);
 
 /*movement.c*/
