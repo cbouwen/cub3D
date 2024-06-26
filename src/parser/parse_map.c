@@ -2,9 +2,9 @@
 
 void	set_remainder(new_t_data *data, int *x, int y)
 {
-	while (*x < data->mapinfo.colomns)
+	while (*x < data->mapinfo.columns)
 	{
-		data->map.map[y][*x].c = 32;
+		data->mapinfo.map[y][*x].c = 32;
 		(*x)++;
 	}
 }
@@ -27,11 +27,11 @@ void	fill_map(int fd, new_t_data *data)
 		x = -1;
 		while (++x < data->mapinfo.columns)
 		{
-			data->map.map[y][x].x = x;
-			data->map.map[y][x].y = y;
-			data->map.map[y][x].c = line[x];
+			data->mapinfo.map[y][x].x = x;
+			data->mapinfo.map[y][x].y = y;
+			data->mapinfo.map[y][x].c = line[x];
 			if (line[x] == '\n')
-				set_remainder(map, mapinfo, &x, y);
+				set_remainder(data, &x, y);
 		}
 		free(line);
 		line = get_next_line(fd);
