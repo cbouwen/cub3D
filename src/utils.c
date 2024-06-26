@@ -55,3 +55,12 @@ int	ft_error(char *str)	//this should call on a couple of frees or remove the ex
 	}
 	exit(1);
 }
+
+void	free_all(t_data *data)
+{
+	ft_free_array(data->mapinfo.map, data->mapinfo.rows);
+	free(data->mapinfo.no);
+	free(data->mapinfo.so);
+	free(data->mapinfo.we);
+	free(data->mapinfo.ea);
+}

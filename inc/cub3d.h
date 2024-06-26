@@ -39,6 +39,7 @@ void		ft_free(void *ptr);
 int			check_for_map(char *str);
 int			ft_error(char *str);
 void		ft_free_array(t_map **map, int count);
+void		free_all(t_data *data);
 
 /*parser.c*/
 int			parse_cub(char *argv, t_data *data);
