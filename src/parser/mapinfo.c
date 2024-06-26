@@ -60,12 +60,12 @@ void	check_input(char *str, new_t_data *data, new_t_mapchecker *elements)
 			parse_color(str + i, data);
 			update_mapchecker(str + i, elements);
 		}
-		/*if (!ft_strncmp(str + i, "NO ", 3) || !ft_strncmp(str + i, "SO ", 3)
+		if (!ft_strncmp(str + i, "NO ", 3) || !ft_strncmp(str + i, "SO ", 3)
 			|| !ft_strncmp(str + i, "WE ", 3) || !ft_strncmp(str + i, "EA ", 3))
 		{
 			parse_path(str + i, data);
 			update_mapchecker(str + i, elements);
-		}*/
+		}
 		i++;
 	}
 }
