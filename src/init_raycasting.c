@@ -18,7 +18,7 @@ void	init_raycasting(new_t_data *data)
 	x = 0;
 	while (x < WIDTH)
 	{
-		setup_ray_dir(data->rc[x], data->player, x);
+		setup_ray_dir(&data->rc[x], &data->player, x);
 		x++;
 	}
 }
