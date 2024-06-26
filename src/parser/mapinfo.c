@@ -8,13 +8,13 @@ void	parse_path(char *str, new_t_data *data)
 	while (str[i + 3] && (str[i + 3] != 32 && str[i + 3] != '\n'))
 		i++;
 	if (str[0] == 'N')
-		data->no = ft_strndup(str + 3, i);
+		data->mapinfo->no = ft_strndup(str + 3, i);
 	else if (str[0] == 'S')
-		data->so = ft_strndup(str + 3, i);
+		data->mapinfo->so = ft_strndup(str + 3, i);
 	else if (str[0] == 'W')
-		data->we = ft_strndup(str + 3, i);
+		data->mapinfo->we = ft_strndup(str + 3, i);
 	else if (str[0] == 'E')
-		data->ea = ft_strndup(str + 3, i);
+		data->mapinfo->ea = ft_strndup(str + 3, i);
 }
 
 void	parse_color_values(int *X, char *str, int i)
@@ -41,9 +41,9 @@ void	parse_color(char *str, new_t_data *data)
 	while (str[i] == 32)
 		i++;
 	if (str[0] == 'F')
-		parse_color_values(&data->f, str, i);
+		parse_color_values(&data->mapinfo->f, str, i);
 	else
-		parse_color_values(&data->c, str, i);
+		parse_color_values(&data->mapinfo->c, str, i);
 }
 
 void	check_input(char *str, new_t_data *data, t_mapchecker *elements)
