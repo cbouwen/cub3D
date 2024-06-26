@@ -44,12 +44,12 @@ new_t_map	**init_map(new_t_data *data)
 	int		i;
 
 	i = 0;
-	map = (t_map **)malloc(sizeof(t_map *) * data->mapinfo.rows);
+	map = (new_t_map **)malloc(sizeof(new_t_map *) * data->mapinfo.rows);
 	if (!map)
 		ft_free(&data->mapinfo);
 	while (i < data->mapinfo.rows)
 	{
-		map[i] = (t_map *)malloc(sizeof(t_map) * data->mapinfo.columns);
+		map[i] = (new_t_map *)malloc(sizeof(new_t_map) * data->mapinfo.columns);
 		if (!map[i])
 		{
 			ft_free_array(data->mapinfo.map, i);
