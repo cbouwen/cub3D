@@ -77,6 +77,9 @@ void		find_player(new_t_data *data);
 void		parse_direction(new_t_data *data, char c);
 void		parse_plane(new_t_data *data, char c);
 
+/*execute.c*/
+void		execute_map(new_t_data *data);
+
 //parser
 /*int			parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map);
 void		init_map_checker(t_mapchecker *elements);
