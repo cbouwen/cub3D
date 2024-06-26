@@ -53,6 +53,7 @@ void	parse_player(t_mapinfo mapinfo, t_map **map, t_player *player);*/
 int		parse_cub(char *argv, new_t_data *data);
 void	parse_input(int fd, new_t_data *data, new_t_mapchecker *elements);
 int		color_range(int	x);
+void	parse_mapinfo(char *str, new_t_data *data);
 
 /*mapinfo.c*/
 void	check_input(char *str, new_t_data *data, new_t_mapchecker *elements);

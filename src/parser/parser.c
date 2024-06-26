@@ -9,6 +9,18 @@ int	color_range(int	x)
 	return (1);
 }
 
+void	parse_mapinfo(char *str, new_t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	if (data->mapinfo.columns < i - 1)
+		data->mapinfo.columns = i - 1;
+	data->mapinfo.rows++;
+}
+
 void	parse_input(int fd, new_t_data *data, new_t_mapchecker *elements)
 {
 	char	*line;
@@ -22,12 +34,12 @@ void	parse_input(int fd, new_t_data *data, new_t_mapchecker *elements)
 		free(line);
 		line = get_next_line(fd);
 	}
-	/*while (line && check_for_map(line) == 1)
+	while (line && check_for_map(line) == 1)
 	{
 		parse_mapinfo(line, mapinfo);
 		free(line);
 		line = get_next_line(fd);
-	}*/
+	}
 }
 
 int	parse_cub(char *argv, new_t_data *data)
@@ -40,8 +52,8 @@ int	parse_cub(char *argv, new_t_data *data)
 	if (fd == -1)
 		ft_error("Error opening map.. Weird. Try again!\n");
 	parse_input(fd, data, &elements);
-	/*close(fd);
-	map_errors(elements, *mapinfo);
+	close(fd);
+	/*map_errors(elements, *mapinfo);
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		ft_error("Error opening map.. Weird. Try again!\n");
