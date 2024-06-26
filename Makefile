@@ -8,7 +8,7 @@ SRC_DIR = ./src/
 SRC_MAIN = main.c init_struct_default.c utils.c #movement.c tester.c window_utils.c execute.c init_raycasting.c
 SRC_FILES = $(addprefix $(SRC_DIR), $(SRC_MAIN))
 #PARSER_SRC = $(addprefix $(SRC_DIR)parser/, parser.c parse_utils.c valid_map.c mapinfo.c parse_map.c parse_player.c)
-PARSER_SRC = $(addprefix $(SRC_DIR)parser/, parser.c mapinfo.c)
+PARSER_SRC = $(addprefix $(SRC_DIR)parser/, parser.c mapinfo.c parse_utils.c)
 
 SRC = $(SRC_FILES) $(PARSER_SRC)
 

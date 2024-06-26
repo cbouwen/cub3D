@@ -18,16 +18,16 @@ void	parse_input(int fd, new_t_data *data, new_t_mapchecker *elements)
 	{
 		if (check_for_map(line) == 1)
 			break ;
-		check_input(line, mapinfo, elements);
+		check_input(line, data, elements);
 		free(line);
 		line = get_next_line(fd);
 	}
-	while (line && check_for_map(line) == 1)
+	/*while (line && check_for_map(line) == 1)
 	{
 		parse_mapinfo(line, mapinfo);
 		free(line);
 		line = get_next_line(fd);
-	}
+	}*/
 }
 
 int	parse_cub(char *argv, new_t_data *data)
