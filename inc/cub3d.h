@@ -71,7 +71,7 @@ void	init_map_checker(new_t_mapchecker *elements);
 
 /*parse_map.c*/
 void	parse_map(int fd, new_t_data *data);
-t_map	**init_map(new_t_data *data);
+new_t_map	**init_map(new_t_data *data);
 void	fill_map(int fd, new_t_data *data);
 void	set_remainder(new_t_data *data, int *x, int y);
 
