@@ -24,14 +24,14 @@ int	check_for_map(char *str)
 	return (0);
 }
 
-void	check_all_elements(t_mapchecker *elements)
+void	check_all_elements(new_t_mapchecker *elements)
 {
 	if (elements->no == true && elements->so == true && elements->we == true
 		&& elements->ea == true && elements->c == true && elements->f == true)
 		elements->all_eles = true;
 }
 
-void	check_duplicates(char *str, t_mapchecker *elements)
+void	check_duplicates(char *str, new_t_mapchecker *elements)
 {
 	if (str[0] == 'N' && elements->no == true)
 		elements->duplicate = true;
@@ -47,7 +47,7 @@ void	check_duplicates(char *str, t_mapchecker *elements)
 		elements->duplicate = true;
 }
 
-void	update_mapchecker(char *str, t_mapchecker *elements)
+void	update_mapchecker(char *str, new_t_mapchecker *elements)
 {
 	check_duplicates(str, elements);
 	if (str[0] == 'N')
@@ -65,7 +65,7 @@ void	update_mapchecker(char *str, t_mapchecker *elements)
 	check_all_elements(elements);
 }
 
-void	init_map_checker(t_mapchecker *elements)
+void	init_map_checker(new_t_mapchecker *elements)
 {
 	elements->no = false;
 	elements->so = false;
