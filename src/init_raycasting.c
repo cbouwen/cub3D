@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-void	setup_ray_dir(new_t_player *rc, new_t_player *player, int x)
+void	setup_ray_dir(new_t_raycaster *rc, new_t_player *player, int x)
 {
 	rc->x = x;
 	rc->camera_x = 2 * x / (double)WIDTH - 1;
