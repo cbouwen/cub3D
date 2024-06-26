@@ -111,5 +111,6 @@ int	main(int argc, char **argv)
 		init_data_default(&data);
 		//old ==> parse_cub(argv[1], &mapinfo, &map);//error exit check?
 		parse_cub(argv[1], &data);//error exit check?
+		print_mapinfo(&data.mapinfo);
 	}
 }
