@@ -8,7 +8,7 @@ void	my_mlx_pixel_put(new_t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-static int  handle_input(int key, new_t_data *data)
+int  handle_input(int key, new_t_data *data)
 {
     if (key == 119)
         printf("w is pressed\n\n");//move_player(&player, key);
