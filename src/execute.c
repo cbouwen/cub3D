@@ -2,7 +2,7 @@
 
 void execute_map(new_t_data *data)
 {
-	parse_player(mapinfo, *map, &player);
+	parse_player(data);
 	/*init_raycasting(raycaster, &player);
 	prep_dda(raycaster, *map);
 
