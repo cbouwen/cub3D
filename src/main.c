@@ -84,7 +84,7 @@ void print_map(new_t_mapinfo *mapinfo)
 		j = 0;
 		while (j < mapinfo->columns)
 		{
-			printf("%c", mapinfo->map[i][j].content);
+			printf("%d, %d, %c\n", mapinfo->map[i][j].x, mapinfo->map[i][j].y, mapinfo->map[i][j].c);
 			j++;
 		}
 		printf("\n");
