@@ -62,12 +62,18 @@ void	parse_color(char *str, new_t_data *data);
 void	parse_color_values(int *X, char *str, int i);
 void	parse_path(char *str, new_t_data *data);
 
-/*parse utils*/
+/*parse_utils.c*/
 int		check_for_map(char *str);
 void	check_all_elements(new_t_mapchecker *elements);
 void	check_duplicates(char *str, new_t_mapchecker *elements);
 void	update_mapchecker(char *str, new_t_mapchecker *elements);
 void	init_map_checker(new_t_mapchecker *elements);
+
+/*parse_map.c*/
+void	parse_map(int fd, new_t_data *data);
+t_map	**init_map(new_t_data *data);
+void	fill_map(int fd, new_t_data *data);
+void	set_remainder(new_t_data *data, int *x, int y);
 
 //mlx_ft's
 void	init_window(t_mlx_data *win_data);

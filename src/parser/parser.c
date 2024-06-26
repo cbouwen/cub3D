@@ -79,12 +79,13 @@ int	parse_cub(char *argv, new_t_data *data)
 	close(fd);
 	map_errors(&elements, data);
 	print_mapchecker(elements);
-	/*fd = open(argv, O_RDONLY);
+	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		ft_error("Error opening map.. Weird. Try again!\n");
-	parse_map(fd, *mapinfo, map);
+	//parse_map(fd, *mapinfo, map);
+	parse_map(fd, data);
 	close(fd);
-	tester(*mapinfo); //remove later
+	/*tester(*mapinfo); //remove later
 	test_map(*map, *mapinfo);*/
 	return (0);
 }

@@ -75,6 +75,23 @@ void print_data(new_t_data *data)
 	print_mapinfo(&data->mapinfo);
 }
 
+void print_map(new_t_mapinfo *mapinfo)
+{
+	int i = 0;
+	int j = 0;
+	while (i < mapinfo->rows)
+	{
+		j = 0;
+		while (j < mapinfo->columns)
+		{
+			printf("%c", mapinfo->map[i][j].content);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	/*t_mapinfo		mapinfo;
@@ -112,5 +129,6 @@ int	main(int argc, char **argv)
 		//old ==> parse_cub(argv[1], &mapinfo, &map);//error exit check?
 		parse_cub(argv[1], &data);//error exit check?
 		print_mapinfo(&data.mapinfo);
+		print_map(&data.mapinfo);
 	}
 }
