@@ -32,7 +32,7 @@ void	init_ray_default(t_raycaster *rc)
 	rc->x = 0;
 }
 
-void	define_step(t_raycaster *rc, double posx, double posy)
+/*void	define_step(t_raycaster *rc, double posx, double posy)
 {
 	if (rc->raydirx < 0)
 	{
@@ -56,7 +56,7 @@ void	define_step(t_raycaster *rc, double posx, double posy)
 	}
 }
 
-/*void	init_tile_traversal(t_raycaster *rc, double posx, double posy)
+void	init_tile_traversal(t_raycaster *rc, double posx, double posy)
 {
 	rc->mapx = posx;
 	rc->mapy = posy;

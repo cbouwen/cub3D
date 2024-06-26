@@ -1,5 +1,29 @@
 #include "../inc/cub3d.h"
 
+void	define_step(new_t_raycaster *rc, double posx, double posy)
+{
+	if (rc->raydirx < 0)
+	{
+		rc->stepx = -1;
+		rc->sidedistx = (posx - rc->mapx) * rc->deltadistx;
+	}
+	else
+	{
+		rc->stepx = 1;
+		rc->sidedistx = (rc->mapx + 1 - posx) * rc->deltadistx;
+	}
+	if (rc->raydiry < 0)
+	{
+		rc->stepy = -1;
+		rc->sidedisty = (posy - rc->mapy) * rc->deltadisty;
+	}
+	else
+	{
+		rc->stepy = 1;
+		rc->sidedisty = (rc->mapy + 1 - posy) * rc->deltadisty;
+	}
+}
+
 void	init_tile_traversal(new_t_raycaster *rc, double posx, double posy)
 {
 	rc->mapx = posx;
@@ -10,11 +34,11 @@ void	init_tile_traversal(new_t_raycaster *rc, double posx, double posy)
 		rc->raydiry = 1e30;
 	rc->deltadistx = fabs(1.0 / rc->raydirx);
 	rc->deltadisty = fabs(1.0 / rc->raydiry);
-	/*define_step(rc, posx, posy);
+	define_step(rc, posx, posy);
 	if (rc->raydirx == 1e30)
 		rc->raydirx = 0.0;
 	if (rc->raydiry == 1e30)
-		rc->raydiry = 0.0;*/
+		rc->raydiry = 0.0;
 }
 
 void	setup_ray_dir(new_t_raycaster *rc, new_t_player *player, int x)
