@@ -43,7 +43,7 @@ void	print_debug(t_raycaster *rc, char *function_name)
 	printf("drawend = %i\n", rc->drawend);
 }
 
-void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
+/*void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for avoiding fisheye. This calculates the line coming from the camera plane instead of position.
 {
 	if (side == 0)
 		rc->perpwalldist = (rc->sidedistx - rc->deltadistx);
@@ -57,27 +57,6 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 	if (rc->drawend >= HEIGHT)
 		rc->drawend = HEIGHT;
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
-}
-
-void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
-{
-	int	y;
-	int	color;
-
-	if (side == 1)
-		color = 16711680;
-	else
-		color = 16743936;
-	y = -1;
-	while (++y < HEIGHT)
-	{
-		if (y < HEIGHT / 2)	//not super efficient because it constantly overwrites but hey. If we want, easy fix
-			my_mlx_pixel_put(img, rc->x, y, mapinfo.c);
-		if (y > HEIGHT / 2)
-			my_mlx_pixel_put(img, rc->x, y, mapinfo.f);
-		if (y > rc->drawstart && y < rc->drawend)
-			my_mlx_pixel_put(img, rc->x, y, color);
-	}
 }
 
 void	calculate_dda(t_raycaster *rc, t_map **map)
@@ -108,7 +87,7 @@ void	calculate_dda(t_raycaster *rc, t_map **map)
 //		print_rc(*rc);
 }
 
-/*void	prep_dda(t_raycaster *raycaster, t_map **map)
+void	prep_dda(t_raycaster *raycaster, t_map **map)
 {
 	int	x;
 
@@ -118,18 +97,9 @@ void	calculate_dda(t_raycaster *rc, t_map **map)
 		calculate_dda(&raycaster[x], map);
 		x++;
 	}
-}*/
-
-void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
-{
-	int	x;
-
-	x = -1;
-	while (++x < WIDTH)
-		load_texture(&rc[x], rc[x].side, img, mapinfo);
 }
 
-/*void execute_map(t_map ***map, t_mapinfo mapinfo)
+void execute_map(t_map ***map, t_mapinfo mapinfo)
 {
 	t_player	player;
 	t_raycaster	raycaster[WIDTH];
@@ -140,3 +110,33 @@ void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mention
 
 	update_player(raycaster, mapinfo);//Final step
 }*/
+
+void	load_texture(t_raycaster *rc, int side, t_data *img, t_mapinfo mapinfo) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
+{
+	int	y;
+	int	color;
+
+	if (side == 1)
+		color = 16711680;
+	else
+		color = 16743936;
+	y = -1;
+	while (++y < HEIGHT)
+	{
+		if (y < HEIGHT / 2)	//not super efficient because it constantly overwrites but hey. If we want, easy fix
+			my_mlx_pixel_put(img, rc->x, y, mapinfo.c);
+		if (y > HEIGHT / 2)
+			my_mlx_pixel_put(img, rc->x, y, mapinfo.f);
+		if (y > rc->drawstart && y < rc->drawend)
+			my_mlx_pixel_put(img, rc->x, y, color);
+	}
+}
+
+void	draw_screen(t_raycaster *rc, t_data *img, t_mapinfo mapinfo)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
+{
+	int	x;
+
+	x = -1;
+	while (++x < WIDTH)
+		load_texture(&rc[x], rc[x].side, img, mapinfo);
+}
