@@ -63,7 +63,7 @@ t_map	**init_map(new_t_data *data)
 
 void	parse_map(int fd, new_t_data *data)
 {
-	data->map.map = init_map(data);
+	data->mapinfo.map = init_map(data);
 	fill_map(fd, data);
 	/*if (!valid_map(*map, mapinfo))
 		ft_error("Invalid map\n");
