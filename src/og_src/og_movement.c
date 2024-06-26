@@ -44,7 +44,7 @@ void	rotate_player(t_player *player,	int x)
 
 }
 
-/*void	update_player(t_raycaster *rc, t_mapinfo mapinfo)
+void	update_player__(t_raycaster *rc, t_mapinfo mapinfo)
 {
 	t_mlx_data	win_data;
 
@@ -58,7 +58,7 @@ void	rotate_player(t_player *player,	int x)
 
 
 
-}*/
+}
 
 
 /*w = 119
