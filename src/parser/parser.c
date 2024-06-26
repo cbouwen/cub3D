@@ -36,7 +36,7 @@ void	parse_input(int fd, new_t_data *data, new_t_mapchecker *elements)
 	}
 	while (line && check_for_map(line) == 1)
 	{
-		parse_mapinfo(line, mapinfo);
+		parse_mapinfo(line, data);
 		free(line);
 		line = get_next_line(fd);
 	}
