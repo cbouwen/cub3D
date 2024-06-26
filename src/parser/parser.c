@@ -54,7 +54,7 @@ void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 	}
 }
 
-void print_mapchecker(t_mapchecker elements)
+void print_mapchecker(t_mapchecker elements) //debug
 {
 	printf("no: %d\n", elements.no);
 	printf("so: %d\n", elements.so);
@@ -78,7 +78,9 @@ int	parse_cub(char *argv, t_data *data)
 	parse_input(fd, data, &elements);
 	close(fd);
 	map_errors(&elements, data);
-	print_mapchecker(elements);
+
+	print_mapchecker(elements); //debug
+
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		ft_error("Error opening map.. Weird. Try again!\n");

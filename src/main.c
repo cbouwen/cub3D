@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-void print_player(t_player *player)
+void print_player(t_player *player) //debug
 {
 	printf("position.x: %f\n", player->position.x);
 	printf("position.y: %f\n", player->position.y);
@@ -22,7 +22,7 @@ void print_player(t_player *player)
 	printf("plane.y: %f\n", player->plane.y);
 }
 
-void print_mapinfo(t_mapinfo *mapinfo)
+void print_mapinfo(t_mapinfo *mapinfo) //debug
 {
 	printf("no: %s\n", mapinfo->no);
 	printf("so: %s\n", mapinfo->so);
@@ -35,7 +35,7 @@ void print_mapinfo(t_mapinfo *mapinfo)
 	printf("map: %p\n", mapinfo->map);
 }
 
-void	print_rc_new(t_raycaster *rc)
+void	print_rc_new(t_raycaster *rc) //debug
 {
 	printf("x = %i\n", rc->x);
 	printf("camera_x = %f\n", rc->camera_x);
@@ -56,7 +56,7 @@ void	print_rc_new(t_raycaster *rc)
 	printf("drawend = %i\n", rc->drawend);
 }
 
-void print_data(t_data *data)
+void print_data(t_data *data) //debug
 {
 	printf("mlx: %p\n", data->mlx);
 	printf("mlx_win: %p\n", data->mlx_win);
@@ -75,7 +75,7 @@ void print_data(t_data *data)
 	print_mapinfo(&data->mapinfo);
 }
 
-void print_map(t_mapinfo *mapinfo)
+void print_map(t_mapinfo *mapinfo) //debug
 {
 	int i = 0;
 	int j = 0;
@@ -116,8 +116,6 @@ int	main(int argc, char **argv)
 
 	t_data	data;
 
-	/*t_mapinfo		mapinfo;
-	t_map			**map;*/
 
 	if (argc != 2)
 		ft_error("Wrong number of arguments. Try again!\n");
@@ -128,23 +126,16 @@ int	main(int argc, char **argv)
 		init_data_default(&data);
 		parse_cub(argv[1], &data);//error exit check?
 
-		print_mapinfo(&data.mapinfo);
-		print_map(&data.mapinfo);
+		print_mapinfo(&data.mapinfo); //debug
+		print_map(&data.mapinfo); //debug
 
 		//execute_map(&map, mapinfo);
 		execute_map(&data);
 		
-		print_player(&data.player);
-		for (int i = 0; i < 3; i++)
+		print_player(&data.player); //debug
+		for (int i = 0; i < 3; i++) //debug
 			print_rc_new(&data.rc[i]);
 
-
-
-
-		ft_free_array(data.mapinfo.map, data.mapinfo.rows);
-		free(data.mapinfo.no);
-		free(data.mapinfo.so);
-		free(data.mapinfo.we);
-		free(data.mapinfo.ea);
+		free_all(&data);
 	}
 }
