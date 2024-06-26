@@ -81,6 +81,7 @@ void		parse_plane(new_t_data *data, char c);
 void		execute_map(new_t_data *data);
 void		prep_dda(new_t_data *data);
 void		calculate_dda(t_raycaster *rc, t_map **map);
+void		calculate_lineheight(t_raycaster *rc, int side);
 
 
 /*init_raycasting.c*/
