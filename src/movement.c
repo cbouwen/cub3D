@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-void	update_player_new(new_t_data *data)
+void	update_player(new_t_data *data)
 {
 	data->mlx = mlx_init();
 	init_window(data);

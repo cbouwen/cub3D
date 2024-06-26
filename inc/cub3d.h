@@ -96,7 +96,7 @@ int  		handle_input(int key, new_t_data *data);
 void		my_mlx_pixel_put(new_t_data *data, int x, int y, int color);
 
 /*movement.c*/
-void		update_player_new(new_t_data *data);
+void		update_player(new_t_data *data);
 
 //parser
 /*int			parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map);
