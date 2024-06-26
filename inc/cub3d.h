@@ -40,15 +40,6 @@ int			check_for_map(char *str);
 int			ft_error(char *str);
 void		ft_free_array(new_t_map **map, int count);
 
-//parser
-/*int			parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map);
-void		init_map_checker(t_mapchecker *elements);
-void		update_mapchecker(char *str, t_mapchecker *elements);
-void		check_input(char *str, t_mapinfo *mapinfo, t_mapchecker *elements);
-t_map		**parse_map(int fd, t_mapinfo mapinfo, t_map ***map);
-int			valid_map(t_map **map, t_mapinfo mapinfo);
-void	parse_player(t_mapinfo mapinfo, t_map **map, t_player *player);*/
-
 /*parser.c*/
 int			parse_cub(char *argv, new_t_data *data);
 void		parse_input(int fd, new_t_data *data, new_t_mapchecker *elements);
@@ -80,6 +71,20 @@ int			valid_map(new_t_data *data);
 int			check_char(char c);
 int			check_open(new_t_data *data, int y, int x);
 
+/*parse_player.c*/
+void		parse_player(new_t_data *data);
+void		find_player(new_t_data *data);
+void		parse_direction(new_t_data *data, char c);
+void		parse_plane(new_t_data *data, char c);
+
+//parser
+/*int			parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map);
+void		init_map_checker(t_mapchecker *elements);
+void		update_mapchecker(char *str, t_mapchecker *elements);
+void		check_input(char *str, t_mapinfo *mapinfo, t_mapchecker *elements);
+t_map		**parse_map(int fd, t_mapinfo mapinfo, t_map ***map);
+int			valid_map(t_map **map, t_mapinfo mapinfo);
+void	parse_player(t_mapinfo mapinfo, t_map **map, t_player *player);*/
 /*
 //mlx_ft's
 void	init_window(t_mlx_data *win_data);

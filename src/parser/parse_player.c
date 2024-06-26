@@ -1,80 +1,70 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_player.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 16:56:48 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 13:43:36 by cbouwen          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "../../inc/cub3d.h"
 
-#include "../inc/cub3d.h"
-
-void	parse_direction(t_player *player, char c)
+void	parse_plane(new_t_data *data, char c)
 {
 	if (c == 'N')
 	{
-		(*player).direction.x = 0;
-		(*player).direction.y = -1;
+		(*data).player.plane.x = -0.66;
+		(*data).player.plane.y = 0;
 	}	
 	if (c == 'E')
 	{
-		(*player).direction.x = 1;
-		(*player).direction.y = 0;
+		(*data).player.plane.x = 0;
+		(*data).player.direction.y = 0.66;
 	}	
 	if (c == 'S')
 	{
-		(*player).direction.x = 0;
-		(*player).direction.y = 1;
+		(*data).player.plane.x = 0.66;
+		(*data).player.plane.y = 0;
 	}
 	if (c == 'W')
 	{
-		(*player).direction.x = -1;
-		(*player).direction.y = 0;
+		(*data).player.plane.x = 0;
+		(*data).player.plane.y = -0.66;
 	}
 }
 
-void	parse_plane(t_player *player, char c)
+void	parse_direction(new_t_data *data, char c)
 {
 	if (c == 'N')
 	{
-		(*player).plane.x = -0.66;
-		(*player).plane.y = 0;
+		(*data).player.direction.x = 0;
+		(*data).player.direction.y = -1;
 	}	
 	if (c == 'E')
 	{
-		(*player).plane.x = 0;
-		(*player).direction.y = 0.66;
+		(*data).player.direction.x = 1;
+		(*data).player.direction.y = 0;
 	}	
 	if (c == 'S')
 	{
-		(*player).plane.x = 0.66;
-		(*player).plane.y = 0;
+		(*data).player.direction.x = 0;
+		(*data).player.direction.y = 1;
 	}
 	if (c == 'W')
 	{
-		(*player).plane.x = 0;
-		(*player).plane.y = -0.66;
+		(*data).player.direction.x = -1;
+		(*data).player.direction.y = 0;
 	}
 }
 
-void	find_player(int rows, int colomns, t_map **map, t_player *player)
+void	find_player(new_t_data *data)
 {
 	int	x;
 	int	y;
+	new_t_map	**map;
 
 	y = -1;
-	while (++y < rows)
+	map = data->mapinfo.map;
+	while (++y < data->mapinfo.rows)
 	{
 		x = -1;
-		while (++x < colomns)
+		while (++x < data->mapinfo.columns)
 		{
 			if ((map[y][x].c) != '0' && map[y][x].c != '1' && map[y][x].c != ' ')
 			{
-				(*player).position.x = x + 0.5;
-				(*player).position.y = y + 0.5;
+				(*data).player.position.x = x + 0.5;
+				(*data).player.position.y = y + 0.5;
 				parse_direction(player, map[y][x].c);
 				parse_plane(player, map[y][x].c);
 				return ;
@@ -83,8 +73,8 @@ void	find_player(int rows, int colomns, t_map **map, t_player *player)
 	}
 }
 
-void	parse_player(t_mapinfo mapinfo, t_map **map, t_player *player)//we can probably leave this out
+void	parse_player(new_t_data *data)//we can probably leave this out
 {
-	find_player(mapinfo.rows, mapinfo.colomns, map, player);
+	find_player(data);
 //	test_player(*player);//	
 }
