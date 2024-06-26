@@ -132,7 +132,7 @@ int	main(int argc, char **argv)
 		print_map(&data.mapinfo);
 
 		//execute_map(&map, mapinfo);
-		execute_map(data);
+		execute_map(&data);
 		print_player(&data.player);
 
 

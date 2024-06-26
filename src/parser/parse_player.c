@@ -66,7 +66,7 @@ void	find_player(new_t_data *data)
 				(*data).player.position.x = x + 0.5;
 				(*data).player.position.y = y + 0.5;
 				parse_direction(data, map[y][x].c);
-				parse_plane(init_data_default, map[y][x].c);
+				parse_plane(data, map[y][x].c);
 				return ;
 			}
 		}
