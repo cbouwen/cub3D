@@ -40,7 +40,7 @@ void	fill_map(int fd, new_t_data *data)
 
 new_t_map	**init_map(new_t_data *data)
 {
-	t_map	**map;
+	new_t_map	**map;
 	int		i;
 
 	i = 0;
