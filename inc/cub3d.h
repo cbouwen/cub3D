@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/25 16:33:08 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/27 10:56:51 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #define D_WIDTH 1920.0
 #define FOV_ANGLE 66
 #define MOVESPEED 0.25
-#define ROTSPEED 0.33
+#define ROTSPEED 0.10
 
 //utils
 int			map_name(char *str);
@@ -44,9 +44,8 @@ void		free_all(t_data *data);
 /*parser.c*/
 int			parse_cub(char *argv, t_data *data);
 void		parse_input(int fd, t_data *data, t_mapchecker *elements);
-int			color_range(int	x);
 void		parse_mapinfo(char *str, t_data *data);
-void		map_errors(t_mapchecker *elements, t_data *data);
+void		map_errors(t_mapchecker *elements);
 
 /*mapinfo.c*/
 void		check_input(char *str, t_data *data, t_mapchecker *elements);
@@ -100,6 +99,8 @@ void		load_texture(t_raycaster *rc, int side, t_data *data);
 
 /*movement.c*/
 void		update_player(t_data *data);
+void		change_position(t_player *player, int x);
+void 		rotate_player(t_player *player, int x);
 
 /*init_struct_default.c*/
 void		init_data_default(t_data *data);

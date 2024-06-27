@@ -1,24 +1,11 @@
 #include "../../inc/cub3d.h"
 
-int	color_range(int	x)
-{
-	if (x < 0)
-		return (0);
-	if (x > 16777215)
-		return (0);
-	return (1);
-}
-
-void	map_errors(t_mapchecker *elements, t_data *data)
+void	map_errors(t_mapchecker *elements)
 {
 	if (elements->all_eles == false)
 		ft_error("Not all elements are defined before map initialization.\n");
 	if (elements->duplicate == true)
 		ft_error("Duplicate map arguments.\n");
-	if (!color_range(data->mapinfo.c))
-		ft_error("Wrong color ranges for ceiling\n");
-	if (!color_range(data->mapinfo.f))
-		ft_error("Wrong color ranges for floor\n");
 }
 
 void	parse_mapinfo(char *str, t_data *data)
@@ -77,7 +64,7 @@ int	parse_cub(char *argv, t_data *data)
 		ft_error("Error opening map.. Weird. Try again!\n");
 	parse_input(fd, data, &elements);
 	close(fd);
-	map_errors(&elements, data);
+	map_errors(&elements);
 
 	print_mapchecker(elements); //debug
 

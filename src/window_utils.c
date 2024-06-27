@@ -10,21 +10,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int  handle_input(int key, t_data *data)
 {
-    if (key == 119)
-        printf("w is pressed\n\n");//move_player(&player, key);
-    if (key == 115)
-        printf("s is pressed\n\n");
-    if (key == 97)
-        printf("a is pressed\n\n");
-    if (key == 100)
-        printf("d is pressed\n\n");
-    if (key == 65361)
-        printf("Left arrow is pressed\n\n");//rotate_player(&player, key);
-    if (key == 65363)
-        printf("Right arrow is pressed\n\n");
+    if (key == 119 || key == 115 || key == 97 || key == 100)
+	{
+		if (check_collision(data, key) == 0)
+			change_position(&data->player, key);
+	}
+    if (key == 65361 || key == 65363)
+		rotate_player(&data->player, key);
     if (key == 65307)
+	{
         close_window(data);
-//	update_player(win_data, key);      We need to call a function here which performs the dda with the new player data changed by the above key presses and afterwards prints it on the screen as well
+	}
+	init_raycasting(data);
+	prep_dda(data);
+	draw_screen(data);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
     return (0);
 }
 
@@ -63,9 +63,11 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 	int	color;
 
 	if (side == 1)
-		color = 16711680;
+		color = 16711680;//random color for side. 
 	else
-		color = 16743936;
+		color = 16743936;//random color for side. we need to load texture here. 
+	//@Matisse: if side == 0 and stepy = -1 ==> SOUTH WALL, side == 0 and stepy = 1 ==> NORTH WALL, side = 1 && stepx = -1 ==> WEST WALL, side = 1 && stepx = 1 ==> EAST WALL
+	// Best to verify this. I did this really quick out the top of my head so might not be completely correct
 	y = -1;
 	while (++y < HEIGHT)
 	{

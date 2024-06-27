@@ -17,6 +17,17 @@ void	parse_path(char *str, t_data *data)
 		data->mapinfo.ea = ft_strndup(str + 3, i);
 }
 
+int	color_range(int red, int blue, int green)
+{
+	if (red < 0 || red > 255)
+		return (0);
+	if (blue < 0 || blue > 255)
+		return (0);
+	if (green < 0 || green > 255)
+		return (0);
+	return (1);
+}
+
 void	parse_color_values(int *X, char *str, int i)
 {
 	int	red;
@@ -30,6 +41,8 @@ void	parse_color_values(int *X, char *str, int i)
 	while (str[i] != 44)
 		i++;
 	blue = ft_atoi(str + ++i);
+	if (color_range(red,blue,green) == 0)
+		ft_error("Wrong color ranges\n");
 	*X = (red << 16) | (green << 8) | blue;
 }
 
