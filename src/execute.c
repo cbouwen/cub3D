@@ -16,7 +16,7 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
 }
 
-void	calculate_dda(t_raycaster *rc, t_map **map, t_mapinfo mapinfo)
+void	calculate_dda(t_raycaster *rc, t_map **map)
 {
 	int	hit;
 
@@ -26,15 +26,13 @@ void	calculate_dda(t_raycaster *rc, t_map **map, t_mapinfo mapinfo)
 		if (rc->sidedistx < rc->sidedisty)
 		{
 			rc->sidedistx += rc->deltadistx;
-			if (rc->mapx > 0 && rc->mapx < mapinfo.rows)//
-				rc->mapx += rc->stepx;
+			rc->mapx += rc->stepx;
 			rc->side = 0; //look at comment under
 		}
 		else
 		{
 			rc->sidedisty += rc->deltadisty;
-			if (rc->mapy > 0 && rc->mapy < mapinfo.columns)//
-				rc->mapy += rc->stepy;
+			rc->mapy += rc->stepy;
 			rc->side = 1; //this is not enough. Add more rules for N, S, E and W   @Matisse: We need the right int here so we know what texture to project(N,S,E,W)
 			//Edit: Maybe this is enough. Maybe with a combination of stepdirx or whatever value, we know which side we'll be facing. Either way this is for the end
 		}
@@ -53,7 +51,7 @@ void	prep_dda(t_data *data)
 	x = 0;
 	while (x < WIDTH)
 	{
-		calculate_dda(&data->rc[x], data->mapinfo.map, data->mapinfo);
+		calculate_dda(&data->rc[x], data->mapinfo.map);
 		x++;
 	}
 }

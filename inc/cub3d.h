@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/27 14:11:53 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/27 14:29:19 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		parse_plane(t_data *data, char c);
 /*execute.c*/
 void		execute_map(t_data *data);
 void		prep_dda(t_data *data);
-void		calculate_dda(t_raycaster *rc, t_map **map, t_mapinfo mapinfo);
+void		calculate_dda(t_raycaster *rc, t_map **map);
 void		calculate_lineheight(t_raycaster *rc, int side);
 
 /*init_raycasting.c*/
