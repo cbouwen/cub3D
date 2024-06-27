@@ -45,6 +45,20 @@ void	rotate_player(t_player *player,	int x)
 	oldplanex = player->plane.x;
 	if (x == 65363)//rotate right
 	{
+		player->direction.x = player->direction.x * cos(ROTSPEED) - player->direction.y * sin(ROTSPEED);
+		player->direction.y = olddirx * sin(ROTSPEED) + player->direction.y * cos(ROTSPEED);
+		player->plane.x = player->plane.x * cos(ROTSPEED) - player->plane.y * sin(ROTSPEED);
+		player->plane.y = oldplanex * sin(ROTSPEED) + player->plane.y * cos(ROTSPEED);
+	}
+	else //rotate left
+	{
+		player->direction.x = player->direction.x * cos(-ROTSPEED) - player->direction.y * sin(-ROTSPEED);
+		player->direction.y = olddirx * sin(-ROTSPEED) + player->direction.y * cos(-ROTSPEED);
+		player->plane.x = player->plane.x * cos(-ROTSPEED) - player->plane.y * sin(-ROTSPEED);
+		player->plane.y = oldplanex * sin(-ROTSPEED) + player->plane.y * cos(-ROTSPEED);
+	}
+	/*if (x == 65363)//rotate right
+	{
 		player->direction.x = player->direction.x * cos(-ROTSPEED) - player->direction.y * sin(-ROTSPEED);
 		player->direction.y = olddirx * sin(-ROTSPEED) + player->direction.y * cos(-ROTSPEED);
 		player->plane.x = player->plane.x * cos(-ROTSPEED) - player->plane.y * sin(-ROTSPEED);
@@ -56,7 +70,7 @@ void	rotate_player(t_player *player,	int x)
 		player->direction.y = olddirx * sin(ROTSPEED) + player->direction.y * cos(ROTSPEED);
 		player->plane.x = player->plane.x * cos(ROTSPEED) - player->plane.y * sin(ROTSPEED);
 		player->plane.y = oldplanex * sin(ROTSPEED) + player->plane.y * cos(ROTSPEED);
-	}
+	}*/
 }
 
 void	update_player(t_data *data)
