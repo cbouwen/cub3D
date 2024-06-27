@@ -1,70 +1,61 @@
 #include "../inc/cub3d.h"
 
-int	check_collision(t_data *data, int x)
+void	move(t_player *player, t_map **map, int x)
 {
 	if (x == 119)//up
 	{
-		if (data->map[(int)data->player.position.x + data->player.direction.x * MOVESPEED][(int)data->player.position.y] == '1')
-
+		if (map[(int)(player->position.y)][(int)(player->position.x + player->direction.x * MOVESPEED)].c != '1')
+			player->position.x += player->direction.x * MOVESPEED;
+		if (map[(int)(player->position.y + player->direction.y * MOVESPEED)][(int)(player->position.x)].c != '1')
+			player->position.y += player->direction.y * MOVESPEED;
 	}
 	if (x == 115)//down
 	{
-		player->position.x -= player->direction.x * MOVESPEED;
-		player->position.y -= player->direction.y * MOVESPEED;
-	}
-	if (x == 100)//strafe left
-	{
-		player->position.x += player->plane.x * MOVESPEED;
-		player->position.y += player->plane.y * MOVESPEED;
-
-	}
-	if (x == 97)//strafe right
-	{
-		player->position.x -= player->plane.x * MOVESPEED;
-		player->position.y -= player->plane.y * MOVESPEED;
+		if (map[(int)(player->position.y)][(int)(player->position.x - player->direction.x * MOVESPEED)].c != '1')
+			player->position.x -= player->direction.x * MOVESPEED;
+		if (map[(int)(player->position.y - player->direction.y * MOVESPEED)][(int)(player->position.x)].c != '1')
+			player->position.y -= player->direction.y * MOVESPEED;
 	}
 }
 
-void	change_position(t_player *player, int x)
+void	strafe(t_player *player, t_map **map, int x)
 {
-	if (x == 119)//up
-	{
-		player->position.x += player->direction.x * MOVESPEED;
-		player->position.y += player->direction.y * MOVESPEED;
-	}
-	if (x == 115)//down
-	{
-		player->position.x -= player->direction.x * MOVESPEED;
-		player->position.y -= player->direction.y * MOVESPEED;
-	}
 	if (x == 100)//strafe left
 	{
-		player->position.x += player->plane.x * MOVESPEED;
-		player->position.y += player->plane.y * MOVESPEED;
-
+		if (map[(int)player->position.y][(int)(player->position.x + player->plane.x * MOVESPEED)].c != '1')
+			player->position.x += player->plane.x * MOVESPEED;
+		if (map[(int)(player->plane.y + player->direction.y * MOVESPEED)][(int)player->position.x].c != '1')
+			player->position.y += player->plane.y * MOVESPEED;
 	}
 	if (x == 97)//strafe right
 	{
-		player->position.x -= player->plane.x * MOVESPEED;
-		player->position.y -= player->plane.y * MOVESPEED;
+		if (map[(int)player->position.y][(int)(player->position.x - player->plane.x * MOVESPEED)].c != '1')
+			player->position.x -= player->plane.x * MOVESPEED;
+		if (map[(int)(player->position.y - player->plane.y * MOVESPEED)][(int)player->position.x].c != '1')
+			player->position.y -= player->plane.y * MOVESPEED;
 	}
 }
 
 void	rotate_player(t_player *player,	int x)
 {
+	double	olddirx;
+	double	oldplanex;
+
+	olddirx = player->direction.x;
+	oldplanex = player->plane.x;
 	if (x == 65363)//rotate right
 	{
-		player->direction.y = player->direction.x * sin(-ROTSPEED) + player->direction.y * cos(-ROTSPEED);
 		player->direction.x = player->direction.x * cos(-ROTSPEED) - player->direction.y * sin(-ROTSPEED);
-		player->plane.y = player->plane.x * sin(-ROTSPEED) + player->plane.y * cos(-ROTSPEED);
+		player->direction.y = olddirx * sin(-ROTSPEED) + player->direction.y * cos(-ROTSPEED);
 		player->plane.x = player->plane.x * cos(-ROTSPEED) - player->plane.y * sin(-ROTSPEED);
+		player->plane.y = oldplanex * sin(-ROTSPEED) + player->plane.y * cos(-ROTSPEED);
 	}
 	else //rotate left
 	{
-		player->direction.y = player->direction.x * sin(ROTSPEED) + player->direction.y * cos(ROTSPEED);
 		player->direction.x = player->direction.x * cos(ROTSPEED) - player->direction.y * sin(ROTSPEED);
-		player->plane.y = player->plane.x * sin(ROTSPEED) + player->plane.y * cos(ROTSPEED);
+		player->direction.y = olddirx * sin(ROTSPEED) + player->direction.y * cos(ROTSPEED);
 		player->plane.x = player->plane.x * cos(ROTSPEED) - player->plane.y * sin(ROTSPEED);
+		player->plane.y = oldplanex * sin(ROTSPEED) + player->plane.y * cos(ROTSPEED);
 	}
 }
 

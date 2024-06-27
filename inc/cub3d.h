@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/27 10:56:51 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/06/27 14:11:53 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #define D_WIDTH 1920.0
 #define FOV_ANGLE 66
 #define MOVESPEED 0.25
-#define ROTSPEED 0.10
+#define ROTSPEED 0.4
 
 //utils
 int			map_name(char *str);
@@ -80,7 +80,7 @@ void		parse_plane(t_data *data, char c);
 /*execute.c*/
 void		execute_map(t_data *data);
 void		prep_dda(t_data *data);
-void		calculate_dda(t_raycaster *rc, t_map **map);
+void		calculate_dda(t_raycaster *rc, t_map **map, t_mapinfo mapinfo);
 void		calculate_lineheight(t_raycaster *rc, int side);
 
 /*init_raycasting.c*/
@@ -99,7 +99,8 @@ void		load_texture(t_raycaster *rc, int side, t_data *data);
 
 /*movement.c*/
 void		update_player(t_data *data);
-void		change_position(t_player *player, int x);
+void		move(t_player *player, t_map **map, int x);
+void		strafe(t_player *player, t_map **map, int x);
 void 		rotate_player(t_player *player, int x);
 
 /*init_struct_default.c*/

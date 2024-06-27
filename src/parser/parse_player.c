@@ -63,8 +63,8 @@ void	find_player(t_data *data)
 		{
 			if ((map[y][x].c) != '0' && map[y][x].c != '1' && map[y][x].c != ' ')
 			{
-				(*data).player.position.x = x + 0.5;
-				(*data).player.position.y = y + 0.5;
+				(*data).player.position.x = x + 0.51;
+				(*data).player.position.y = y + 0.51;
 				parse_direction(data, map[y][x].c);
 				parse_plane(data, map[y][x].c);
 				return ;

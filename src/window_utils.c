@@ -10,11 +10,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int  handle_input(int key, t_data *data)
 {
-    if (key == 119 || key == 115 || key == 97 || key == 100)
-	{
-		if (check_collision(data, key) == 0)
-			change_position(&data->player, key);
-	}
+    if (key == 119 || key == 115)
+		move(&data->player, data->mapinfo.map, key);
+    if (key == 97 || key == 100)
+		strafe(&data->player, data->mapinfo.map, key);
     if (key == 65361 || key == 65363)
 		rotate_player(&data->player, key);
     if (key == 65307)
