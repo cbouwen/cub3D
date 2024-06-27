@@ -31,7 +31,7 @@
 #define D_WIDTH 1920.0
 #define FOV_ANGLE 66
 #define MOVESPEED 0.25
-#define ROTSPEED 0.05
+#define ROTSPEED 0.4
 
 //utils
 int			map_name(char *str);
