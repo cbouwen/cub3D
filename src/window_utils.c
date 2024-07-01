@@ -65,7 +65,11 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 		color = 16711680;//random color for side. 
 	else
 		color = 16743936;//random color for side. we need to load texture here. 
-	//@Matisse: if side == 0 and stepy = -1 ==> SOUTH WALL, side == 0 and stepy = 1 ==> NORTH WALL, side = 1 && stepx = -1 ==> WEST WALL, side = 1 && stepx = 1 ==> EAST WALL
+	//@Matisse: if 
+		//side == 0 and stepy == -1	==> SOUTH WALL
+		//side == 0 and stepy ==  1	==> NORTH WALL
+		//side == 1 and stepx == -1	==> WEST WALL
+		//side == 1 and stepx ==  1	==> EAST WALL
 	// Best to verify this. I did this really quick out the top of my head so might not be completely correct
 	y = -1;
 	while (++y < HEIGHT)
