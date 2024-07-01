@@ -71,6 +71,22 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 		//side == 1 and stepx == -1	==> WEST WALL
 		//side == 1 and stepx ==  1	==> EAST WALL
 	// Best to verify this. I did this really quick out the top of my head so might not be completely correct
+
+	if (side == 0)
+	{
+		if (rc->stepy == -1)	//south wall
+			color = 8947883;
+		else					//north wall
+			color = 14423100;
+	}
+	else if (side == 1)
+	{
+		if (rc->stepx == -1)	//west wall
+			color = 2263842;
+		else					//east wall
+			color = 16766720;
+	}
+
 	y = -1;
 	while (++y < HEIGHT)
 	{
