@@ -111,6 +111,7 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 			my_mlx_pixel_put(data, rc->x, y, data->mapinfo.f);
 		if (y > rc->drawstart && y < rc->drawend)
 		{
+			printf("y: %i\n", y);
 			printf("drawstart: %i\n", rc->drawstart);
 			printf("drawend: %i\n", rc->drawend);
 			my_mlx_pixel_put(data, rc->x, y, color);
