@@ -23,7 +23,7 @@ int  handle_input(int key, t_data *data)
 	init_raycasting(data);
 	prep_dda(data);
 	draw_screen(data);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	//mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
     return (0);
 }
 
@@ -42,7 +42,7 @@ void	init_window(t_data *data)
 	data->mlx_win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-	//mlx_put_image_to_window(win_data->mlx, win_data->mlx_win, win_data->img.img, 0, 0);
+	mlx_put_image_to_window(win_data->mlx, win_data->mlx_win, win_data->img.img, 0, 0);
 	mlx_hook(data->mlx_win, 17, 1L<<17, &close_window, data);
 	mlx_key_hook(data->mlx_win, handle_input, data);
 }
@@ -72,7 +72,7 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 		//side == 1 and stepx ==  1	==> EAST WALL
 	// Best to verify this. I did this really quick out the top of my head so might not be completely correct
 
-	if (side == 0)
+	/*if (side == 0)
 	{
 		if (rc->stepy < 0)		//south wall == sky blue
 			color = 8947883;
@@ -85,9 +85,9 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 			color = 2263842;
 		else					//east wall == golden yellow
 			color = 16766720;
-	}
+	}*/
 
-	/*if (side == 0)
+	if (side == 0)
 	{
 		if (rc->raydirx < 0)	//west wall == sky blue
 			color = 8947883;
@@ -100,7 +100,7 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 			color = 2263842;
 		else					//north wall == golden yellow
 			color = 16766720;
-	}*/
+	}
 
 	y = -1;
 	while (++y < HEIGHT)
