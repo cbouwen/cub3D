@@ -66,3 +66,17 @@ void	init_mapinfo_default(t_mapinfo *mapinfo)
 	mapinfo->columns = 0;
 	mapinfo->map = NULL;
 }
+
+void	init_text_mlx_default(t_text_mlx *text)
+{
+	text->img = NULL;
+	text->addr = NULL;
+	text->bits_per_pixel = 0;
+	text->line_length = 0;
+	text->endian = 0;
+}
+
+void	init_text_default(t_text *text)
+{
+	
+}

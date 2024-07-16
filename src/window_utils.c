@@ -23,7 +23,7 @@ int  handle_input(int key, t_data *data)
 	init_raycasting(data);
 	prep_dda(data);
 	draw_screen(data);
-	//mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
     return (0);
 }
 
@@ -42,7 +42,6 @@ void	init_window(t_data *data)
 	data->mlx_win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	mlx_hook(data->mlx_win, 17, 1L<<17, &close_window, data);
 	mlx_key_hook(data->mlx_win, handle_input, data);
 }

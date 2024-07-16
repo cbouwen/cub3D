@@ -78,6 +78,28 @@ typedef struct	s_raycaster
 	int		x; //added this to use the draw ft
 }				t_raycaster;
 
+/*typedef struct s_text_mlx
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_text_mlx;
+
+typedef struct s_text
+{
+	t_text_mlx	no;
+	t_text_mlx	so;
+	t_text_mlx	we;
+	t_text_mlx	ea;
+	char 		*north_t;
+	char 		*east_t;
+	char 		*south_t;
+	char 		*west_t;
+}				t_text;*/
+
+
 //mlx struct for image & window initialization
 typedef struct	s_data
 {
@@ -88,6 +110,7 @@ typedef struct	s_data
 	int			bits_per_pixel;
 	int			endian;
 	int			line_length;
+	//t_text		texture;
 	t_player	player;
 	t_raycaster	rc[WIDTH];
 	t_mapinfo	mapinfo;
