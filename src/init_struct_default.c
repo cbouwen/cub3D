@@ -14,6 +14,7 @@ void	init_data_default(t_data *data)
 	init_player_default(&data->player);
 	init_rc_default(data->rc);
 	init_mapinfo_default(&data->mapinfo);
+	init_text_mlx_default(&data->text);
 }
 
 void	init_player_default(t_player *player)
@@ -65,4 +66,23 @@ void	init_mapinfo_default(t_mapinfo *mapinfo)
 	mapinfo->rows = 0;
 	mapinfo->columns = 0;
 	mapinfo->map = NULL;
+}
+
+void	init_text_mlx_default(t_text_mlx *text)
+{
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		text[i].img = NULL;
+		text[i].addr = NULL;
+		text[i].bits_per_pixel = 0;
+		text[i].line_length = 0;
+		text[i].endian = 0;
+		text[i].width = 0;
+		text[i].height = 0;
+		i++;
+	}
+	text[5] = NULL;
 }
