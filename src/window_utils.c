@@ -129,7 +129,7 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
     wall_height = rc->drawend - rc->drawstart; // Height of the wall segment to be textured
     step = 1.0 * data->text[side].height / wall_height; // Step to stretch the texture over the wall segment
     texture_pos = (y - rc->drawstart) * step; // Position in texture corresponding to current y
-    int texture_y = (int)texture_pos % data->text[side].height;
+    texture_y = (int)texture_pos % data->text[side].height;
 
     return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);
 }
