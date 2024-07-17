@@ -52,7 +52,7 @@ void	prep_dda(t_data *data)
 	x = 0;
 	while (x < WIDTH)
 	{
-		init_raycasting(data->rc[x], data->player, x);
+		init_raycasting(data);
 		calculate_dda(&data->rc[x], data->mapinfo.map);
 		x++;
 	}
