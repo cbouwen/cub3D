@@ -77,6 +77,7 @@ void	update_player(t_data *data)
 {
 	data->mlx = mlx_init();
 	init_window(data);
+	parse_texture(data);
 	draw_screen(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	mlx_loop(data->mlx);

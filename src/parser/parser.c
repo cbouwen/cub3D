@@ -73,6 +73,6 @@ int	parse_cub(char *argv, t_data *data)
 		ft_error("Error opening map.. Weird. Try again!\n");
 	parse_map(fd, data);
 	close(fd);
-	parse_texture(data);
+	//parse_texture(data);
 	return (0);
 }
