@@ -1,10 +1,10 @@
 #include "../../inc/cub3d.h"
 
-/*void	text_file_error_check(t_data *data)
-{
+//void	text_file_error_check(t_data *data)
+//{
 	/*do something*/
 	/*check notes, you dingus*/
-}*/
+//}
 
 void	parse_texture(t_data *data)
 {
