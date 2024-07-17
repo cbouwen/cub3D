@@ -22,29 +22,13 @@ void	parse_texture(t_data *data)
 		loop over width
 		data->img.addr[y * width + x] = temp[y * (line_length / 4) + x]
 	*/
-	
 
-
-	int fd = open(data->mapinfo.no, O_RDONLY);
-	if (fd == -1)
-		ft_error("Error opening texture... Weird. Try again!\n");
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", data->mapinfo.no);
-	printf("1\n");
-	char *test = ft_strdup(data->mapinfo.no);
-	int width = 0;
-	int height = 0;
 	data->text[NORTH].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.no, &data->text[NORTH].width, &data->text[NORTH].height);
-	//data->text[NORTH].img = mlx_xpm_file_to_image(data->mlx, test, &width, &height);
-	printf("2\n");
 	if (!data->text[NORTH].img)
 		ft_error("Error\nTexture not found");
-	printf("3\n");
 	if (data->text[NORTH].width != 64 || data->text[NORTH].height != 64)
 		ft_error("Error\nTexture size not 64x64");
-	printf("4\n");
 	data->text[NORTH].addr = (int *)(mlx_get_data_addr(data->text[NORTH].img, &data->text[NORTH].bits_per_pixel, &data->text[NORTH].line_length, &data->text[NORTH].endian));
-	printf("5\n");
 
 	data->text[EAST].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.ea, &data->text[EAST].width, &data->text[EAST].height);
 	if (!data->text[EAST].img)

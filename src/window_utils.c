@@ -86,19 +86,27 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 			color = 16766720;
 	}*/
 
+	//color = 8947883;
+	//color = 14423100;
+	//color = 2263842;
+	//color = 16766720;
 	if (side == 0)
 	{
 		if (rc->raydirx < 0)	//west wall == sky blue
-			color = 8947883;
+			color = data->text[WEST].addr[(data->text[WEST].width * rc->raydiry + rc->raydirx) * (data->text[WEST].bits_per_pixel / 8)];
+
 		else					//east wall == crimson red
-			color = 14423100;
+			color = data->text[EAST].addr[(data->text[EAST].width * rc->raydiry + rc->raydirx) * (data->text[EAST].bits_per_pixel / 8)];
+
 	}
 	else if (side == 1)
 	{
 		if (rc->raydiry > 0)	//south wall == forest green
-			color = 2263842;
+			color = data->text[SOUTH].addr[(data->text[SOUTH].width * rc->raydiry + rc->raydirx) * (data->text[SOUTH].bits_per_pixel / 8)];
+
 		else					//north wall == golden yellow
-			color = 16766720;
+			color = data->text[NORTH].addr[(data->text[NORTH].width * rc->raydiry + rc->raydirx) * (data->text[NORTH].bits_per_pixel / 8)];
+
 	}
 
 	y = -1;
@@ -114,6 +122,7 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 			printf("drawstart: %i\n", rc->drawstart);
 			printf("drawend: %i\n", rc->drawend);*/
 			my_mlx_pixel_put(data, rc->x, y, color);
+			
 		}
 	}
 }
