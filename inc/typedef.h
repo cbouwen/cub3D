@@ -6,6 +6,15 @@
 
 #define WIDTH 1920
 
+//enum for direction
+typedef enum	e_direction
+{
+	NORTH = 0,
+	EAST = 1,
+	SOUTH = 2,
+	WEST = 3,
+}				t_direction;
+
 //struct to check if map is valid
 typedef struct	s_mapchecker
 {
