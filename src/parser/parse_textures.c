@@ -31,7 +31,11 @@ void	parse_texture(t_data *data)
 	printf("%s\n", get_next_line(fd));
 	printf("%s\n", data->mapinfo.no);
 	printf("1\n");
-	data->text[NORTH].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.no, &data->text[NORTH].width, &data->text[NORTH].height);
+	char *test = ft_strdup(data->mapinfo.no);
+	int width = 0;
+	int height = 0;
+	//data->text[NORTH].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.no, &data->text[NORTH].width, &data->text[NORTH].height);
+	data->text[NORTH].img = mlx_xpm_file_to_image(data->mlx, test, &width, &height);
 	printf("2\n");
 	if (!data->text[NORTH].img)
 		ft_error("Error\nTexture not found");
