@@ -28,7 +28,7 @@ void	parse_texture(t_data *data)
 	int fd = open(data->mapinfo.no, O_RDONLY);
 	if (fd == -1)
 		ft_error("Error opening texture... Weird. Try again!\n");
-	get_next_line(fd);
+	printf("%s\n", get_next_line(fd));
 	printf("%s\n", data->mapinfo.no);
 	printf("1\n");
 	data->text[NORTH].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.no, &data->text[NORTH].width, &data->text[NORTH].height);
