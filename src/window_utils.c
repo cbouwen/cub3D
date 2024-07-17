@@ -93,19 +93,19 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 	if (side == 0)
 	{
 		if (rc->raydirx < 0)	//west wall == sky blue
-			color = data->text[WEST].addr[(data->text[WEST].width * rc->raydiry + rc->raydirx) * (data->text[WEST].bits_per_pixel / 8)];
+			color = data->text[WEST].addr[(int)((data->text[WEST].width * rc->raydiry + rc->raydirx) * (data->text[WEST].bits_per_pixel / 8))];
 
 		else					//east wall == crimson red
-			color = data->text[EAST].addr[(data->text[EAST].width * rc->raydiry + rc->raydirx) * (data->text[EAST].bits_per_pixel / 8)];
+			color = data->text[EAST].addr[(int)((data->text[EAST].width * rc->raydiry + rc->raydirx) * (data->text[EAST].bits_per_pixel / 8))];
 
 	}
 	else if (side == 1)
 	{
 		if (rc->raydiry > 0)	//south wall == forest green
-			color = data->text[SOUTH].addr[(data->text[SOUTH].width * rc->raydiry + rc->raydirx) * (data->text[SOUTH].bits_per_pixel / 8)];
+			color = data->text[SOUTH].addr[(int)((data->text[SOUTH].width * rc->raydiry + rc->raydirx) * (data->text[SOUTH].bits_per_pixel / 8))];
 
 		else					//north wall == golden yellow
-			color = data->text[NORTH].addr[(data->text[NORTH].width * rc->raydiry + rc->raydirx) * (data->text[NORTH].bits_per_pixel / 8)];
+			color = data->text[NORTH].addr[(int)((data->text[NORTH].width * rc->raydiry + rc->raydirx) * (data->text[NORTH].bits_per_pixel / 8))];
 
 	}
 
