@@ -67,20 +67,6 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 	//color = 14423100;
 	//color = 2263842;
 	//color = 16766720;
-	if (side == 0)
-	{
-		if (rc->raydirx < 0)	//west wall == sky blue
-			color = determine_pixel_hit(rc, data, WEST, determine_wallpos(rc, data, side));
-		else					//east wall == crimson red
-			color = determine_pixel_hit(rc, data, EAST, determine_wallpos(rc, data, side));
-	}
-	else if (side == 1)
-	{
-		if (rc->raydiry > 0)	//south wall == forest green
-			color = determine_pixel_hit(rc, data, SOUTH, determine_wallpos(rc, data, side));
-		else					//north wall == golden yellow
-			color = determine_pixel_hit(rc, data, NORTH, determine_wallpos(rc, data, side));
-	}
 
 	y = -1;
 	while (++y < HEIGHT)
@@ -94,6 +80,20 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 			/*printf("y: %i\n", y);
 			printf("drawstart: %i\n", rc->drawstart);
 			printf("drawend: %i\n", rc->drawend);*/
+			if (side == 0)
+			{
+				if (rc->raydirx < 0)	//west wall == sky blue
+					color = determine_pixel_hit(rc, data, WEST, determine_wallpos(rc, data, side));
+				else					//east wall == crimson red
+					color = determine_pixel_hit(rc, data, EAST, determine_wallpos(rc, data, side));
+			}
+			else if (side == 1)
+			{
+				if (rc->raydiry > 0)	//south wall == forest green
+					color = determine_pixel_hit(rc, data, SOUTH, determine_wallpos(rc, data, side));
+				else					//north wall == golden yellow
+					color = determine_pixel_hit(rc, data, NORTH, determine_wallpos(rc, data, side));
+			}
 			my_mlx_pixel_put(data, rc->x, y, color);
 			
 		}
