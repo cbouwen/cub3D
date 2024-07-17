@@ -109,6 +109,7 @@ void		init_data_default(t_data *data);
 void		init_player_default(t_player *player);
 void		init_rc_default(t_raycaster *rc);
 void		init_mapinfo_default(t_mapinfo *mapinfo);
+void		init_text_mlx_default(t_text_mlx *text);
 
 //parser
 /*int			parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map);

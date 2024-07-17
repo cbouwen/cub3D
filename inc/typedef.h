@@ -113,7 +113,7 @@ typedef struct	s_data
 	t_player	player;
 	t_raycaster	rc[WIDTH];
 	t_mapinfo	mapinfo;
-	t_text_mlx	text[5];
+	t_text_mlx	text[4];
 }				t_data;
 
 #endif

@@ -73,7 +73,7 @@ void	init_text_mlx_default(t_text_mlx *text)
 	int	i;
 
 	i = 0;
-	while (i < 5)
+	while (i < 4)
 	{
 		text[i].img = NULL;
 		text[i].addr = NULL;
@@ -84,5 +84,4 @@ void	init_text_mlx_default(t_text_mlx *text)
 		text[i].height = 0;
 		i++;
 	}
-	text[5] = NULL;
 }
