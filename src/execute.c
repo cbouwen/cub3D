@@ -58,6 +58,10 @@ void	prep_dda(t_data *data)
 
 void execute_map(t_data *data)
 {
+	data->mlx = mlx_init();
+	init_window(data);
+	parse_texture(data);
+	
 	parse_player(data);
 	init_raycasting(data);
 	prep_dda(data);
