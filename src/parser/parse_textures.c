@@ -29,6 +29,7 @@ void	parse_texture(t_data *data)
 	if (data->text[NORTH].width != 64 || data->text[NORTH].height != 64)
 		ft_error("Error\nTexture size not 64x64");
 	data->text[NORTH].addr = (int *)(mlx_get_data_addr(data->text[NORTH].img, &data->text[NORTH].bits_per_pixel, &data->text[NORTH].line_length, &data->text[NORTH].endian));
+	printf("test: %d\n", data->text[NORTH].addr[0]);
 
 	data->text[EAST].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.ea, &data->text[EAST].width, &data->text[EAST].height);
 	if (!data->text[EAST].img)
