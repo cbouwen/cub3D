@@ -7,6 +7,7 @@ void	parse_path(char *str, t_data *data)
 	i = 0;
 	while (str[i + 3] && (str[i + 3] != 32 && str[i + 3] != '\n'))
 		i++;
+	printf("%s\n", str);
 	if (str[0] == 'N')
 		data->mapinfo.no = ft_strndup(str + 3, i);
 	else if (str[0] == 'S')
