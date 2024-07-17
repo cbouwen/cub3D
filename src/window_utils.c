@@ -95,7 +95,7 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 		if (rc->raydirx < 0)	//west wall == sky blue
 			color = 8947883;
 		else					//east wall == crimson red
-			color = 14423100
+			color = 14423100;
 	}
 	else if (side == 1)
 	{
