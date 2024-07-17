@@ -23,16 +23,8 @@ int  handle_input(int key, t_data *data)
 	{
 		close_window(data);
 	}
-
-	int y = 0;
-	while (y < HEIGHT)
-	{
-		init_raycasting(data);
-		prep_dda(data);
-		y++;
-	}
-	/*init_raycasting(data);
-	prep_dda(data);*/
+	init_raycasting(data);
+	prep_dda(data);
 	draw_screen(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
     return (0);

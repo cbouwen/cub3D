@@ -65,14 +65,7 @@ void execute_map(t_data *data)
 
 	parse_player(data);
 
-	int y = 0;
-	while (y < HEIGHT)
-	{
-		init_raycasting(data);
-		prep_dda(data);
-		y++;
-	}
-	/*init_raycasting(data);
-	prep_dda(data);*/
+	init_raycasting(data);
+	prep_dda(data);
 	update_player(data);//Final step*/
 }
