@@ -99,6 +99,7 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 				else					//north wall == golden yellow
 					color = determine_pixel_hit(rc, data, NORTH, determine_wallpos(rc, data, side));
 			}
+			printf("color = %i\n", color);
 			my_mlx_pixel_put(data, rc->x, y, color);
 			
 		}
