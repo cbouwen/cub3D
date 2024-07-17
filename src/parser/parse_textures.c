@@ -26,6 +26,9 @@ void	parse_texture(t_data *data)
 	printf("NO: %s\n", data->mapinfo.no);
 	data->text[NORTH].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.no + 3, &data->text[NORTH].width, &data->text[NORTH].height);
 	printf("2\n");
+	int fd = open(data->mapinfo.no + 3, O_RDONLY);
+	if (fd == -1)
+		ft_error("Error opening texture... Weird. Try again!\n");
 	if (!data->text[NORTH].img)
 		ft_error("Error\nTexture not found");
 	printf("3\n");
@@ -35,21 +38,21 @@ void	parse_texture(t_data *data)
 	data->text[NORTH].addr = (int *)(mlx_get_data_addr(data->text[NORTH].img, &data->text[NORTH].bits_per_pixel, &data->text[NORTH].line_length, &data->text[NORTH].endian));
 	printf("5\n");
 
-	data->text[EAST].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.ea, &data->text[EAST].width, &data->text[EAST].height);
+	data->text[EAST].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.ea + 3, &data->text[EAST].width, &data->text[EAST].height);
 	if (!data->text[EAST].img)
 		ft_error("Error\nTexture not found");
 	if (data->text[EAST].width != 64 || data->text[EAST].height != 64)
 		ft_error("Error\nTexture size not 64x64");
 	data->text[EAST].addr = (int *)(mlx_get_data_addr(data->text[EAST].img, &data->text[EAST].bits_per_pixel, &data->text[EAST].line_length, &data->text[EAST].endian));
 
-	data->text[SOUTH].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.so, &data->text[SOUTH].width, &data->text[SOUTH].height);
+	data->text[SOUTH].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.so + 3, &data->text[SOUTH].width, &data->text[SOUTH].height);
 	if (!data->text[SOUTH].img)
 		ft_error("Error\nTexture not found");
 	if (data->text[SOUTH].width != 64 || data->text[SOUTH].height != 64)
 		ft_error("Error\nTexture size not 64x64");
 	data->text[SOUTH].addr = (int *)(mlx_get_data_addr(data->text[SOUTH].img, &data->text[SOUTH].bits_per_pixel, &data->text[SOUTH].line_length, &data->text[SOUTH].endian));
 
-	data->text[WEST].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.we, &data->text[WEST].width, &data->text[WEST].height);
+	data->text[WEST].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.we + 3, &data->text[WEST].width, &data->text[WEST].height);
 	if (!data->text[WEST].img)
 		ft_error("Error\nTexture not found");
 	if (data->text[WEST].width != 64 || data->text[WEST].height != 64)
