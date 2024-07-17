@@ -113,13 +113,8 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	double	step;
 
 	x = (int)(wallpos * data->text[side].width) % data->text[side].width;
-	step = 1.0 * data->text[side].height / rc->lineheight;
-	printf("lineheight: %i\n", rc->lineheight);
-	printf("step: %f\n", step);
-	printf("drawstart: %i\n", rc->drawstart);
-	printf("berekening: %d\n", rc->drawstart - HEIGHT / 2 + rc->lineheight / 2);
 	data->pos = (rc->drawstart - HEIGHT / 2 + rc->lineheight / 2) * step;
-	printf("pos: %f\n", data->pos);
+	int ty = rc->drawstart;
 	y = (int)data->pos & (data->text[side].height - 1);
 	data->pos += step;
 	return (data->text[side].addr[data->text[side].width * y + x]);

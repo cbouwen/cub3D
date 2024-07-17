@@ -52,7 +52,6 @@ void	prep_dda(t_data *data)
 	x = 0;
 	while (x < WIDTH)
 	{
-		init_raycasting(data);
 		calculate_dda(&data->rc[x], data->mapinfo.map);
 		x++;
 	}
@@ -65,7 +64,7 @@ void execute_map(t_data *data)
 	parse_texture(data);
 
 	parse_player(data);
-	//init_raycasting(data);
+	init_raycasting(data);
 	prep_dda(data);
 	update_player(data);//Final step*/
 }
