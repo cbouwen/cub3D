@@ -127,9 +127,10 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	texture_x = (int)(wallpos * (double)data->text[side].width) % data->text[side].width;
 	step = 1.0 * data->text[side].height / rc->lineheight;
 	texture_pos = (y + rc->lineheight / 2 - HEIGHT / 2) * step;
-	texture_y = (int)texture_pos % data->text[side].height;
+	//texture_y = (int)texture_pos % data->text[side].height;
+	texture_y = (int)texture_pos & (data->text[side].height - 1);
 
-	return (data->text[side].addr[data->text[side].width * texture_y + texture_x - 1]);
+	return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);
 }
 
 static double	determine_wallpos(t_raycaster *rc, t_data *data, int side)
