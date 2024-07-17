@@ -125,18 +125,23 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
     double	texture_pos;
 	double	wall_height;
 
+    // Calculate texture_x considering the wall position and ensuring it wraps correctly within texture width
     texture_x = (int)(wallpos * (double)data->text[side].width) % data->text[side].width;
-    wall_height = rc->drawend - rc->drawstart; // Height of the wall segment to be textured
-    step = 1.0 * data->text[side].height / wall_height; // Step to stretch the texture over the wall segment
-    texture_pos = (y - rc->drawstart) * step; // Position in texture corresponding to current y
 
-    // Ensure texture_pos is within the texture's height bounds
-    if (texture_pos >= data->text[side].height) {
-        texture_pos = data->text[side].height - 1;
-    }
+    // Calculate the height of the wall segment to be textured
+    wall_height = rc->drawend - rc->drawstart;
 
-    texture_y = (int)texture_pos; // Convert texture_pos to an integer for indexing
+    // Calculate step to stretch the texture over the wall segment
+    step = (double)data->text[side].height / wall_height;
 
+    // Calculate texture position in the texture corresponding to current y, considering the start of the wall drawing
+    texture_pos = (y - rc->drawstart) * step;
+
+    // If texture needs to wrap, use modulo. Otherwise, clamp to texture bounds.
+    // This example assumes wrapping is desired. Adjust as necessary for clamping.
+    texture_y = (int)texture_pos % data->text[side].height;
+
+    // Return the pixel from the texture to be drawn
     return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);
 }
 
