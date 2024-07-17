@@ -6,9 +6,7 @@
 	/*check notes, you dingus*/
 //}
 
-void	parse_texture(t_data *data)
-{
-	/*image maken met xpm_file_to_image + texture size check + destroy image*/
+/*image maken met xpm_file_to_image + texture size check + destroy image*/
 	/*over elke texture, init_mlx_img*/
 	/*
 		maak een image aan met mlx_xpm_file_to_image
@@ -22,6 +20,9 @@ void	parse_texture(t_data *data)
 		loop over width
 		data->img.addr[y * width + x] = temp[y * (line_length / 4) + x]
 	*/
+
+void	parse_texture(t_data *data)
+{
 	parse_texture_helper(data, NORTH, data->mapinfo.no);
 	parse_texture_helper(data, EAST, data->mapinfo.ea);
 	parse_texture_helper(data, SOUTH, data->mapinfo.so);
