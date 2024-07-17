@@ -10,7 +10,7 @@ void	define_step(t_raycaster *rc, double posx, double posy)
 	else
 	{
 		rc->stepx = 1;
-		rc->sidedistx = (rc->mapx + 1 - posx) * rc->deltadistx;
+		rc->sidedistx = (rc->mapx + 1.0 - posx) * rc->deltadistx;
 	}
 	if (rc->raydiry < 0)
 	{
@@ -20,7 +20,7 @@ void	define_step(t_raycaster *rc, double posx, double posy)
 	else
 	{
 		rc->stepy = 1;
-		rc->sidedisty = (rc->mapy + 1 - posy) * rc->deltadisty;
+		rc->sidedisty = (rc->mapy + 1.0 - posy) * rc->deltadisty;
 	}
 }
 

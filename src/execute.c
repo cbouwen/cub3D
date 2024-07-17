@@ -7,7 +7,8 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 	else
 		rc->perpwalldist = (rc->sidedisty - rc->deltadisty);
 	rc->lineheight = (int)(HEIGHT / rc->perpwalldist);
-	rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2 - 1;
+	//rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2 - 1;
+	rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2;
 	if (rc->drawstart < 0)
 		rc->drawstart = 0;
 	rc->drawend = rc->lineheight / 2 + HEIGHT / 2;
@@ -61,7 +62,7 @@ void execute_map(t_data *data)
 	data->mlx = mlx_init();
 	init_window(data);
 	parse_texture(data);
-	
+
 	parse_player(data);
 	init_raycasting(data);
 	prep_dda(data);
