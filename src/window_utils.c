@@ -1,5 +1,8 @@
 #include "../inc/cub3d.h"
 
+static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos);
+static double	determine_wallpos(t_raycaster *rc, t_data *data, int side);
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -60,32 +63,6 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 	int	y;
 	int	color;
 
-	if (side == 1)
-		color = 16711680;//random color for side. 
-	else
-		color = 16743936;//random color for side. we need to load texture here. 
-	//@Matisse: if 
-		//side == 0 and stepy == -1	==> SOUTH WALL
-		//side == 0 and stepy ==  1	==> NORTH WALL
-		//side == 1 and stepx == -1	==> WEST WALL
-		//side == 1 and stepx ==  1	==> EAST WALL
-	// Best to verify this. I did this really quick out the top of my head so might not be completely correct
-
-	/*if (side == 0)
-	{
-		if (rc->stepy < 0)		//south wall == sky blue
-			color = 8947883;
-		else					//north wall == crimson red
-			color = 14423100;
-	}
-	else if (side == 1)
-	{
-		if (rc->stepx > 0)		//west wall == forest green
-			color = 2263842;
-		else					//east wall == golden yellow
-			color = 16766720;
-	}*/
-
 	//color = 8947883;
 	//color = 14423100;
 	//color = 2263842;
@@ -93,16 +70,16 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 	if (side == 0)
 	{
 		if (rc->raydirx < 0)	//west wall == sky blue
-			color = 8947883;
+			color = determine_pixel_hit(rc, data, WEST, determine_wallpos(rc, data, side));
 		else					//east wall == crimson red
-			color = 14423100;
+			color = determine_pixel_hit(rc, data, EAST, determine_wallpos(rc, data, side));
 	}
 	else if (side == 1)
 	{
 		if (rc->raydiry > 0)	//south wall == forest green
-			color = 2263842;
+			color = determine_pixel_hit(rc, data, SOUTH, determine_wallpos(rc, data, side));
 		else					//north wall == golden yellow
-			color = 16766720;
+			color = determine_pixel_hit(rc, data, NORTH, determine_wallpos(rc, data, side));
 	}
 
 	y = -1;
@@ -121,4 +98,35 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 			
 		}
 	}
+}
+
+/*functie die int returned met de pixel die we moeten tekenen*/
+static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos)
+{
+	/*
+		int x, y nodig om de juiste pixel te vinden in de texture array
+		int step, int positie
+	*/
+
+	int		x;
+	int		y;
+	double	step;
+
+	x = (int)(wallpos * data->text[side].width) % data->text[side].width;
+	step = 1.0 * data->text[side].height / rc->lineheight;
+	data->pos = (rc->drawstart - HEIGHT / 2 + rc->lineheight / 2) * step;
+	y = (int)data->pos & (data->text[side].height - 1);
+	return (data->text[side].addr[data->text[side].width * y + x]);
+}
+
+static double	determine_wallpos(t_raycaster *rc, t_data *data, int side)
+{
+	double	wallpos;
+
+	if (side == 0)
+		wallpos = data->player.position.y + rc->perpwalldist * rc->raydiry;
+	else
+		wallpos = data->player.position.x + rc->perpwalldist * rc->raydirx;
+	wallpos -= floor(wallpos);
+	return ((int)(wallpos * data->text[side].width));
 }

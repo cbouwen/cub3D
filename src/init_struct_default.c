@@ -11,6 +11,7 @@ void	init_data_default(t_data *data)
 	data->bits_per_pixel = 0;
 	data->endian = 0;
 	data->line_length = 0;
+	data->pos = 0.0;
 	init_player_default(&data->player);
 	init_rc_default(data->rc);
 	init_mapinfo_default(&data->mapinfo);
