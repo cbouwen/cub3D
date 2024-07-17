@@ -8,11 +8,13 @@ void	calculate_lineheight(t_raycaster *rc, int side) //Will this work? FT for av
 		rc->perpwalldist = (rc->sidedisty - rc->deltadisty);
 	rc->lineheight = (int)(HEIGHT / rc->perpwalldist);
 	printf("lineheight %i = %i\n", rc->x, rc->lineheight);
-	//rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2 - 1;
-	rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2;
+	rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2 - 1;
+	printf("drawstart %i = %i\n", rc->x, rc->drawstart);
+	//rc->drawstart = -rc->lineheight / 2 + HEIGHT / 2;
 	if (rc->drawstart < 0)
 		rc->drawstart = 0;
 	rc->drawend = rc->lineheight / 2 + HEIGHT / 2;
+	printf("drawend %i = %i\n", rc->x, rc->drawend);
 	if (rc->drawend >= HEIGHT)
 		rc->drawend = HEIGHT;
 	//printf("\n\nLineheight = %i\nDrawstart = %i\nDrawend = %i\n", raycaster.lineheight,raycaster.drawstart, raycaster.drawend);
