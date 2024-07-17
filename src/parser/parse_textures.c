@@ -25,7 +25,8 @@ void	parse_texture(t_data *data)
 	
 	printf("%s", data->mapinfo.no);
 	printf("1\n");
-	data->text[NORTH].img = mlx_xpm_file_to_image(data->mlx, data->mapinfo.no, &data->text[NORTH].width, &data->text[NORTH].height);
+	//data->text[NORTH].img = 
+	mlx_xpm_file_to_image(data->mlx, data->mapinfo.no, &data->text[NORTH].width, &data->text[NORTH].height);
 	printf("2\n");
 	int fd = open(data->mapinfo.no + 3, O_RDONLY);
 	if (fd == -1)
