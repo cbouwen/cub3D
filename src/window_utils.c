@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos);
+static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos, int y);
 static double	determine_wallpos(t_raycaster *rc, t_data *data, int side);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -80,16 +80,16 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 			if (side == 0)
 			{
 				if (rc->raydirx < 0)	//west wall == sky blue
-					color = determine_pixel_hit(rc, data, WEST, determine_wallpos(rc, data, side));
+					color = determine_pixel_hit(rc, data, WEST, determine_wallpos(rc, data, side), y);
 				else					//east wall == crimson red
-					color = determine_pixel_hit(rc, data, EAST, determine_wallpos(rc, data, side));
+					color = determine_pixel_hit(rc, data, EAST, determine_wallpos(rc, data, side), y);
 			}
 			else if (side == 1)
 			{
 				if (rc->raydiry > 0)	//south wall == forest green
-					color = determine_pixel_hit(rc, data, SOUTH, determine_wallpos(rc, data, side));
+					color = determine_pixel_hit(rc, data, SOUTH, determine_wallpos(rc, data, side), y);
 				else					//north wall == golden yellow
-					color = determine_pixel_hit(rc, data, NORTH, determine_wallpos(rc, data, side));
+					color = determine_pixel_hit(rc, data, NORTH, determine_wallpos(rc, data, side), y);
 			}
 			my_mlx_pixel_put(data, rc->x, y, color);
 			
@@ -98,14 +98,14 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 }
 
 /*functie die int returned met de pixel die we moeten tekenen*/
-static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos)
+static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos, int y)
 {
 	/*
 		int x, y nodig om de juiste pixel te vinden in de texture array
 		int step, int positie
 	*/
 
-	int		x;
+	/*int		x;
 	int		y;
 	double	step;
 
@@ -115,10 +115,21 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	else
 		step = 1.0 * data->text[side].width / rc->lineheight;
 	data->pos = (rc->drawstart - HEIGHT / 2 + rc->lineheight / 2) * step;
-	int ty = rc->drawstart;
 	y = (int)data->pos & (data->text[side].height - 1);
 	data->pos += step;
-	return (data->text[side].addr[data->text[side].width * y + x]);
+	return (data->text[side].addr[data->text[side].width * y + x]);*/
+
+	int		texture_x;
+    int		texture_y;
+    double	step;
+    double	texture_pos;
+
+    texture_x = (int)(wallpos * (double)data->text[side].width) % data->text[side].width;
+    step = 1.0 * data->text[side].height / rc->lineheight;
+    texture_pos = (y + rc->lineheight / 2 - HEIGHT / 2) * step;
+    texture_y = (int)texture_pos % data->text[side].height;
+
+    return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);
 }
 
 static double	determine_wallpos(t_raycaster *rc, t_data *data, int side)
