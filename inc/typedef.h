@@ -91,7 +91,7 @@ typedef struct	s_raycaster
 typedef struct s_text_mlx
 {
 	void	*img;
-	void	*addr;
+	int		*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
