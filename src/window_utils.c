@@ -135,5 +135,5 @@ static double	determine_wallpos(t_raycaster *rc, t_data *data, int side)
 	else
 		wallpos = data->player.position.x + rc->perpwalldist * rc->raydirx;
 	wallpos -= floor(wallpos);
-	return ((int)(wallpos * data->text[side].width));
+	return (wallpos * data->text[side].width);
 }
