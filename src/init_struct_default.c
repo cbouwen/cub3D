@@ -14,7 +14,7 @@ void	init_data_default(t_data *data)
 	init_player_default(&data->player);
 	init_rc_default(data->rc);
 	init_mapinfo_default(&data->mapinfo);
-	init_text_mlx_default(&data->text);
+	init_text_mlx_default(data->text);
 }
 
 void	init_player_default(t_player *player)
