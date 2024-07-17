@@ -1,5 +1,5 @@
-NN textures/colorstone.xpm
-SO textures/greystone.xpm
+NO textures/colorstone.xpm
+NO textures/greystone.xpm
 WE textures/redbrick.xpm
 EA textures/wood.xpm
 
