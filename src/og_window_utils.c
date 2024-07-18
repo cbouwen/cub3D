@@ -132,7 +132,6 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	printf("texture_y %i = %i\n", y, texture_y);
 
 	printf("texture[%i].addr[%i] = %i\n", side, data->text[side].width * texture_y + texture_x, data->text[side].addr[data->text[side].width * texture_y + texture_x]);
-	printf
 	return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);
 }
 

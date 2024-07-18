@@ -1,5 +1,8 @@
 #include "../inc/cub3d.h"
 
+static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos, int y);
+static double	determine_wallpos(t_raycaster *rc, t_data *data, int side);
+
 /*
 	Perhaps we need to change this, I don't know yet.	
 */
@@ -134,14 +137,13 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	double	texture_pos;
 
 	texture_x = (int)(wallpos * (double)data->text[side].width) % data->text[side].width;
-	printf("texture_x %i = %i\n", rc->x,texture_x);
+	//printf("texture_x %i = %i\n", rc->x,texture_x);
 	step = 1.0 * data->text[side].height / rc->lineheight;
 	texture_pos = (y + rc->lineheight / 2 - HEIGHT / 2) * step;
 	texture_y = (int)texture_pos % data->text[side].height;
-	printf("texture_y %i = %i\n", y, texture_y);
+	//printf("texture_y %i = %i\n", y, texture_y);
 
-	printf("texture[%i].addr[%i] = %i\n", side, data->text[side].width * texture_y + texture_x, data->text[side].addr[data->text[side].width * texture_y + texture_x]);
-	printf
+	//printf("texture[%i].addr[%i] = %i\n", side, data->text[side].width * texture_y + texture_x, data->text[side].addr[data->text[side].width * texture_y + texture_x]);
 	return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);
 }
 
