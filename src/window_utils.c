@@ -117,7 +117,7 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 		int step, int positie
 	*/
 
-	int		x;
+	/*int		x;
 	int		real_y;
 	double	step;
 
@@ -131,14 +131,14 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	data->pos = (rc->drawstart - HEIGHT / 2 + rc->lineheight / 2) * step;
 	real_y = (int)data->pos & (data->text[side].height - 1);
 	data->pos += step;
-	return (data->text[side].addr[data->text[side].width * real_y + x]);
+	return (data->text[side].addr[data->text[side].width * real_y + x]);*/
 
-	/*int		texture_x;
+	int		texture_x;
 	int		texture_y;
 	double	step;
 	double	texture_pos;
 
-	texture_x = (int)(wallpos * (double)data->text[side].width) % data->text[side].width;
+	texture_x = (int)(wallpos * (double)data->text[side].width) % data->text[side].width * 2;
 	//printf("texture_x %i = %i\n", rc->x,texture_x);
 	step = 1.0 * data->text[side].height / rc->lineheight;
 	texture_pos = (y + rc->lineheight / 2 - HEIGHT / 2) * step;
@@ -146,7 +146,7 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	//printf("texture_y %i = %i\n", y, texture_y);
 
 	//printf("texture[%i].addr[%i] = %i\n", side, data->text[side].width * texture_y + texture_x, data->text[side].addr[data->text[side].width * texture_y + texture_x]);
-	return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);*/
+	return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);
 }
 
 static double	determine_wallpos(t_raycaster *rc, t_data *data, int side)
