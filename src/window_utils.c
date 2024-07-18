@@ -118,7 +118,7 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	*/
 
 	int		x;
-	int		y;
+	int		real_y;
 	double	step;
 
 	(void)y;
@@ -129,9 +129,9 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	else
 		step = 1.0 * data->text[side].width / rc->lineheight;
 	data->pos = (rc->drawstart - HEIGHT / 2 + rc->lineheight / 2) * step;
-	y = (int)data->pos & (data->text[side].height - 1);
+	real_y = (int)data->pos & (data->text[side].height - 1);
 	data->pos += step;
-	return (data->text[side].addr[data->text[side].width * y + x]);
+	return (data->text[side].addr[data->text[side].width * real_y + x]);
 
 	/*int		texture_x;
 	int		texture_y;
