@@ -66,8 +66,9 @@ void	draw_screen(t_data *data)//LodeV mentioned that for textures we can't do li
 	int	x;
 
 	x = -1;
-	while (++x < WIDTH)
-		load_texture(&data->rc[x], data->rc[x].side, data);
+	/*while (++x < WIDTH)
+		load_texture(&data->rc[x], data->rc[x].side, data);*/
+	load_texture(&data->rc[x], data->rc[x].side, data);
 }
 
 void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
