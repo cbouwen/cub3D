@@ -1,6 +1,6 @@
 #include "../inc/cub3d.h"
 
-static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos, int y);
+static int	dph(t_raycaster *rc, t_data *data, int side, double wallpos, int y);
 static double	determine_wallpos(t_raycaster *rc, t_data *data, int side);
 
 /*
@@ -110,43 +110,19 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 }
 
 /*functie die int returned met de pixel die we moeten tekenen*/
-static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos, int y)
+static int	dph(t_raycaster *rc, t_data *data, int side, double wallpos, int y)
 {
-	/*
-		int x, y nodig om de juiste pixel te vinden in de texture array
-		int step, int positie
-	*/
 
-	int		x;
-	int		real_y;
-	double	step;
-
-	(void)y;
-
-	x = (int)(wallpos) % data->text[side].width;
-	if (side == 0)
-		step = 1.0 * data->text[side].height / rc->lineheight;
-	else
-		step = 1.0 * data->text[side].width / rc->lineheight;
-	data->pos = (rc->drawstart - HEIGHT / 2 + rc->lineheight / 2) * step;
-	real_y = (int)data->pos % (data->text[side].height);
-	data->pos += step;
-	return (data->text[side].addr[data->text[side].width * real_y + x]);
-
-	/*int		texture_x;
-	int		texture_y;
+	int		tex_x;
+	int		tex_y;
 	double	step;
 	double	texture_pos;
 
-	texture_x = (int)(wallpos) % data->text[side].width;
-	//printf("texture_x %i = %i\n", rc->x,texture_x);
+	tex_x = (int)(wallpos) % data->text[side].width;
 	step = 1.0 * data->text[side].height / rc->lineheight;
 	texture_pos = (y + rc->lineheight / 2 - HEIGHT / 2) * step;
-	texture_y = (int)texture_pos % data->text[side].height;
-	//printf("texture_y %i = %i\n", y, texture_y);
-
-	//printf("texture[%i].addr[%i] = %i\n", side, data->text[side].width * texture_y + texture_x, data->text[side].addr[data->text[side].width * texture_y + texture_x]);
-	return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);*/
+	tex_y = (int)texture_pos % data->text[side].height;
+	return (data->text[side].addr[data->text[side].width * tex_y + tex_x]);
 }
 
 static double	determine_wallpos(t_raycaster *rc, t_data *data, int side)

@@ -26,7 +26,7 @@ void	parse_texture(t_data *data)
 	parse_texture_helper(data, NORTH, data->mapinfo.no);
 	parse_texture_helper(data, EAST, data->mapinfo.ea);
 	parse_texture_helper(data, SOUTH, data->mapinfo.so);
-	parse_texture_helper(data, WEST, data->mapinfo.we);	
+	parse_texture_helper(data, WEST, data->mapinfo.we);
 }
 
 void	parse_texture_helper(t_data *data, int dir, char *path)
