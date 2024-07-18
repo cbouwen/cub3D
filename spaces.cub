@@ -1,7 +1,7 @@
-NO textures/colorstone.xpm
-SO textures/greystone.xpm
-WE textures/redbrick.xpm
-EA textures/wood.xpm
+NO textures/Ceramic.xpm
+SO textures/Desert_1.xpm
+WE textures/Desert_2.xpm
+EA textures/Desert_3.xpm
 
 F 0,100,0
 C 225,30,255
