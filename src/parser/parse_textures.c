@@ -38,7 +38,7 @@ void	parse_texture_helper(t_data *data, int dir, char *path)
 	data->text[dir].img = mlx_xpm_file_to_image(data->mlx, path, &data->text[dir].width, &data->text[dir].height);
 	if (!data->text[dir].img)
 		ft_error("Error\nTexture not found");
-	if (data->text[dir].width != 2 || data->text[dir].height != 2) //nog aanpassen naar de juiste check (check tegen elkaar niet gewoon de size) || also voeg define toe aan header voor de grootte
+	if (data->text[dir].width != 64 || data->text[dir].height != 64) //nog aanpassen naar de juiste check (check tegen elkaar niet gewoon de size) || also voeg define toe aan header voor de grootte
 		ft_error("Error\nTexture size not 64x64");
 	temp = (int *)(mlx_get_data_addr(data->text[dir].img, &data->text[dir].bits_per_pixel, &data->text[dir].line_length, &data->text[dir].endian));
 	if (!temp)
