@@ -66,8 +66,7 @@ void	draw_screen(t_data *data)//LodeV mentioned that for textures we can't do li
 	int	x;
 
 	x = -1;
-	/*while (++x < WIDTH)
-		load_texture(&data->rc[x], data->rc[x].side, data);*/
+	//while (++x < WIDTH)
 	load_texture(&data->rc[x], data->rc[x].side, data);
 }
 
@@ -118,7 +117,7 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 		int step, int positie
 	*/
 
-	/*int		x;
+	int		x;
 	int		y;
 	double	step;
 
@@ -130,9 +129,9 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	data->pos = (rc->drawstart - HEIGHT / 2 + rc->lineheight / 2) * step;
 	y = (int)data->pos & (data->text[side].height - 1);
 	data->pos += step;
-	return (data->text[side].addr[data->text[side].width * y + x]);*/
+	return (data->text[side].addr[data->text[side].width * y + x]);
 
-	int		texture_x;
+	/*int		texture_x;
 	int		texture_y;
 	double	step;
 	double	texture_pos;
@@ -145,7 +144,7 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	//printf("texture_y %i = %i\n", y, texture_y);
 
 	//printf("texture[%i].addr[%i] = %i\n", side, data->text[side].width * texture_y + texture_x, data->text[side].addr[data->text[side].width * texture_y + texture_x]);
-	return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);
+	return (data->text[side].addr[data->text[side].width * texture_y + texture_x]);*/
 }
 
 static double	determine_wallpos(t_raycaster *rc, t_data *data, int side)
