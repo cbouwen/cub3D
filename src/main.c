@@ -126,15 +126,15 @@ int	main(int argc, char **argv)
 		init_data_default(&data);
 		parse_cub(argv[1], &data);//error exit check?
 
-		print_mapinfo(&data.mapinfo); //debug
-		print_map(&data.mapinfo); //debug
+		//print_mapinfo(&data.mapinfo); //debug
+		//print_map(&data.mapinfo); //debug
 
 		//execute_map(&map, mapinfo);
 		execute_map(&data);
 		
-		print_player(&data.player); //debug
+		/*print_player(&data.player); //debug
 		for (int i = 0; i < 3; i++) //debug
-			print_rc_new(&data.rc[i]);
+			print_rc_new(&data.rc[i]);*/
 
 		free_all(&data);
 	}

@@ -1,8 +1,8 @@
 #include "../inc/cub3d.h"
 
-/*
-	Perhaps we need to change this, I don't know yet.	
-*/
+static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double wallpos, int y);
+static double	determine_wallpos(t_raycaster *rc, t_data *data, int side);
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -11,9 +11,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-/*
-	This will remain the same, I don't know why we would need to change this.
-*/
 int  handle_input(int key, t_data *data)
 {
 	if (key == 119 || key == 115)
@@ -33,9 +30,6 @@ int  handle_input(int key, t_data *data)
     return (0);
 }
 
-/*
-	This is what good, maybe some more clean up needs to happen depending on what we do with the textures.
-*/
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->mlx_win);
@@ -46,9 +40,6 @@ int	close_window(t_data *data)
 	exit (1);
 }
 
-/*
-	Keep this as is, no need to change this.
-*/
 void	init_window(t_data *data)
 {
 	data->mlx_win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
