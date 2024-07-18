@@ -92,16 +92,16 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 			if (side == 0)
 			{
 				if (rc->raydirx < 0)	//west wall == sky blue
-					color = determine_pixel_hit(rc, data, WEST, determine_wallpos(rc, data, side), y);
+					color = dph(rc, data, WEST, determine_wallpos(rc, data, side), y);
 				else					//east wall == crimson red
-					color = determine_pixel_hit(rc, data, EAST, determine_wallpos(rc, data, side), y);
+					color = dph(rc, data, EAST, determine_wallpos(rc, data, side), y);
 			}
 			else if (side == 1)
 			{
 				if (rc->raydiry > 0)	//south wall == forest green
-					color = determine_pixel_hit(rc, data, SOUTH, determine_wallpos(rc, data, side), y);
+					color = dph(rc, data, SOUTH, determine_wallpos(rc, data, side), y);
 				else					//north wall == golden yellow
-					color = determine_pixel_hit(rc, data, NORTH, determine_wallpos(rc, data, side), y);
+					color = dph(rc, data, NORTH, determine_wallpos(rc, data, side), y);
 			}
 			my_mlx_pixel_put(data, rc->x, y, color);
 			
