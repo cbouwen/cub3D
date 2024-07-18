@@ -121,6 +121,8 @@ static int	determine_pixel_hit(t_raycaster *rc, t_data *data, int side, double w
 	int		y;
 	double	step;
 
+	(void)y;
+
 	x = (int)(wallpos * data->text[side].width) % data->text[side].width;
 	if (side == 0)
 		step = 1.0 * data->text[side].height / rc->lineheight;
