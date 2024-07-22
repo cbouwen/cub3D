@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:58:34 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 15:59:39 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 16:20:38 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	parse_texture_helper(t_data *data, int dir, char *path)
 
 	data->text[dir].img = mlx_xpm_file_to_image(data->mlx, path, &data->text[dir].width, &data->text[dir].height);
 	if (!data->text[dir].img)
-		ft_error("Error\nTexture not found");
-	if (data->text[dir].width != 128 || data->text[dir].height != 128) //nog aanpassen naar de juiste check (check tegen elkaar niet gewoon de size) || also voeg define toe aan header voor de grootte
+		ft_error("Error\nTexture not found\n");
+	if (data->text[dir].width != 128 || data->text[dir].height != 128)
 		ft_error("Error\nTexture size not 64x64");
 	temp = (int *)(mlx_get_data_addr(data->text[dir].img, &data->text[dir].bits_per_pixel, &data->text[dir].line_length, &data->text[dir].endian));
 	if (!temp)
