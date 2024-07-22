@@ -120,8 +120,8 @@ int main(void)
 	mlx_loop_end(test.mlx);
 	mlx_destroy_window(test.mlx, test.mlx_win);
 	mlx_destroy_image(test.mlx, test.img);
-
 	mlx_destroy_display(test.mlx);
+	free(test.addr);
 	free(test.mlx);
 	exit(0);
 
