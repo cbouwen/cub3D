@@ -71,7 +71,7 @@ void	init_mapinfo_default(t_mapinfo *mapinfo)
 
 void	init_text_mlx_default(t_text_mlx *text)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < 4)

@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:39:36 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/21 12:48:42 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 13:52:54 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	tester(t_mapinfo mapinfo)
 	printf("Color for the floor is: %i\n", mapinfo.f);
 	printf("Color for the ceiling is: %i\n", mapinfo.c);
 	printf("\nAmount of rows: %i\n", mapinfo.rows);
-	printf("Amount of colomns: %i\n\n", mapinfo.colomns);
+	printf("Amount of colomns: %i\n\n", mapinfo.columns);
 }
 
 void	test_map(t_map **map, t_mapinfo mapinfo)
@@ -33,7 +33,7 @@ void	test_map(t_map **map, t_mapinfo mapinfo)
 	while (y < mapinfo.rows)
 	{
 		x = -1;
-		while (++x < mapinfo.colomns)
+		while (++x < mapinfo.columns)
 			printf("%c", map[y][x].c);
 		printf("\n");
 		y++;
@@ -42,7 +42,9 @@ void	test_map(t_map **map, t_mapinfo mapinfo)
 
 void	test_player(t_player player)
 {
-	printf("\n\nPlayer is on coordinate[%f][%f] and his direction vector is [%f][%f]\n", player.position.x, player.position.y, player.direction.x, player.direction.y);
+	printf("\n\nPlayer is on coordinate[%f][%f] and his direction vector is [%f][%f]\n",
+			player.position.x, player.position.y, player.direction.x,
+			player.direction.y);
 	printf("Plane is on coordinates[%f][%f]\n", player.plane.x, player.plane.y);
 }
 
@@ -54,7 +56,9 @@ void	raytester(t_raycaster raycaster[])
 	printf("\n\n");
 	while (x < WIDTH)
 	{
-		printf("Percentile of screen: %f   rayDirX = %f rayDirY = %f\n", (double)x/(double)WIDTH, raycaster[x].raydirx, raycaster[x].raydiry);
+		printf("Percentile of screen: %f   rayDirX = %f rayDirY = %f\n",
+				(double)x / (double)WIDTH, raycaster[x].raydirx,
+				raycaster[x].raydiry);
 		x = x + 100;
 	}
 }

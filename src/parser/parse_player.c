@@ -4,17 +4,17 @@ void	parse_plane(t_data *data, char c)
 {
 	if (c == 'N')
 	{
-		(*data).player.plane.x = -0.66;
+		(*data).player.plane.x = 0.66;
 		(*data).player.plane.y = 0;
 	}	
 	if (c == 'E')
 	{
 		(*data).player.plane.x = 0;
-		(*data).player.direction.y = 0.66;
+		(*data).player.plane.y = 0.66;
 	}	
 	if (c == 'S')
 	{
-		(*data).player.plane.x = 0.66;
+		(*data).player.plane.x = -0.66;
 		(*data).player.plane.y = 0;
 	}
 	if (c == 'W')

@@ -1,23 +1,17 @@
 #include "../inc/cub3d.h"
 
-static int	dph(t_raycaster *rc, t_data *data, int side, double wallpos, int y);
+static int		dph(t_raycaster *rc, t_data *data, int side, double wallpos, int y);
 static double	determine_wallpos(t_raycaster *rc, t_data *data, int side);
 
-/*
-	Perhaps we need to change this, I don't know yet.	
-*/
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
-/*
-	This will remain the same, I don't know why we would need to change this.
-*/
-int  handle_input(int key, t_data *data)
+int	handle_input(int key, t_data *data)
 {
 	if (key == 119 || key == 115)
 		move(&data->player, data->mapinfo.map, key);
@@ -33,12 +27,9 @@ int  handle_input(int key, t_data *data)
 	prep_dda(data);
 	draw_screen(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
-    return (0);
+	return (0);
 }
 
-/*
-	This is what good, maybe some more clean up needs to happen depending on what we do with the textures.
-*/
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->mlx_win);
@@ -46,34 +37,33 @@ int	close_window(t_data *data)
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	free_all(data);
-	exit (1);
+	exit(1);
 }
 
-/*
-	Keep this as is, no need to change this.
-*/
 void	init_window(t_data *data)
 {
 	data->mlx_win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-	mlx_hook(data->mlx_win, 17, 1L<<17, &close_window, data);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+			&data->line_length, &data->endian);
+	mlx_hook(data->mlx_win, 17, 1L << 17, &close_window, data);
 	mlx_key_hook(data->mlx_win, handle_input, data);
 }
 
-void	draw_screen(t_data *data)//LodeV mentioned that for textures we can't do lines anymore. This means we need a nested loop here. no big changes
+void	draw_screen(t_data *data)
 {
-	int	x;
+	int x;
 
 	x = -1;
 	while (++x < WIDTH)
 		load_texture(&data->rc[x], data->rc[x].side, data);
 }
 
-void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
+void	load_texture(t_raycaster *rc, int side, t_data *data)
+//change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
 {
-	int	y;
-	int	color;
+	int y;
+	int color;
 
 	//color = 8947883;
 	//color = 14423100;
@@ -83,7 +73,7 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 	y = -1;
 	while (++y < HEIGHT)
 	{
-		if (y < HEIGHT / 2)	//not super efficient because it constantly overwrites but hey. If we want, easy fix
+		if (y < HEIGHT / 2)
 			my_mlx_pixel_put(data, rc->x, y, data->mapinfo.c);
 		if (y > HEIGHT / 2)
 			my_mlx_pixel_put(data, rc->x, y, data->mapinfo.f);
@@ -91,28 +81,29 @@ void	load_texture(t_raycaster *rc, int side, t_data *data) //change colors with 
 		{
 			if (side == 0)
 			{
-				if (rc->raydirx < 0)	//west wall == sky blue
-					color = dph(rc, data, WEST, determine_wallpos(rc, data, side), y);
-				else					//east wall == crimson red
-					color = dph(rc, data, EAST, determine_wallpos(rc, data, side), y);
+				if (rc->raydirx < 0) //west wall == sky blue
+					color = dph(rc, data, WEST, determine_wallpos(rc, data,
+								side), y);
+				else //east wall == crimson red
+					color = dph(rc, data, EAST, determine_wallpos(rc, data,
+								side), y);
 			}
 			else if (side == 1)
 			{
-				if (rc->raydiry > 0)	//south wall == forest green
-					color = dph(rc, data, SOUTH, determine_wallpos(rc, data, side), y);
-				else					//north wall == golden yellow
-					color = dph(rc, data, NORTH, determine_wallpos(rc, data, side), y);
+				if (rc->raydiry > 0) //south wall == forest green
+					color = dph(rc, data, SOUTH, determine_wallpos(rc, data,
+								side), y);
+				else //north wall == golden yellow
+					color = dph(rc, data, NORTH, determine_wallpos(rc, data,
+								side), y);
 			}
 			my_mlx_pixel_put(data, rc->x, y, color);
-			
 		}
 	}
 }
 
-/*functie die int returned met de pixel die we moeten tekenen*/
 static int	dph(t_raycaster *rc, t_data *data, int side, double wallpos, int y)
 {
-
 	int		tex_x;
 	int		tex_y;
 	double	step;

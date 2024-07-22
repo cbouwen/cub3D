@@ -43,7 +43,8 @@ void	ft_free(void *ptr)
 	exit(1);
 }
 
-int	ft_error(char *str)	//this should call on a couple of frees or remove the exit. either way this will have to receive more arguments
+int	ft_error(char *str)
+//this should call on a couple of frees or remove the exit. either way this will have to receive more arguments
 {
 	int i;
 

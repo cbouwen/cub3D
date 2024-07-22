@@ -1,4 +1,4 @@
-	/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,13 +6,13 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:41:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/06/12 15:54:32 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 13:15:42 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void print_player(t_player *player) //debug
+void	print_player(t_player *player) //debug
 {
 	printf("position.x: %f\n", player->position.x);
 	printf("position.y: %f\n", player->position.y);
@@ -22,7 +22,7 @@ void print_player(t_player *player) //debug
 	printf("plane.y: %f\n", player->plane.y);
 }
 
-void print_mapinfo(t_mapinfo *mapinfo) //debug
+void	print_mapinfo(t_mapinfo *mapinfo) //debug
 {
 	printf("no: %s\n", mapinfo->no);
 	printf("so: %s\n", mapinfo->so);
@@ -56,7 +56,7 @@ void	print_rc_new(t_raycaster *rc) //debug
 	printf("drawend = %i\n", rc->drawend);
 }
 
-void print_data(t_data *data) //debug
+void	print_data(t_data *data) //debug
 {
 	printf("mlx: %p\n", data->mlx);
 	printf("mlx_win: %p\n", data->mlx_win);
@@ -75,7 +75,7 @@ void print_data(t_data *data) //debug
 	print_mapinfo(&data->mapinfo);
 }
 
-void print_map(t_mapinfo *mapinfo) //debug
+void	print_map(t_mapinfo *mapinfo) //debug
 {
 	int i = 0;
 	int j = 0;
@@ -84,7 +84,8 @@ void print_map(t_mapinfo *mapinfo) //debug
 		j = 0;
 		while (j < mapinfo->columns)
 		{
-			printf("%d, %d, %c\n", mapinfo->map[i][j].x, mapinfo->map[i][j].y, mapinfo->map[i][j].c);
+			printf("%d, %d, %c\n", mapinfo->map[i][j].x, mapinfo->map[i][j].y,
+					mapinfo->map[i][j].c);
 			j++;
 		}
 		printf("\n");
@@ -94,9 +95,10 @@ void print_map(t_mapinfo *mapinfo) //debug
 
 int	main(int argc, char **argv)
 {
-	/*t_mapinfo		mapinfo;
-	t_map			**map;
+//	t_map	**map;
+	t_data	data;
 
+	/*t_mapinfo		mapinfo;
 	//	int		fd;
 	if (argc != 2)
 		ft_error("Wrong number of arguments. Try again!\n");
@@ -113,29 +115,21 @@ int	main(int argc, char **argv)
 	//		ft_error("Invalid map. Try again!");
 	//run_cub3d(map);
 	//	close(fd);*/
-
-	t_data	data;
-
-
 	if (argc != 2)
 		ft_error("Wrong number of arguments. Try again!\n");
 	else if (!(map_name(argv[1])))
 		ft_error("Hmmmm. Map should end with .cub. Can you make sure of that, please?\n");
 	else
 	{
-		init_data_default(&data);
-		parse_cub(argv[1], &data);//error exit check?
-
-		//print_mapinfo(&data.mapinfo); //debug
-		//print_map(&data.mapinfo); //debug
-
-		//execute_map(&map, mapinfo);
-		execute_map(&data);
-		
-		/*print_player(&data.player); //debug
+			init_data_default(&data);
+			parse_cub(argv[1], &data); //error exit check?
+			//print_mapinfo(&data.mapinfo); //debug
+			//print_map(&data.mapinfo); //debug
+			//execute_map(&map, mapinfo);
+			execute_map(&data);
+			/*print_player(&data.player); //debug
 		for (int i = 0; i < 3; i++) //debug
 			print_rc_new(&data.rc[i]);*/
-
-		free_all(&data);
+			free_all(&data);
 	}
 }
