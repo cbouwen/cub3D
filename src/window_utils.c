@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   window_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 15:55:13 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 15:55:15 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/07/22 17:12:26 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/07/22 17:14:22 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-static int		dph(t_raycaster *rc, t_data *data, int side, double wallpos, int y);
-static double	determine_wallpos(t_raycaster *rc, t_data *data, int side);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -60,76 +57,4 @@ void	init_window(t_data *data)
 			&data->line_length, &data->endian);
 	mlx_hook(data->mlx_win, 17, 1L << 17, &close_window, data);
 	mlx_key_hook(data->mlx_win, handle_input, data);
-}
-
-void	draw_screen(t_data *data)
-{
-	int x;
-
-	x = -1;
-	while (++x < WIDTH)
-		load_texture(&data->rc[x], data->rc[x].side, data);
-}
-
-void	load_texture(t_raycaster *rc, int side, t_data *data)
-{
-	int y;
-	int color;
-
-	y = -1;
-	while (++y < HEIGHT)
-	{
-		if (y < HEIGHT / 2)
-			my_mlx_pixel_put(data, rc->x, y, data->mapinfo.c);
-		if (y > HEIGHT / 2)
-			my_mlx_pixel_put(data, rc->x, y, data->mapinfo.f);
-		if (y > rc->drawstart && y < rc->drawend)
-		{
-			if (side == 0)
-			{
-				if (rc->raydirx < 0)
-					color = dph(rc, data, WEST, determine_wallpos(rc, data,
-								side), y);
-				else
-					color = dph(rc, data, EAST, determine_wallpos(rc, data,
-								side), y);
-			}
-			else if (side == 1)
-			{
-				if (rc->raydiry > 0)
-					color = dph(rc, data, SOUTH, determine_wallpos(rc, data,
-								side), y);
-				else
-					color = dph(rc, data, NORTH, determine_wallpos(rc, data,
-								side), y);
-			}
-			my_mlx_pixel_put(data, rc->x, y, color);
-		}
-	}
-}
-
-static int	dph(t_raycaster *rc, t_data *data, int side, double wallpos, int y)
-{
-	int		tex_x;
-	int		tex_y;
-	double	step;
-	double	texture_pos;
-
-	tex_x = (int)(wallpos) % data->text[side].width;
-	step = 1.0 * data->text[side].height / rc->lineheight;
-	texture_pos = (y + rc->lineheight / 2 - HEIGHT / 2) * step;
-	tex_y = (int)texture_pos % data->text[side].height;
-	return (data->text[side].addr[data->text[side].width * tex_y + tex_x]);
-}
-
-static double	determine_wallpos(t_raycaster *rc, t_data *data, int side)
-{
-	double	wallpos;
-
-	if (side == 0)
-		wallpos = data->player.position.y + rc->perpwalldist * rc->raydiry;
-	else
-		wallpos = data->player.position.x + rc->perpwalldist * rc->raydirx;
-	wallpos -= floor(wallpos);
-	return (wallpos * data->text[side].width);
 }

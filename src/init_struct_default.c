@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_default.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:55:56 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 15:56:13 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 17:02:32 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_data_default(t_data *data)
 	data->endian = 0;
 	data->line_length = 0;
 	data->pos = 0.0;
+	data->rc_x = 0;
 	init_player_default(&data->player);
 	init_rc_default(data->rc);
 	init_mapinfo_default(&data->mapinfo);

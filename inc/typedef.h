@@ -119,6 +119,7 @@ typedef struct s_data
 	int				endian;
 	int				line_length;
 	double			pos;
+	int				rc_x;
 	t_player		player;
 	t_raycaster		rc[WIDTH];
 	t_mapinfo		mapinfo;
