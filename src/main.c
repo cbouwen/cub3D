@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-int	main(int argc, char **argv)
+int	_main(int argc, char **argv)
 {
 	t_data	data;
 
@@ -28,5 +28,48 @@ int	main(int argc, char **argv)
 		//free_all(&data);
 		free_cond(&data);
 	}
+	return (0);
+}
+
+typedef struct s_test
+{
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
+	void	*addr;
+}				t_test;
+
+static void default(t_test *test)
+{
+	test->mlx = NULL;
+	test->mlx_win = NULL;
+	test->img = NULL;
+	test->addr = NULL;
+}
+
+static void print_test(t_test *test)
+{
+	if (test->mlx != NULL)
+		printf("mlx is not NULL\n");
+	if (test->mlx_win != NULL)
+		printf("mlx_win is not NULL\n");
+	if (test->img != NULL)
+		printf("img is not NULL\n");
+	if (test->addr != NULL)
+		printf("addr is not NULL\n");
+}
+
+int main(void)
+{
+	t_test test;
+
+	default(&test);
+
+	print_test(&test);
+
+	test.mlx = mlx_init();
+
+	print_test(&test);
+
 	return (0);
 }
