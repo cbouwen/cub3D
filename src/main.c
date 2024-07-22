@@ -12,7 +12,7 @@
 
 #include "../inc/cub3d.h"
 
-int	_main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
@@ -85,7 +85,7 @@ static void print_test(t_test *test)
 		printf("lin_len is 0\n");
 }
 
-int main(void)
+int _main(void)
 {
 	t_test test;
 
@@ -121,7 +121,6 @@ int main(void)
 	mlx_destroy_window(test.mlx, test.mlx_win);
 	mlx_destroy_image(test.mlx, test.img);
 	mlx_destroy_display(test.mlx);
-	free(test.addr);
 	free(test.mlx);
 	exit(0);
 
