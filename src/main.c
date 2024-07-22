@@ -51,12 +51,20 @@ static void print_test(t_test *test)
 {
 	if (test->mlx != NULL)
 		printf("mlx is not NULL\n");
+	else
+		printf("mlx is NULL\n");
 	if (test->mlx_win != NULL)
 		printf("mlx_win is not NULL\n");
+	else
+		printf("mlx_win is NULL\n");
 	if (test->img != NULL)
 		printf("img is not NULL\n");
+	else
+		printf("img is NULL\n");
 	if (test->addr != NULL)
 		printf("addr is not NULL\n");
+	else
+		printf("addr is NULL\n");
 }
 
 int main(void)
