@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 15:44:38 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 15:49:08 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 void	move(t_player *player, t_map **map, int x)
 {
-	if (x == 119) //up
+	if (x == 119)
 	{
 		if (map[(int)(player->position.y)][(int)(player->position.x
 				+ player->direction.x * MOVESPEED)].c != '1')
@@ -11,7 +23,7 @@ void	move(t_player *player, t_map **map, int x)
 				* MOVESPEED)][(int)(player->position.x)].c != '1')
 			player->position.y += player->direction.y * MOVESPEED;
 	}
-	if (x == 115) //down
+	if (x == 115)
 	{
 		if (map[(int)(player->position.y)][(int)(player->position.x
 				- player->direction.x * MOVESPEED)].c != '1')
@@ -24,19 +36,19 @@ void	move(t_player *player, t_map **map, int x)
 
 void	strafe(t_player *player, t_map **map, int x)
 {
-	if (x == 100) //strafe right
+	if (x == 100)
 	{
 		if (map[(int)player->position.y][(int)(player->position.x
-				+ player->plane.x * MOVESPEED)].c != '1')
+			+ player->plane.x * MOVESPEED)].c != '1')
 			player->position.x += player->plane.x * MOVESPEED;
 		if (map[(int)(player->position.y + player->plane.y
 				* MOVESPEED)][(int)player->position.x].c != '1')
 			player->position.y += player->plane.y * MOVESPEED;
 	}
-	if (x == 97) //strafe left
+	if (x == 97)
 	{
 		if (map[(int)player->position.y][(int)(player->position.x
-				- player->plane.x * MOVESPEED)].c != '1')
+			- player->plane.x * MOVESPEED)].c != '1')
 			player->position.x -= player->plane.x * MOVESPEED;
 		if (map[(int)(player->position.y - player->plane.y
 				* MOVESPEED)][(int)player->position.x].c != '1')
@@ -51,27 +63,23 @@ void	rotate_player(t_player *player, int x)
 
 	olddirx = player->direction.x;
 	oldplanex = player->plane.x;
-	if (x == 65361) //rotate right
+	if (x == 65361)
 	{
-		player->direction.x = player->direction.x * cos(-ROTSPEED)
-			- player->direction.y * sin(-ROTSPEED);
-		player->direction.y = olddirx * sin(-ROTSPEED) + player->direction.y
-			* cos(-ROTSPEED);
-		player->plane.x = player->plane.x * cos(-ROTSPEED) - player->plane.y
-			* sin(-ROTSPEED);
-		player->plane.y = oldplanex * sin(-ROTSPEED) + player->plane.y
-			* cos(-ROTSPEED);
+		player->direction.x = player->direction.x * cos(-RS)
+			- player->direction.y * sin(-RS);
+		player->direction.y = olddirx * sin(-RS) + player->direction.y
+			* cos(-RS);
+		player->plane.x = player->plane.x * cos(-RS) - player->plane.y
+			* sin(-RS);
+		player->plane.y = oldplanex * sin(-RS) + player->plane.y * cos(-RS);
 	}
-	else //rotate left
+	else
 	{
-		player->direction.x = player->direction.x * cos(ROTSPEED)
-			- player->direction.y * sin(ROTSPEED);
-		player->direction.y = olddirx * sin(ROTSPEED) + player->direction.y
-			* cos(ROTSPEED);
-		player->plane.x = player->plane.x * cos(ROTSPEED) - player->plane.y
-			* sin(ROTSPEED);
-		player->plane.y = oldplanex * sin(ROTSPEED) + player->plane.y
-			* cos(ROTSPEED);
+		player->direction.x = player->direction.x * cos(RS)
+			- player->direction.y * sin(RS);
+		player->direction.y = olddirx * sin(RS) + player->direction.y * cos(RS);
+		player->plane.x = player->plane.x * cos(RS) - player->plane.y * sin(RS);
+		player->plane.y = oldplanex * sin(RS) + player->plane.y * cos(RS);
 	}
 }
 

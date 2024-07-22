@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 15:31:22 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 15:31:26 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	map_errors(t_mapchecker *elements)
@@ -41,18 +53,6 @@ void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 	}
 }
 
-void print_mapchecker(t_mapchecker elements) //debug
-{
-	printf("no: %d\n", elements.no);
-	printf("so: %d\n", elements.so);
-	printf("we: %d\n", elements.we);
-	printf("ea: %d\n", elements.ea);
-	printf("c: %d\n", elements.c);
-	printf("f: %d\n", elements.f);
-	printf("all_eles: %d\n", elements.all_eles);
-	printf("duplicate: %d\n", elements.duplicate);
-}
-
 int	parse_cub(char *argv, t_data *data)
 {
 	t_mapchecker	elements;
@@ -65,14 +65,10 @@ int	parse_cub(char *argv, t_data *data)
 	parse_input(fd, data, &elements);
 	close(fd);
 	map_errors(&elements);
-
-	print_mapchecker(elements); //debug
-
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		ft_error("Error opening map.. Weird. Try again!\n");
 	parse_map(fd, data);
 	close(fd);
-	//parse_texture(data);
 	return (0);
 }

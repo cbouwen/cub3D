@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:15:54 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/23 16:23:03 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 15:43:03 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ void	ft_free(void *ptr)
 }
 
 int	ft_error(char *str)
-//this should call on a couple of frees or remove the exit. either way this will have to receive more arguments
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

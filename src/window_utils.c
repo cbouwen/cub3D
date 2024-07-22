@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 15:55:13 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 15:55:15 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 static int		dph(t_raycaster *rc, t_data *data, int side, double wallpos, int y);
@@ -60,15 +72,9 @@ void	draw_screen(t_data *data)
 }
 
 void	load_texture(t_raycaster *rc, int side, t_data *data)
-//change colors with textures. Add line for Ceiling and Floor. Maybe move this to utils?
 {
 	int y;
 	int color;
-
-	//color = 8947883;
-	//color = 14423100;
-	//color = 2263842;
-	//color = 16766720;
 
 	y = -1;
 	while (++y < HEIGHT)
@@ -81,19 +87,19 @@ void	load_texture(t_raycaster *rc, int side, t_data *data)
 		{
 			if (side == 0)
 			{
-				if (rc->raydirx < 0) //west wall == sky blue
+				if (rc->raydirx < 0)
 					color = dph(rc, data, WEST, determine_wallpos(rc, data,
 								side), y);
-				else //east wall == crimson red
+				else
 					color = dph(rc, data, EAST, determine_wallpos(rc, data,
 								side), y);
 			}
 			else if (side == 1)
 			{
-				if (rc->raydiry > 0) //south wall == forest green
+				if (rc->raydiry > 0)
 					color = dph(rc, data, SOUTH, determine_wallpos(rc, data,
 								side), y);
-				else //north wall == golden yellow
+				else
 					color = dph(rc, data, NORTH, determine_wallpos(rc, data,
 								side), y);
 			}

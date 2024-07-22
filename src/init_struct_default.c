@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_struct_default.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 15:55:56 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 15:56:13 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
@@ -71,7 +81,7 @@ void	init_mapinfo_default(t_mapinfo *mapinfo)
 
 void	init_text_mlx_default(t_text_mlx *text)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)

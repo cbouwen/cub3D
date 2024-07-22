@@ -1,25 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_textures.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 15:58:34 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 15:59:39 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
-
-//void	text_file_error_check(t_data *data)
-//{
-	/*do something*/
-	/*check notes, you dingus*/
-//}
-
-/*image maken met xpm_file_to_image + texture size check + destroy image*/
-	/*over elke texture, init_mlx_img*/
-	/*
-		maak een image aan met mlx_xpm_file_to_image
-		als de image niet aangemaakt kan worden, geef een error
-		als de image wel aangemaakt kan worden, check de grootte van de image
-		als de grootte van de image niet klopt, geef een error
-		als de grootte van de image wel klopt, maak een mlx_img aan met mlx_get_data_addr
-		slaag de addr op in een temp variable
-		calloc de image in de data struct (H * W * sizeof(int))
-		loop over height
-		loop over width
-		data->img.addr[y * width + x] = temp[y * (line_length / 4) + x]
-	*/
 
 void	parse_texture(t_data *data)
 {
@@ -32,9 +23,9 @@ void	parse_texture(t_data *data)
 void	parse_texture_helper(t_data *data, int dir, char *path)
 {
 	int	*temp;
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	data->text[dir].img = mlx_xpm_file_to_image(data->mlx, path, &data->text[dir].width, &data->text[dir].height);
 	if (!data->text[dir].img)
 		ft_error("Error\nTexture not found");
@@ -54,4 +45,3 @@ void	parse_texture_helper(t_data *data, int dir, char *path)
 			data->text[dir].addr[y * data->text[dir].width + x] = temp[y * (data->text[dir].line_length / 4) + x];
 	}
 }
-

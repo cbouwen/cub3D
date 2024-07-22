@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 15:41:53 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 15:41:55 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 void	calculate_lineheight(t_raycaster *rc, int side)
@@ -57,7 +69,7 @@ void	execute_map(t_data *data)
 	data->mlx = mlx_init();
 	init_window(data);
 	parse_texture(data);
-	parse_player(data);
+	find_player(data);
 	init_raycasting(data);
 	prep_dda(data);
 	update_player(data);

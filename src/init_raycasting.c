@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_raycasting.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 15:42:16 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 15:42:17 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 void	define_step(t_raycaster *rc, double posx, double posy)
@@ -54,7 +66,7 @@ void	setup_ray_dir(t_raycaster *rc, t_player *player, int x)
 
 void	init_raycasting(t_data *data)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (x < WIDTH)

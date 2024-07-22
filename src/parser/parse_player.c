@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_player.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 15:36:26 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 15:37:31 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	parse_plane(t_data *data, char c)
@@ -50,8 +62,8 @@ void	parse_direction(t_data *data, char c)
 
 void	find_player(t_data *data)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	t_map	**map;
 
 	y = -1;
@@ -61,7 +73,7 @@ void	find_player(t_data *data)
 		x = -1;
 		while (++x < data->mapinfo.columns)
 		{
-			if ((map[y][x].c) != '0' && map[y][x].c != '1' && map[y][x].c != ' ')
+			if (map[y][x].c != '0' && map[y][x].c != '1' && map[y][x].c != ' ')
 			{
 				(*data).player.position.x = x + 0.51;
 				(*data).player.position.y = y + 0.51;
@@ -71,10 +83,4 @@ void	find_player(t_data *data)
 			}
 		}
 	}
-}
-
-void	parse_player(t_data *data)//we can probably leave this out
-{
-	find_player(data);
-//	test_player(*player);//	
 }

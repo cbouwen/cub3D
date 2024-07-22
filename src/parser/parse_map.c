@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 15:33:50 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 15:50:11 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	set_remainder(t_data *data, int *x, int y)
@@ -66,5 +78,4 @@ void	parse_map(int fd, t_data *data)
 	fill_map(fd, data);
 	if (!valid_map(data))
 		ft_error("Invalid map\n");
-	test_map(data->mapinfo.map, data->mapinfo);
 }
