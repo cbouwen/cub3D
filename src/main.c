@@ -67,7 +67,7 @@ static void print_test(t_test *test)
 		printf("addr is NULL\n");
 }
 
-static int close_window(t_test *test)
+static int close_window_test(t_test *test)
 {
 	//this combination is needed to free the mlx pointer.
 	//if you only free mlx, it will still leak
@@ -82,22 +82,12 @@ static int close_window(t_test *test)
 	exit(0);
 }
 
-static int	handle_input(int key, t_data *data)
+static int	handle_input_test(int key, t_test *test)
 {
-	if (key == 119 || key == 115)
-		move(&data->player, data->mapinfo.map, key);
-	if (key == 97 || key == 100)
-		strafe(&data->player, data->mapinfo.map, key);
-	if (key == 65361 || key == 65363)
-		rotate_player(&data->player, key);
 	if (key == 65307)
 	{
-		close_window(data);
+		close_window_test(data);
 	}
-	init_raycasting(data);
-	prep_dda(data);
-	draw_screen(data);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	return (0);
 }
 
@@ -124,7 +114,7 @@ int main(void)
 	print_test(&test);
 	printf("\n");
 
-	mlx_key_hook(test.mlx_win, handle_input, test);
+	mlx_key_hook(test.mlx_win, handle_input_test, test);
 	mlx_loop(test.mlx);
 
 	return (0);

@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	_handle_input(int key, t_data *data)
+int	handle_input(int key, t_data *data)
 {
 	if (key == 119 || key == 115)
 		move(&data->player, data->mapinfo.map, key);
@@ -39,7 +39,7 @@ int	_handle_input(int key, t_data *data)
 	return (0);
 }
 
-int	_close_window(t_data *data)
+int	close_window(t_data *data)
 {
 	free_cond(data);
 	mlx_destroy_window(data->mlx, data->mlx_win);
