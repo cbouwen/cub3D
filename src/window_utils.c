@@ -39,7 +39,7 @@ int	handle_input(int key, t_data *data)
 	return (0);
 }
 
-int	close_window(t_data *data)
+int	_close_window(t_data *data)
 {
 	free_cond(data);
 	mlx_destroy_window(data->mlx, data->mlx_win);
