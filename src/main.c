@@ -88,8 +88,11 @@ int main(void)
 
 	//this combination is needed to free the mlx pointer.
 	//if you only free mlx, it will still leak
-	mlx_destroy_display(test.mlx);
+	//order of operations is also important
+	//if you destroy the display first, or free mlx first, it will crash
 	mlx_destroy_window(test.mlx, test.mlx_win);
+
+	mlx_destroy_display(test.mlx);
 	free(test.mlx);
 
 	return (0);
