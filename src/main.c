@@ -37,6 +37,9 @@ typedef struct s_test
 	void	*mlx_win;
 	void	*img;
 	void	*addr;
+	int		bpp;
+	int		endian;
+	int		lin_len;
 }				t_test;
 
 static void default_init(t_test *test)
@@ -45,6 +48,9 @@ static void default_init(t_test *test)
 	test->mlx_win = NULL;
 	test->img = NULL;
 	test->addr = NULL;
+	test->bpp = 0;
+	test->endian = 0;
+	test->lin_len = 0;
 }
 
 static void print_test(t_test *test)
@@ -65,6 +71,18 @@ static void print_test(t_test *test)
 		printf("addr is not NULL\n");
 	else
 		printf("addr is NULL\n");
+	if (test->bpp != 0)
+		printf("bpp is not 0\n");
+	else
+		printf("bpp is 0\n");
+	if (test->endian != 0)
+		printf("endian is not 0\n");
+	else
+		printf("endian is 0\n");
+	if (test->lin_len != 0)
+		printf("lin_len is not 0\n");
+	else
+		printf("lin_len is 0\n");
 }
 
 int main(void)
@@ -86,7 +104,12 @@ int main(void)
 	print_test(&test);
 	printf("\n");
 
+	//change is detected, test.img is no longer NULL
 	test.img = mlx_new_image(test.mlx, 1920, 1080);
+	print_test(&test);
+	printf("\n");
+
+	test.addr = mlx_get_data_addr(test.img, &test.bpp, &test.lin_len, &test.endian);
 	print_test(&test);
 	printf("\n");
 
