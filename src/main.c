@@ -79,6 +79,7 @@ int main(void)
 	test.mlx = mlx_init();
 	print_test(&test);
 
+	mlx_destroy_display(test.mlx);
 	free(test.mlx);
 
 	return (0);
