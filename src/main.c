@@ -86,6 +86,13 @@ int main(void)
 	print_test(&test);
 	printf("\n");
 
+	test.img = mlx_new_image(test.mlx, 1920, 1080);
+	print_test(&test);
+	printf("\n");
+
+
+	mlx_loop(test.mlx);
+
 	//this combination is needed to free the mlx pointer.
 	//if you only free mlx, it will still leak
 	//order of operations is also important
