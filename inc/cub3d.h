@@ -112,8 +112,6 @@ void	init_rc_default(t_raycaster *rc);
 void	init_mapinfo_default(t_mapinfo *mapinfo);
 void	init_text_mlx_default(t_text_mlx *text);
 
-
-
 void	test_map(t_map **map, t_mapinfo mapinfo);
 //parser
 /*int			parse_cub(char *argv, t_mapinfo *mapinfo, t_map ***map);

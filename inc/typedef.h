@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   typedef.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 17:18:28 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/22 17:19:25 by cbouwen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
@@ -39,15 +50,15 @@ typedef struct s_map
 //struct to store path names and general map info
 typedef struct s_mapinfo
 {
-	char			*no;
-	char			*so;
-	char			*we;
-	char			*ea;
-	int f; //unsigned long
-	int				c;
-	int				rows;
-	int				columns;
-	t_map			**map;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		f;
+	int		c;
+	int		rows;
+	int		columns;
+	t_map	**map;
 }					t_mapinfo;
 
 //simple x,y struct
@@ -68,23 +79,23 @@ typedef struct s_player
 //struct to store all raycasting calculations
 typedef struct s_raycaster
 {
-	double	camera_x;
-	double	raydirx;
-	double	raydiry;
-	double	sidedistx;
-	double	sidedisty;
-	double	deltadistx;
-	double	deltadisty;
-	int		stepx;
-	int		stepy;
-	int		mapx;
-	int		mapy;
-	int		side;           
-	double	perpwalldist;
-	int		lineheight;     
-	int		drawstart;
-	int		drawend;
-	int		x;
+	double			camera_x;
+	double			raydirx;
+	double			raydiry;
+	double			sidedistx;
+	double			sidedisty;
+	double			deltadistx;
+	double			deltadisty;
+	int				stepx;
+	int				stepy;
+	int				mapx;
+	int				mapy;
+	int				side;
+	double			perpwalldist;
+	int				lineheight;
+	int				drawstart;
+	int				drawend;
+	int				x;
 }					t_raycaster;
 
 //struct to store texture data
