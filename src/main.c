@@ -39,7 +39,7 @@ typedef struct s_test
 	void	*addr;
 }				t_test;
 
-static void default(t_test *test)
+static void default_init(t_test *test)
 {
 	test->mlx = NULL;
 	test->mlx_win = NULL;
@@ -71,7 +71,7 @@ int main(void)
 {
 	t_test test;
 
-	default(&test);
+	default_init(&test);
 
 	print_test(&test);
 
