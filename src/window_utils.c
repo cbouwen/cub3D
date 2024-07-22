@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	handle_input(int key, t_data *data)
+int	_handle_input(int key, t_data *data)
 {
 	if (key == 119 || key == 115)
 		move(&data->player, data->mapinfo.map, key);
