@@ -74,11 +74,19 @@ int main(void)
 	default_init(&test);
 
 	print_test(&test);
+	printf("\n");
 
 	//change is detected, test_mlx is no longer NULL
 	test.mlx = mlx_init();
 	print_test(&test);
+	printf("\n");
 
+	test.mlx_win = mlx_new_window(test.mlx, 1920, 1080, "Hello world!");
+	print_test(&test);
+	printf("\n");
+
+	//this combination is needed to free the mlx pointer.
+	//if you only free mlx, it will still leak
 	mlx_destroy_display(test.mlx);
 	free(test.mlx);
 
