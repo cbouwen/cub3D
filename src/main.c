@@ -98,6 +98,7 @@ int main(void)
 	//order of operations is also important
 	//if you destroy the display first, or free mlx first, it will crash
 	mlx_destroy_window(test.mlx, test.mlx_win);
+	mlx_destroy_image(test.mlx, test.img);
 
 	mlx_destroy_display(test.mlx);
 	free(test.mlx);
