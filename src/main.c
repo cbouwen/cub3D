@@ -67,30 +67,6 @@ static void print_test(t_test *test)
 		printf("addr is NULL\n");
 }
 
-static int close_window_test(t_test *test)
-{
-	//this combination is needed to free the mlx pointer.
-	//if you only free mlx, it will still leak
-	//order of operations is also important
-	//if you destroy the display first, or free mlx first, it will crash
-	mlx_loop_end(test->mlx);
-	mlx_destroy_window(test->mlx, test->mlx_win);
-	mlx_destroy_image(test->mlx, test->img);
-
-	mlx_destroy_display(test->mlx);
-	free(test->mlx);
-	exit(0);
-}
-
-static int	handle_input_test(int key, t_test *test)
-{
-	if (key == 65307)
-	{
-		close_window_test(data);
-	}
-	return (0);
-}
-
 int main(void)
 {
 	t_test test;
@@ -114,8 +90,17 @@ int main(void)
 	print_test(&test);
 	printf("\n");
 
-	mlx_key_hook(test.mlx_win, handle_input_test, test);
-	mlx_loop(test.mlx);
+	//this combination is needed to free the mlx pointer.
+	//if you only free mlx, it will still leak
+	//order of operations is also important
+	//if you destroy the display first, or free mlx first, it will crash
+	mlx_loop_end(test->mlx);
+	mlx_destroy_window(test->mlx, test->mlx_win);
+	mlx_destroy_image(test->mlx, test->img);
+
+	mlx_destroy_display(test->mlx);
+	free(test->mlx);
+	exit(0);
 
 	return (0);
 }
