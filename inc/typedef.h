@@ -68,32 +68,23 @@ typedef struct s_player
 //struct to store all raycasting calculations
 typedef struct s_raycaster
 {
-	double camera_x; //what percentile of the screen are we on?
-	double raydirx;  //using camera_x,
-//		where on the screen is the ray casting to?
-	double			raydiry;
-	double sidedistx;
-		//distance from player position to first x side encountered
-	double			sidedisty;
-	double deltadistx;
-		//distance the ray has to travel to go from one x-side of a tile to the other x-side of the tile.
-	double			deltadisty;
-	int stepx;
-		//what direction are we moving in? Left or right (for y values: up or down)? Expressed in positive or neg 1
-	int				stepy;
-	int mapx;
-		//what tile is the player position in? !!different than player position. player position is position in tile. mapx is tile in map
-	int				mapy;
-	int side;           
-		//what side of the wall is hit? need this to know what texture to print
-	double perpwalldist;
-		//extra thing to avoid fisheye effect. With this we cast rays from a camera plane,
-//		ie a line instead of one point (the player position)
-	int lineheight;     
-		//calculation of the size of the line to cast by using the length of the ray
-	int drawstart;       //calculate lowest and highest pixel
-	int				drawend;
-	int x; //added this to use the draw ft
+	double	camera_x;
+	double	raydirx;
+	double	raydiry;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	int		stepx;
+	int		stepy;
+	int		mapx;
+	int		mapy;
+	int		side;           
+	double	perpwalldist;
+	int		lineheight;     
+	int		drawstart;
+	int		drawend;
+	int		x;
 }					t_raycaster;
 
 //struct to store texture data
