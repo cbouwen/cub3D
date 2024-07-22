@@ -75,9 +75,11 @@ int main(void)
 
 	print_test(&test);
 
+	//change is detected, test_mlx is no longer NULL
 	test.mlx = mlx_init();
-
 	print_test(&test);
+
+	free(test.mlx);
 
 	return (0);
 }
