@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapinfo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:55:36 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/07/22 15:31:55 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 19:29:14 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	parse_color_values(int *X, char *str, int i)
 		i++;
 	blue = ft_atoi(str + ++i);
 	if (color_range(red, blue, green) == 0)
-		ft_error("Wrong color ranges\n");
+		ft_error("Wrong color ranges\n", NULL);
 	*X = (red << 16) | (green << 8) | blue;
 }
 

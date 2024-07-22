@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:58:34 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 16:41:08 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 19:29:52 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	parse_texture(t_data *data)
 void	texture_error(t_data *data, int *temp, int dir)
 {
 	if (!data->text[dir].img)
-		ft_error("Error\nTexture not found\n");
+		ft_error("Error\nTexture not found\n", data);
 	if (data->text[dir].width != 128 || data->text[dir].height != 128)
-		ft_error("Error\nTexture size not 64x64\n");
+		ft_error("Error\nTexture size not 64x64\n", data);
 	if (!temp)
-		ft_error("Error\nTexture not found\n");
+		ft_error("Error\nTexture not found\n", data);
 }
 
 void	parse_texture_helper(t_data *data, int dir, char *path)
@@ -45,7 +45,7 @@ void	parse_texture_helper(t_data *data, int dir, char *path)
 	data->text[dir].addr = (int *)ft_calloc(data->text[dir].width
 			* data->text[dir].height, sizeof(int));
 	if (!data->text[dir].addr)
-		ft_error("Error\nCalloc failed\n");
+		ft_error("Error\nCalloc failed\n", data);
 	y = -1;
 	while (++y < data->text[dir].height)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:15:54 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 15:43:03 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 19:49:10 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,7 @@ int	map_name(char *str)
 	return (0);
 }
 
-void	ft_free_array(t_map **map, int count)
-{
-	int	i;
-
-	i = -1;
-	while (++i < count)
-		free(map[i]);
-	free(map);
-}
-
-void	ft_free(void *ptr)
-{
-	if (ptr)
-		free(ptr);
-	write(2, "Error\n", 6);
-	exit(1);
-}
-
-int	ft_error(char *str)
+int	ft_error(char *str, t_data *data)
 {
 	int	i;
 
@@ -53,14 +35,8 @@ int	ft_error(char *str)
 		write(2, &str[i], 1);
 		i++;
 	}
+	(void)data;
+	/*if (data)
+		free_cond(data);*/
 	exit(1);
-}
-
-void	free_all(t_data *data)
-{
-	ft_free_array(data->mapinfo.map, data->mapinfo.rows);
-	free(data->mapinfo.no);
-	free(data->mapinfo.so);
-	free(data->mapinfo.we);
-	free(data->mapinfo.ea);
 }

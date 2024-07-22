@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 15:47:29 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 19:28:05 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@
 int		map_name(char *str);
 void	ft_free(void *ptr);
 int		check_for_map(char *str);
-int		ft_error(char *str);
+int		ft_error(char *str, t_data *data);
 void	ft_free_array(t_map **map, int count);
 void	free_all(t_data *data);
+void	destroy_textures(t_data *data);
+void	free_cond(t_data *data);
 
 /*parser.c*/
 int		parse_cub(char *argv, t_data *data);

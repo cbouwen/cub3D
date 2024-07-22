@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:33:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 15:50:11 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/22 19:29:24 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void	parse_map(int fd, t_data *data)
 	data->mapinfo.map = init_map(data);
 	fill_map(fd, data);
 	if (!valid_map(data))
-		ft_error("Invalid map\n");
+		ft_error("Invalid map\n", data);
 }
