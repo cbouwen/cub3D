@@ -21,8 +21,6 @@ static	void	parse_texture_helper(t_data *data, int dir, char *path)
 	check_texture_file(path);
 	create_image(data, dir, path);
 	temp = get_data_addr(data, dir);
-	printf("width: %d\n", data->text[dir].width);
-	printf("height: %d\n", data->text[dir].height);
 	check_texture_size(data, dir);
 	data->text[dir].addr = (int *)ft_calloc(data->text[dir].width
 			* data->text[dir].height, sizeof(int));
