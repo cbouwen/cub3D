@@ -37,7 +37,7 @@ int	*get_data_addr(t_data *data, int dir)
 	temp = (int *)mlx_get_data_addr(data->text[dir].img,
 			&data->text[dir].bits_per_pixel, &data->text[dir].line_length,
 			&data->text[dir].endian);
-	if (!data->text[dir].addr)
+	if (!temp)
 		ft_error("Error\nProblem with getting data_addr for texture.\n", data);
 	return (temp);
 }

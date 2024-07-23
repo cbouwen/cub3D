@@ -32,7 +32,7 @@
 # define FOV_ANGLE 66
 # define MOVESPEED 0.40
 # define RS 0.30
-# define TEX_SIZE 128
+# define TEX_SIZE 64
 
 //utils
 int		map_name(char *str);
