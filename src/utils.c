@@ -32,7 +32,9 @@ int	map_name(char *str)
 	Als we de error tegenkomen als de MLX al bestaat, dan leakt de mlx.
 	Redelijk simpel op te lossen door een aparte free functie te maken voor errors.
 
-	Als we de error tegenkomen als de MLX nog niet bestaat, dan leaken er andere dingen.
+	Er zit ook een leak in de parse_path functie in mapinfo.c.
+	Die leak is er bij mijn testen altijd als er een error is, niet als het succesvol is.
+	Geen idee waarom.
 	De meest voorkomende leak zit in parse_path in mapinfo.c.
 	Als we een error tegenkomen in parse_path, dan leakt de ft_strndup.
 	Ik weet niet al te goed hoe ik dit moet oplossen tbh.
