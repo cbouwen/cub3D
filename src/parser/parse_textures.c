@@ -20,28 +20,16 @@ void	parse_texture(t_data *data)
 	parse_texture_helper(data, WEST, data->mapinfo.we);
 }
 
-void	texture_error(t_data *data, int *temp, int dir)
-{
-	if (!data->text[dir].img)
-		ft_error("Error\nTexture not found\n", data);
-	if (data->text[dir].width != 128 || data->text[dir].height != 128)
-		ft_error("Error\nTexture size not 64x64\n", data);
-	if (!temp)
-		ft_error("Error\nTexture not found\n", data);
-}
-
 void	parse_texture_helper(t_data *data, int dir, char *path)
 {
 	int	*temp;
 	int	x;
 	int	y;
 
-	data->text[dir].img = mlx_xpm_file_to_image(data->mlx, path,
-			&data->text[dir].width, &data->text[dir].height);
-	temp = (int *)(mlx_get_data_addr(data->text[dir].img,
-				&data->text[dir].bits_per_pixel, &data->text[dir].line_length,
-				&data->text[dir].endian));
-	texture_error(data, temp, dir);
+	check_texture_file(path);
+	create_image(data, dir, path);
+	temp = get_data_addr(data, dir);
+	check_texture_size(data, dir);
 	data->text[dir].addr = (int *)ft_calloc(data->text[dir].width
 			* data->text[dir].height, sizeof(int));
 	if (!data->text[dir].addr)

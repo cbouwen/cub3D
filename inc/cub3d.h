@@ -32,6 +32,7 @@
 # define FOV_ANGLE 66
 # define MOVESPEED 0.40
 # define RS 0.30
+# define TEX_SIZE 64
 
 //utils
 int		map_name(char *str);
@@ -50,6 +51,12 @@ void	parse_mapinfo(char *str, t_data *data);
 void	map_errors(t_mapchecker *elements);
 void	parse_texture(t_data *data);
 void	parse_texture_helper(t_data *data, int dir, char *path);
+
+/*parse_texture_error.c*/
+void	check_texture_file(char *path);
+void	create_image(t_data *data, int dir, char *path);
+int		*get_data_addr(t_data *data, int dir);
+void	check_texture_size(t_data *data, int dir);
 
 /*mapinfo.c*/
 void	check_input(char *str, t_data *data, t_mapchecker *elements);
