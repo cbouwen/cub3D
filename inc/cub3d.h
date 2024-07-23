@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 15:47:29 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/23 11:04:11 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-//# include "typedefs.h"
 # include "typedef.h"
 
 # define HEIGHT 1080
@@ -32,14 +31,17 @@
 # define FOV_ANGLE 66
 # define MOVESPEED 0.40
 # define RS 0.30
+# define TEX_SIZE 64
 
 //utils
 int		map_name(char *str);
 void	ft_free(void *ptr);
 int		check_for_map(char *str);
-int		ft_error(char *str);
+int		ft_error(char *str, t_data *data);
 void	ft_free_array(t_map **map, int count);
 void	free_all(t_data *data);
+void	destroy_textures(t_data *data);
+void	free_cond(t_data *data);
 
 /*parser.c*/
 int		parse_cub(char *argv, t_data *data);
@@ -47,10 +49,15 @@ void	parse_input(int fd, t_data *data, t_mapchecker *elements);
 void	parse_mapinfo(char *str, t_data *data);
 void	map_errors(t_mapchecker *elements);
 void	parse_texture(t_data *data);
-void	parse_texture_helper(t_data *data, int dir, char *path);
+
+/*parse_texture_error.c*/
+void	check_texture_file(char *path);
+void	create_image(t_data *data, int dir, char *path);
+int		*get_data_addr(t_data *data, int dir);
+void	check_texture_size(t_data *data, int dir);
 
 /*mapinfo.c*/
-void	check_input(char *str, t_data *data, t_mapchecker *elements);
+int		check_input(char *str, t_data *data, t_mapchecker *elements);
 void	parse_color(char *str, t_data *data);
 void	parse_color_values(int *X, char *str, int i);
 void	parse_path(char *str, t_data *data);
@@ -72,6 +79,7 @@ void	set_remainder(t_data *data, int *x, int y);
 int		valid_map(t_data *data);
 int		check_char(char c);
 int		check_open(t_data *data, int y, int x);
+int		valid_key(char *str);
 
 /*parse_player.c*/
 void	parse_player(t_data *data);

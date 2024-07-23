@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 15:33:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 18:00:30 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/07/23 10:12:51 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/07/23 10:12:54 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void	parse_map(int fd, t_data *data)
 	data->mapinfo.map = init_map(data);
 	fill_map(fd, data);
 	if (!valid_map(data))
-		ft_error("Invalid map\n");
+		ft_error("Invalid map\n", data);
 }

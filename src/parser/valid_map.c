@@ -6,11 +6,30 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:30:03 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 17:49:48 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/23 11:03:48 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	valid_key(char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i] == 32)
+		i++;
+	if (!ft_strncmp(str + i, "F ", 2) || !ft_strncmp(str + i, "C ", 2))
+		j++;
+	if (!ft_strncmp(str + i, "NO ", 3) || !ft_strncmp(str + i, "SO ", 3)
+		|| !ft_strncmp(str + i, "WE ", 3) || !ft_strncmp(str + i, "EA ", 3))
+		j++;
+	if (j == 0)
+		return (1);
+	return (0);
+}
 
 int	check_open(t_data *data, int y, int x)
 {

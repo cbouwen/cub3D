@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapinfo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:55:36 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/07/22 15:31:55 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/23 11:04:51 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	parse_color_values(int *X, char *str, int i)
 		i++;
 	blue = ft_atoi(str + ++i);
 	if (color_range(red, blue, green) == 0)
-		ft_error("Wrong color ranges\n");
+		ft_error("Wrong color ranges\n", NULL);
 	*X = (red << 16) | (green << 8) | blue;
 }
 
@@ -71,11 +71,13 @@ void	parse_color(char *str, t_data *data)
 		parse_color_values(&data->mapinfo.c, str, i);
 }
 
-void	check_input(char *str, t_data *data, t_mapchecker *elements)
+int	check_input(char *str, t_data *data, t_mapchecker *elements)
 {
 	int	i;
 
 	i = 0;
+	if (valid_key(str) == 1)
+		return (1);
 	while (str[i] == 32)
 		i++;
 	while (str[i])
@@ -93,4 +95,5 @@ void	check_input(char *str, t_data *data, t_mapchecker *elements)
 		}
 		i++;
 	}
+	return (0);
 }

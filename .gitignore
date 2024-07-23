@@ -1,2 +1,5 @@
-
+cub3D
+*.o
+*.swp
 .vscode/settings.json
+*.cub

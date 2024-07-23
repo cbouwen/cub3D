@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:31:22 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 15:31:26 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/23 11:01:49 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	map_errors(t_mapchecker *elements)
 {
 	if (elements->all_eles == false)
-		ft_error("Not all elements are defined before map initialization.\n");
+		ft_error("Not all elements defined before map initialization.\n", NULL);
 	if (elements->duplicate == true)
-		ft_error("Duplicate map arguments.\n");
+		ft_error("Duplicate map arguments.\n", NULL);
 }
 
 void	parse_mapinfo(char *str, t_data *data)
@@ -35,13 +35,15 @@ void	parse_mapinfo(char *str, t_data *data)
 void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 {
 	char	*line;
+	int		wrong_key;
 
+	wrong_key = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (check_for_map(line) == 1)
 			break ;
-		check_input(line, data, elements);
+		wrong_key += check_input(line, data, elements);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -51,6 +53,8 @@ void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (wrong_key != 0)
+		ft_error("Unknown key\n", data);
 }
 
 int	parse_cub(char *argv, t_data *data)
@@ -61,13 +65,13 @@ int	parse_cub(char *argv, t_data *data)
 	init_map_checker(&elements);
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		ft_error("Error opening map.. Weird. Try again!\n");
+		ft_error("Error opening map.. Weird. Try again!\n", data);
 	parse_input(fd, data, &elements);
 	close(fd);
 	map_errors(&elements);
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		ft_error("Error opening map.. Weird. Try again!\n");
+		ft_error("Error opening map.. Weird. Try again!\n", data);
 	parse_map(fd, data);
 	close(fd);
 	return (0);
