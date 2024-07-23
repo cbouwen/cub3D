@@ -12,7 +12,7 @@
 
 #include "../../inc/cub3d.h"
 
-void check_texture_file(char *path)
+void	check_texture_file(char *path)
 {
 	int	fd;
 
@@ -22,7 +22,7 @@ void check_texture_file(char *path)
 	close(fd);
 }
 
-void create_image(t_data *data, int dir, char *path)
+void	create_image(t_data *data, int dir, char *path)
 {
 	data->text[dir].img = mlx_xpm_file_to_image(data->mlx, path,
 			&data->text[dir].width, &data->text[dir].height);
@@ -30,7 +30,7 @@ void create_image(t_data *data, int dir, char *path)
 		ft_error("Error\nProblem with getting image for texture.\n", data);
 }
 
-int *get_data_addr(t_data *data, int dir)
+int	*get_data_addr(t_data *data, int dir)
 {
 	int	*temp;
 
@@ -42,7 +42,7 @@ int *get_data_addr(t_data *data, int dir)
 	return (temp);
 }
 
-void check_texture_size(t_data *data, int dir)
+void	check_texture_size(t_data *data, int dir)
 {
 	if (data->text[dir].width != TEX_SIZE || data->text[dir].height != TEX_SIZE)
 		ft_error("Error\nTexture size is not equal to TEX_SIZE.\n", data);

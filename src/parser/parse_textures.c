@@ -12,15 +12,7 @@
 
 #include "../../inc/cub3d.h"
 
-void	parse_texture(t_data *data)
-{
-	parse_texture_helper(data, NORTH, data->mapinfo.no);
-	parse_texture_helper(data, EAST, data->mapinfo.ea);
-	parse_texture_helper(data, SOUTH, data->mapinfo.so);
-	parse_texture_helper(data, WEST, data->mapinfo.we);
-}
-
-void	parse_texture_helper(t_data *data, int dir, char *path)
+static	void	parse_texture_helper(t_data *data, int dir, char *path)
 {
 	int	*temp;
 	int	x;
@@ -42,4 +34,12 @@ void	parse_texture_helper(t_data *data, int dir, char *path)
 			data->text[dir].addr[y * data->text[dir].width + x] = temp[y
 				* (data->text[dir].line_length / 4) + x];
 	}
+}
+
+void	parse_texture(t_data *data)
+{
+	parse_texture_helper(data, NORTH, data->mapinfo.no);
+	parse_texture_helper(data, EAST, data->mapinfo.ea);
+	parse_texture_helper(data, SOUTH, data->mapinfo.so);
+	parse_texture_helper(data, WEST, data->mapinfo.we);
 }
