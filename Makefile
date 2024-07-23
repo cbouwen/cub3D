@@ -26,7 +26,6 @@ MLX = $(MLX_PATH)$(MLX_NAME)
 all : $(NAME)
 
 $(NAME) : $(LIBFT_LIB) $(MLX) $(SRC) $(GNL_LIB)
-	cp $(MLX) ./
 	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) $(GNL_LIB) $(MLX_FLAGS) -o $(NAME)
 
 $(LIBFT_LIB):
