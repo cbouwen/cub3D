@@ -50,7 +50,6 @@ void	parse_input(int fd, t_data *data, t_mapchecker *elements);
 void	parse_mapinfo(char *str, t_data *data);
 void	map_errors(t_mapchecker *elements);
 void	parse_texture(t_data *data);
-void	parse_texture_helper(t_data *data, int dir, char *path);
 
 /*parse_texture_error.c*/
 void	check_texture_file(char *path);
