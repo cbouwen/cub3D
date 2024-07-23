@@ -19,9 +19,14 @@ LIBFT_DIR = ./lib/Libft/
 LIBFT_LIB = $(LIBFT_DIR)libft.a
 LIBFT_INC = -I $(LIBFT_DIR)
 
+MLX_PATH = mlx_linux/
+MLX_NAME = libmlx_Linux.a
+MLX = $(MLX_PATH)$(MLX_NAME)
+
 all : $(NAME)
 
-$(NAME) : $(LIBFT_LIB) $(SRC) $(GNL_LIB)
+$(NAME) : $(LIBFT_LIB) $(MLX) $(SRC) $(GNL_LIB)
+	cp $(MLX) ./
 	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) $(GNL_LIB) $(MLX_FLAGS) -o $(NAME)
 
 $(LIBFT_LIB):
@@ -30,7 +35,11 @@ $(LIBFT_LIB):
 $(GNL_LIB):
 	make -C $(GNL_DIR)
 
+$(MLX):
+	make -C $(MLX_PATH) all
+
 clean : 
+	make -C $(MLX_PATH) clean
 	make clean -C $(LIBFT_DIR)
 	make clean -C $(GNL_DIR)
 
