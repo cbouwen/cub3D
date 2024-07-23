@@ -22,7 +22,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-//# include "typedefs.h"
 # include "typedef.h"
 
 # define HEIGHT 1080
@@ -32,7 +31,7 @@
 # define FOV_ANGLE 66
 # define MOVESPEED 0.40
 # define RS 0.30
-# define TEX_SIZE 64
+# define TEX_SIZE 128
 
 //utils
 int		map_name(char *str);
