@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/23 16:50:33 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/07/23 17:28:22 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define MOVESPEED 0.40
 # define RS 0.30
 # define TEX_SIZE 64
+#define HEIGHT 1080
+#define WIDTH 1980
 
 //utils
 int		map_name(char *str);
