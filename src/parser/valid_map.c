@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:30:03 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/23 11:03:48 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/23 11:18:28 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	valid_key(char *str)
 		j++;
 	if (!ft_strncmp(str + i, "NO ", 3) || !ft_strncmp(str + i, "SO ", 3)
 		|| !ft_strncmp(str + i, "WE ", 3) || !ft_strncmp(str + i, "EA ", 3))
+		j++;
+	if (str[i] == '\n')
 		j++;
 	if (j == 0)
 		return (1);
