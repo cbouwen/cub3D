@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:12:26 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/07/22 19:52:32 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:26:51 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ int	handle_input(int key, t_data *data)
 //hier zijn alle free's juist, en het werkt. Geen leaks.
 int	close_window(t_data *data)
 {
-	free_cond(data);
+	
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_display(data->mlx);
-	if (data->mlx)
-		free(data->mlx);
+	free_cond(data);
 	exit(1);
 }
 

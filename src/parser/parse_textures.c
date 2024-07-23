@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:58:34 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/22 19:29:52 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:24:31 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	void	parse_texture_helper(t_data *data, int dir, char *path)
 	int	x;
 	int	y;
 
-	check_texture_file(path);
+	check_texture_file(path, data);
 	create_image(data, dir, path);
 	temp = get_data_addr(data, dir);
 	check_texture_size(data, dir);

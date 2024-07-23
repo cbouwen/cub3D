@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture_error.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 02:04:41 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/07/23 10:28:52 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:24:11 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	check_texture_file(char *path)
+void	check_texture_file(char *path, t_data *data)
 {
 	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		ft_error("Error\nTexture file not found.\n", NULL);
+		ft_error("Error\nTexture file not found.\n", data);
 	close(fd);
 }
 

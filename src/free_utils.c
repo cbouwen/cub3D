@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:25:48 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/07/22 19:52:25 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:28:37 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	free_cond(t_data *data)
 	if (data->mapinfo.map)
 		ft_free_array(data->mapinfo.map, data->mapinfo.rows);
 	destroy_textures(data);
+
+	if (data->mlx_win)
+		mlx_destroy_window(data->mlx, data->mlx_win);
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
+	if (data->mlx)
+		free(data->mlx);
 }
 
 void	free_all(t_data *data)

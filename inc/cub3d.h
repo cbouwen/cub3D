@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/23 11:04:11 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:24:23 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	map_errors(t_mapchecker *elements);
 void	parse_texture(t_data *data);
 
 /*parse_texture_error.c*/
-void	check_texture_file(char *path);
+void	check_texture_file(char *path, t_data *data);
 void	create_image(t_data *data, int dir, char *path);
 int		*get_data_addr(t_data *data, int dir);
 void	check_texture_size(t_data *data, int dir);
