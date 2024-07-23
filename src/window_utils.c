@@ -39,6 +39,7 @@ int	handle_input(int key, t_data *data)
 	return (0);
 }
 
+//hier zijn alle free's juist, en het werkt. Geen leaks.
 int	close_window(t_data *data)
 {
 	free_cond(data);

@@ -94,17 +94,14 @@ int _main(void)
 	print_test(&test);
 	printf("\n");
 
-	//change is detected, test_mlx is no longer NULL
 	test.mlx = mlx_init();
 	print_test(&test);
 	printf("\n");
 
-	//change is detected, test_mlx_win is no longer NULL
 	test.mlx_win = mlx_new_window(test.mlx, 1920, 1080, "Hello world!");
 	print_test(&test);
 	printf("\n");
 
-	//change is detected, test.img is no longer NULL
 	test.img = mlx_new_image(test.mlx, 1920, 1080);
 	print_test(&test);
 	printf("\n");
@@ -113,10 +110,7 @@ int _main(void)
 	print_test(&test);
 	printf("\n");
 
-	//this combination is needed to free the mlx pointer.
-	//if you only free mlx, it will still leak
-	//order of operations is also important
-	//if you destroy the display first, or free mlx first, it will crash
+	//volgorde is hier belangrijk, iets te vroeg destroyen kan voor problemen zorgen
 	mlx_loop_end(test.mlx);
 	mlx_destroy_window(test.mlx, test.mlx_win);
 	mlx_destroy_image(test.mlx, test.img);
