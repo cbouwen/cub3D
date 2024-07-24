@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:55:36 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/07/23 11:04:51 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:39:44 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,13 @@ void	parse_color_values(int *X, char *str, int i)
 	green = ft_atoi(str + ++i);
 	while (str[i] != 44)
 		i++;
+	if (!(ft_isdigit(str[i + 1])))
+		ft_error("Wrong color format!\n", NULL);
 	blue = ft_atoi(str + ++i);
+	while (ft_isdigit(str[i]))
+		i++;
+	if (str[i] != '\n')
+		ft_error("Wrong color format!\n", NULL);
 	if (color_range(red, blue, green) == 0)
 		ft_error("Wrong color ranges\n", NULL);
 	*X = (red << 16) | (green << 8) | blue;

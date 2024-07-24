@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:12:51 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/23 10:12:54 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/24 19:53:23 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ t_map	**init_map(t_data *data)
 	i = 0;
 	map = (t_map **)malloc(sizeof(t_map *) * data->mapinfo.rows);
 	if (!map)
-		ft_free(&data->mapinfo);
+		ft_error("Malloc fail!\n", data);
 	while (i < data->mapinfo.rows)
 	{
 		map[i] = (t_map *)malloc(sizeof(t_map) * data->mapinfo.columns);
 		if (!map[i])
 		{
-			ft_free_array(data->mapinfo.map, i);
-			ft_free(&data->mapinfo);
+			ft_free_array(map, i);
+			ft_error("Malloc fail!\n", data);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:30:03 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/23 11:18:28 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:18:06 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_open(t_data *data, int y, int x)
 			return (0);
 		if (y < data->mapinfo.rows && map[y + 1][x].c == 32)
 			return (0);
-		if (x > data->mapinfo.columns && map[y][x + 1].c == 32)
+		if (x < data->mapinfo.columns && map[y][x + 1].c == 32)
 			return (0);
 	}
 	return (1);
