@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/23 16:50:33 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/07/31 16:23:46 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	free_cond(t_data *data);
 int		parse_cub(char *argv, t_data *data);
 void	parse_input(int fd, t_data *data, t_mapchecker *elements);
 void	parse_mapinfo(char *str, t_data *data);
-void	map_errors(t_mapchecker *elements);
+void	map_errors(t_mapchecker *elements, t_data *data);
 void	parse_texture(t_data *data);
 
 /*parse_texture_error.c*/
@@ -58,7 +58,7 @@ void	check_texture_size(t_data *data, int dir);
 /*mapinfo.c*/
 int		check_input(char *str, t_data *data, t_mapchecker *elements);
 void	parse_color(char *str, t_data *data);
-void	parse_color_values(int *X, char *str, int i);
+void	parse_color_values(int *X, char *str, int i, t_data *data);
 void	parse_path(char *str, t_data *data);
 
 /*parse_utils.c*/

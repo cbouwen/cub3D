@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapinfo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:55:36 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/07/24 20:39:44 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/31 16:45:19 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	parse_path(char *str, t_data *data)
 	i = 0;
 	while (str[i + 3] && (str[i + 3] != 32 && str[i + 3] != '\n'))
 		i++;
-	if (str[0] == 'N')
+	if (str[0] == 'N' && data->mapinfo.no == NULL)
 		data->mapinfo.no = ft_strndup(str + 3, i);
-	else if (str[0] == 'S')
+	else if (str[0] == 'S' && data->mapinfo.so == NULL)
 		data->mapinfo.so = ft_strndup(str + 3, i);
-	else if (str[0] == 'W')
+	else if (str[0] == 'W' && data->mapinfo.we == NULL)
 		data->mapinfo.we = ft_strndup(str + 3, i);
-	else if (str[0] == 'E')
+	else if (str[0] == 'E' && data->mapinfo.ea == NULL)
 		data->mapinfo.ea = ft_strndup(str + 3, i);
 }
 
@@ -40,7 +40,7 @@ int	color_range(int red, int blue, int green)
 	return (1);
 }
 
-void	parse_color_values(int *X, char *str, int i)
+void	parse_color_values(int *X, char *str, int i, t_data *data)
 {
 	int	red;
 	int	green;
@@ -53,14 +53,17 @@ void	parse_color_values(int *X, char *str, int i)
 	while (str[i] != 44)
 		i++;
 	if (!(ft_isdigit(str[i + 1])))
-		ft_error("Wrong color format!\n", NULL);
+		ft_error("Wrong color format!\n", data);
 	blue = ft_atoi(str + ++i);
 	while (ft_isdigit(str[i]))
 		i++;
 	if (str[i] != '\n')
-		ft_error("Wrong color format!\n", NULL);
+		ft_error("Wrong color format!\n", data);
 	if (color_range(red, blue, green) == 0)
-		ft_error("Wrong color ranges\n", NULL);
+	{
+		free(str);
+		ft_error("Wrong color ranges\n", data); //make new free function for colours
+	}
 	*X = (red << 16) | (green << 8) | blue;
 }
 
@@ -72,9 +75,9 @@ void	parse_color(char *str, t_data *data)
 	while (str[i] == 32)
 		i++;
 	if (str[0] == 'F')
-		parse_color_values(&data->mapinfo.f, str, i);
+		parse_color_values(&data->mapinfo.f, str, i, data);
 	else
-		parse_color_values(&data->mapinfo.c, str, i);
+		parse_color_values(&data->mapinfo.c, str, i, data);
 }
 
 int	check_input(char *str, t_data *data, t_mapchecker *elements)

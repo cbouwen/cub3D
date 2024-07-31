@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 14:41:59 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/23 16:53:57 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/07/31 16:46:58 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 2)
-		ft_error("Wrong number of arguments. Try again!\n", NULL);
+		ft_error("Wrong number of arguments. Try again!\n", &data);
 	else if (!(map_name(argv[1])))
-		ft_error("Map doesn't end with .cub\n", NULL);
+		ft_error("Map doesn't end with .cub\n", &data);
 	else
 	{
 		init_data_default(&data);
