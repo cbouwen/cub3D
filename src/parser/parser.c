@@ -35,15 +35,15 @@ void	parse_mapinfo(char *str, t_data *data)
 void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 {
 	char	*line;
-	int		wrong_key;
+	int		error;
 
-	wrong_key = 0;
+	error = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (check_for_map(line) == 1)
 			break ;
-		wrong_key += check_input(line, data, elements);
+		error += check_input(line, data, elements, fd);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -53,7 +53,7 @@ void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (wrong_key != 0)
+	if (error != 0)
 		ft_error("Unknown key\n", data);
 }
 

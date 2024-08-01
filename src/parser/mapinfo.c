@@ -40,12 +40,14 @@ int	color_range(int red, int blue, int green)
 	return (1);
 }
 
-void	parse_color_values(int *X, char *str, int i, t_data *data)
+int	parse_color_values(int *X, char *str, int i)
 {
 	int	red;
 	int	green;
 	int	blue;
+	int	error;
 
+	error = 0;
 	red = ft_atoi(str + i);
 	while (str[i] != 44)
 		i++;
@@ -53,34 +55,46 @@ void	parse_color_values(int *X, char *str, int i, t_data *data)
 	while (str[i] != 44)
 		i++;
 	if (!(ft_isdigit(str[i + 1])))
-		ft_error("Wrong color format!\n", data);
+		error = 1;
 	blue = ft_atoi(str + ++i);
 	while (ft_isdigit(str[i]))
 		i++;
 	if (str[i] != '\n')
-		ft_error("Wrong color format!\n", data);
+		error = 1;
 	if (color_range(red, blue, green) == 0)
-	{
-		free(str);
-		ft_error("Wrong color ranges\n", data); //make new free function for colours
-	}
+		error = 2;
 	*X = (red << 16) | (green << 8) | blue;
+	return (error);
 }
 
-void	parse_color(char *str, t_data *data)
+void	parse_color(char *str, t_data *data, char *line, int fd)
 {
 	int	i;
+	int	error;
 
+	error = 0;
 	i = 2;
 	while (str[i] == 32)
 		i++;
 	if (str[0] == 'F')
-		parse_color_values(&data->mapinfo.f, str, i, data);
+		error += parse_color_values(&data->mapinfo.f, str, i);
 	else
-		parse_color_values(&data->mapinfo.c, str, i, data);
+		error += parse_color_values(&data->mapinfo.c, str, i);
+	if (error != 0)
+	{
+		while (line)
+		{
+			free(line);
+			line = get_next_line(fd);
+		}
+		if (error == 1)
+			ft_error("Wrong color format!\n", data);
+		else if (error == 2)
+			ft_error("Wrong color ranges!\n", data);
+	}
 }
 
-int	check_input(char *str, t_data *data, t_mapchecker *elements)
+int	check_input(char *str, t_data *data, t_mapchecker *elements, int fd)
 {
 	int	i;
 
@@ -93,7 +107,7 @@ int	check_input(char *str, t_data *data, t_mapchecker *elements)
 	{
 		if (!ft_strncmp(str + i, "F ", 2) || !ft_strncmp(str + i, "C ", 2))
 		{
-			parse_color(str + i, data);
+			parse_color(str + i, data, str, fd);
 			update_mapchecker(str + i, elements);
 		}
 		if (!ft_strncmp(str + i, "NO ", 3) || !ft_strncmp(str + i, "SO ", 3)

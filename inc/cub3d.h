@@ -56,9 +56,9 @@ int		*get_data_addr(t_data *data, int dir);
 void	check_texture_size(t_data *data, int dir);
 
 /*mapinfo.c*/
-int		check_input(char *str, t_data *data, t_mapchecker *elements);
-void	parse_color(char *str, t_data *data);
-void	parse_color_values(int *X, char *str, int i, t_data *data);
+int		check_input(char *str, t_data *data, t_mapchecker *elements, int fd);
+void     parse_color(char *str, t_data *data, char *line, int fd);
+int     parse_color_values(int *X, char *str, int i);
 void	parse_path(char *str, t_data *data);
 
 /*parse_utils.c*/
