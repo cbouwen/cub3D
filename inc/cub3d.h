@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/31 16:23:46 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:06:50 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@
 
 //utils
 int		map_name(char *str);
-void	ft_free(void *ptr);
+//void	ft_free(void *ptr);
 int		check_for_map(char *str);
 int		ft_error(char *str, t_data *data);
 void	ft_free_array(t_map **map, int count);
 void	destroy_textures(t_data *data);
 void	free_cond(t_data *data);
+void    free_line(char *line, int fd, t_data *data, int error);
+int    free_color_array(char **color, int count);
 
 /*parser.c*/
 int		parse_cub(char *argv, t_data *data);
@@ -57,8 +59,8 @@ void	check_texture_size(t_data *data, int dir);
 
 /*mapinfo.c*/
 int		check_input(char *str, t_data *data, t_mapchecker *elements, int fd);
-void     parse_color(char *str, t_data *data, char *line, int fd);
-int     parse_color_values(int *X, char *str, int i);
+void	parse_color(char *str, t_data *data, char *line, int fd);
+int		parse_color_values(int *X, char *str, int i);
 void	parse_path(char *str, t_data *data);
 
 /*parse_utils.c*/

@@ -12,6 +12,8 @@
 
 #include "../../inc/cub3d.h"
 
+
+
 void	map_errors(t_mapchecker *elements, t_data *data)
 {
 	if (elements->all_eles == false)

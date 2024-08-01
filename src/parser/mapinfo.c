@@ -45,53 +45,49 @@ int	parse_color_values(int *X, char *str, int i)
 	int	red;
 	int	green;
 	int	blue;
-	int	error;
 
-	error = 0;
 	red = ft_atoi(str + i);
 	while (str[i] != 44)
 		i++;
 	green = ft_atoi(str + ++i);
 	while (str[i] != 44)
 		i++;
-	if (!(ft_isdigit(str[i + 1])))
-		error = 1;
 	blue = ft_atoi(str + ++i);
 	while (ft_isdigit(str[i]))
 		i++;
-	if (str[i] != '\n')
-		error = 1;
 	if (color_range(red, blue, green) == 0)
-		error = 2;
+		return (2);
 	*X = (red << 16) | (green << 8) | blue;
-	return (error);
+	return (0);
 }
 
 void	parse_color(char *str, t_data *data, char *line, int fd)
 {
-	int	i;
-	int	error;
+	int		i;
+	int		error;
+	char	**color;
+	int		count;
 
+	count = 0;
 	error = 0;
 	i = 2;
 	while (str[i] == 32)
 		i++;
-	if (str[0] == 'F')
-		error += parse_color_values(&data->mapinfo.f, str, i);
-	else
-		error += parse_color_values(&data->mapinfo.c, str, i);
+	color = ft_split(str + i, ',');
+	while (color[count] != NULL)
+		count++;
+	printf("Value of color[2] == %s\n", color[count]);
+	error = free_color_array(color, count);
+	if (count != 3 || color[count - 1] == NULL)
+		free_line(line, fd, data, 3); //wrong amount of RGB
 	if (error != 0)
-	{
-		while (line)
-		{
-			free(line);
-			line = get_next_line(fd);
-		}
-		if (error == 1)
-			ft_error("Wrong color format!\n", data);
-		else if (error == 2)
-			ft_error("Wrong color ranges!\n", data);
-	}
+		free_line(line, fd, data, error); //no digits
+	if (str[0] == 'F')
+		error = parse_color_values(&data->mapinfo.f, str, i); //out of scope
+	else
+		error = parse_color_values(&data->mapinfo.c, str, i); //out of scope
+	if (error != 0)
+		free_line(line, fd, data, error);
 }
 
 int	check_input(char *str, t_data *data, t_mapchecker *elements, int fd)

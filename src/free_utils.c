@@ -35,6 +35,21 @@ void	free_cond(t_data *data)
 		free(data->mlx);
 }
 
+void	free_line(char *line, int fd, t_data *data, int error)
+{
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (error == 1)
+		ft_error("Wrong color format!\n", data);
+	else if (error == 2)
+		ft_error("Wrong color ranges!\n", data);
+	else if (error == 3)
+		ft_error("Wrong amount of color arguments\n", data);
+}
+
 void	destroy_textures(t_data *data)
 {
 	int	i;
@@ -60,6 +75,32 @@ void	ft_free_array(t_map **map, int count)
 	free(map);
 }
 
+int	free_color_array(char **color, int count)
+{
+	int	i;
+	int	j;
+	int	error;
+
+	error = 0;
+	i = -1;
+	while (++i < count)
+	{
+		j = 0;
+		while (color[i][j] && color[i][j] != '\n')
+		{
+			if (!(ft_isdigit(color[i][j])))
+				error = 1;
+			j++;
+		}
+	}
+	i = -1;
+	while (++i < count)
+		free(color[i]);
+	free(color);
+	return (error);
+}
+
+/*
 void	ft_free(void *ptr)
 {
 	if (ptr)
@@ -67,3 +108,4 @@ void	ft_free(void *ptr)
 	write(2, "Error\n", 6);
 	exit(1);
 }
+*/
