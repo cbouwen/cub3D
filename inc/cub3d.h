@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:23:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/08/01 14:06:50 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/08/01 16:42:47 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@
 
 //utils
 int		map_name(char *str);
-//void	ft_free(void *ptr);
 int		check_for_map(char *str);
 int		ft_error(char *str, t_data *data);
 void	ft_free_array(t_map **map, int count);
 void	destroy_textures(t_data *data);
 void	free_cond(t_data *data);
-void    free_line(char *line, int fd, t_data *data, int error);
-int    free_color_array(char **color, int count);
+void	free_line(char *line, int fd, t_data *data, int error);
+void	free_color_array(char **color, int count);
 
 /*parser.c*/
 int		parse_cub(char *argv, t_data *data);
@@ -81,6 +80,7 @@ int		valid_map(t_data *data);
 int		check_char(char c);
 int		check_open(t_data *data, int y, int x);
 int		valid_key(char *str);
+int		check_color_array(char **color, int count);
 
 /*parse_player.c*/
 void	parse_player(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:25:48 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/07/24 19:45:07 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/08/01 16:41:20 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,37 +75,12 @@ void	ft_free_array(t_map **map, int count)
 	free(map);
 }
 
-int	free_color_array(char **color, int count)
+void	free_color_array(char **color, int count)
 {
 	int	i;
-	int	j;
-	int	error;
 
-	error = 0;
-	i = -1;
-	while (++i < count)
-	{
-		j = 0;
-		while (color[i][j] && color[i][j] != '\n')
-		{
-			if (!(ft_isdigit(color[i][j])))
-				error = 1;
-			j++;
-		}
-	}
 	i = -1;
 	while (++i < count)
 		free(color[i]);
 	free(color);
-	return (error);
 }
-
-/*
-void	ft_free(void *ptr)
-{
-	if (ptr)
-		free(ptr);
-	write(2, "Error\n", 6);
-	exit(1);
-}
-*/

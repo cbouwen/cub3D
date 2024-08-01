@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:30:03 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/24 20:18:06 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/08/01 16:41:54 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,32 @@ int	check_open(t_data *data, int y, int x)
 			return (0);
 	}
 	return (1);
+}
+
+int	check_color_array(char **color, int count)
+{
+	int	i;
+	int	j;
+	int	error;
+
+	error = 0;
+	i = -1;
+	while (++i < count)
+	{
+		if (count != 3 || color[i][0] == '\n')
+		{
+			error = 3;
+			break ;
+		}
+		j = 0;
+		while (color[i][j] && color[i][j] != '\n')
+		{
+			if (!(ft_isdigit(color[i][j])))
+				error = 1;
+			j++;
+		}
+	}
+	return (error);
 }
 
 int	check_char(char c)

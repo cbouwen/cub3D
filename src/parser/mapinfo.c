@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:55:36 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/07/31 16:45:19 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:38:53 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,14 @@ void	parse_color(char *str, t_data *data, char *line, int fd)
 	color = ft_split(str + i, ',');
 	while (color[count] != NULL)
 		count++;
-	printf("Value of color[2] == %s\n", color[count]);
-	error = free_color_array(color, count);
-	if (count != 3 || color[count - 1] == NULL)
-		free_line(line, fd, data, 3); //wrong amount of RGB
+	error = check_color_array(color, count);
+	free_color_array(color, count);
 	if (error != 0)
-		free_line(line, fd, data, error); //no digits
+		free_line(line, fd, data, error);
 	if (str[0] == 'F')
-		error = parse_color_values(&data->mapinfo.f, str, i); //out of scope
+		error = parse_color_values(&data->mapinfo.f, str, i);
 	else
-		error = parse_color_values(&data->mapinfo.c, str, i); //out of scope
+		error = parse_color_values(&data->mapinfo.c, str, i);
 	if (error != 0)
 		free_line(line, fd, data, error);
 }

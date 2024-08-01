@@ -6,13 +6,11 @@
 /*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:31:22 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/31 16:23:36 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:39:15 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-
 
 void	map_errors(t_mapchecker *elements, t_data *data)
 {

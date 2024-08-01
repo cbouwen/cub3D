@@ -3,8 +3,8 @@ SO textures/greystone.xpm
 WE textures/redbrick.xpm
 EA textures/wood.xpm
 
-C 200,200,
-F 147,0,200
+C 0,0,250
+F 0,0,c
 
   111
   101
