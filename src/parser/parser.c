@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:31:22 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/08/01 16:39:15 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/08/14 12:13:23 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 		free(line);
 		line = get_next_line(fd);
 	}
-	while (line && check_for_map(line) == 1)
+	while (line) //&& check_for_map(line) == 1)
 	{
 		parse_mapinfo(line, data);
 		free(line);

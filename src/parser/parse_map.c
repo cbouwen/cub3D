@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 10:12:51 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/07/24 19:53:23 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/08/14 12:06:25 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,29 @@ t_map	**init_map(t_data *data)
 	return (map);
 }
 
+void	misconfigured_map(t_map **map, t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < data->mapinfo.rows)
+	{
+		x = -1;
+		while (++x < data->mapinfo.columns)
+		{
+			if (map[y][x].c != '1' && map[y][x].c != '0' && map[y][x].c != 'W' && map[y][x].c !=  'E' && map[y][x].c != 'N' && map[y][x].c != 'S' && map[y][x].c!= ' ')
+				ft_error("Map is misconfigured\n", data);
+		}
+	}
+}
+
+
 void	parse_map(int fd, t_data *data)
 {
 	data->mapinfo.map = init_map(data);
 	fill_map(fd, data);
 	if (!valid_map(data))
 		ft_error("Invalid map\n", data);
+	misconfigured_map(data->mapinfo.map, data);
 }
