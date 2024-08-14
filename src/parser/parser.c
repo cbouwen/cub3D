@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:31:22 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/08/01 16:39:15 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/08/14 12:45:04 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@ void	parse_mapinfo(char *str, t_data *data)
 	data->mapinfo.rows++;
 }
 
+void	free_line_error(int fd, char *line, t_data *data)
+{
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	ft_error("Error: Misconfigured map\n", data);
+}
+
 void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 {
 	char	*line;
@@ -53,6 +64,8 @@ void	parse_input(int fd, t_data *data, t_mapchecker *elements)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free_line_error(fd, line, data);
 	if (error != 0)
 		ft_error("Unknown key\n", data);
 }
